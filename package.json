@@ -1,0 +1,36 @@
+{
+	"name": "material-ui-speed-dial",
+	"version": "0.1.0",
+	"description": "Speed dial for Material-UI. \"The floating action button can fling out related actions upon press.\"",
+	"email": "simon.mollweide@web.de",
+	"author": "Simon Mollweide <simon.mollweide@web.de>",
+	"url": "https://github.com/smollweide/material-ui-speed-dial",
+	"repository": {
+		"type": "github",
+		"url": "https://github.com/smollweide/material-ui-speed-dial"
+	},
+	"main": "index.js",
+	"bugs": {
+		"url": "https://github.com/smollweide/material-ui-speed-dial/issues"
+	},
+	"preferGlobal": false,
+	"private": false,
+	"license": "MIT",
+	"scripts": {
+		"start": "react-scripts start",
+		"build": "react-scripts build",
+		"test": "react-scripts test --env=jsdom",
+		"eject": "react-scripts eject",
+		"lint": "eslint ./"
+	},
+	"devDependencies": {
+		"@namics/eslint-config": "^2.0.0",
+		"react-scripts": "0.7.0"
+	},
+	"dependencies": {
+		"material-ui": "^0.16.4",
+		"react": "^15.4.0",
+		"react-dom": "^15.4.0",
+		"react-tap-event-plugin": "^2.0.1"
+	}
+}
