@@ -17,6 +17,8 @@
 	"private": false,
 	"license": "MIT",
 	"scripts": {
+		"clean:build": "rimraf build",
+		"clean:publish": "rimraf publish",
 		"preinstall": "npm install -g pushstate-server",
 		"start": "react-scripts start",
 		"build": "react-scripts build",
@@ -24,11 +26,37 @@
 		"eject": "react-scripts eject",
 		"lint": "eslint ./src",
 		"prestatic-server": "open http://localhost:9000",
-		"static-server": "pushstate-server build"
+		"static-server": "pushstate-server build",
+		"prepublish": "npm run clean:publish",
+		"publish": "npm run publish:babel && npm run publish:index",
+		"publish:index": "BABEL_ENV=es babel ./src/speed-dial.js --out-file ./publish/index.es.js",
+		"publish:babel": "NODE_ENV=release babel ./src/components --out-dir ./publish/components --ignore spec.js"
+	},
+	"peerDependencies": {
+		"material-ui": "^0.16.0",
+		"react": "^15.0.0",
+		"react-dom": "^15.0.0",
+		"react-tap-event-plugin": "^1.0.0 || ^2.0.0"
 	},
 	"devDependencies": {
 		"@namics/eslint-config": "^2.0.0",
-		"react-scripts": "0.7.0"
+		"babel-cli": "^6.18.0",
+		"babel-core": "^6.18.2",
+		"babel-eslint": "^7.1.0",
+		"babel-loader": "^6.2.7",
+		"babel-plugin-transform-dev-warning": "^0.1.0",
+		"babel-plugin-transform-react-constant-elements": "^6.5.0",
+		"babel-plugin-transform-react-inline-elements": "^6.6.5",
+		"babel-plugin-transform-react-remove-prop-types": "^0.2.10",
+		"babel-plugin-transform-replace-object-assign": "^0.2.1",
+		"babel-plugin-transform-runtime": "^6.15.0",
+		"babel-polyfill": "^6.7.4",
+		"babel-preset-es2015": "^6.18.0",
+		"babel-preset-react": "^6.11.1",
+		"babel-runtime": "^6.18.0",
+		"react-scripts": "0.7.0",
+		"rimraf": "^2.5.4",
+		"webpack": "^1.13.3"
 	},
 	"dependencies": {
 		"material-ui": "^0.16.4",

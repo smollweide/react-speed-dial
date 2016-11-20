@@ -1,0 +1,26 @@
+{
+  "presets": ["babel-preset-es2015", "react"],
+  "plugins": [
+    ["transform-replace-object-assign", "simple-assign"],
+    "transform-dev-warning"
+  ],
+  "env": {
+    "test": {
+      "sourceMaps": "both"
+    },
+    "docs-production": {
+      "plugins": [
+        ["transform-replace-object-assign", "simple-assign"],
+        "transform-react-remove-prop-types",
+        "transform-react-constant-elements",
+        "transform-react-inline-elements"
+      ]
+    },
+    "release": {
+      "plugins": [
+        "transform-runtime",
+        ["transform-react-remove-prop-types", {"mode": "wrap"}]
+      ]
+    }
+  }
+}
