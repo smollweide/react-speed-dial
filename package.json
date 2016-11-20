@@ -1,7 +1,7 @@
 {
 	"name": "material-ui-speed-dial",
 	"version": "0.1.0",
-	"description": "Speed dial for Material-UI. \"The floating action button can fling out related actions upon press.\"",
+	"description": "React Component that implements a Speed dial using Material-UI.",
 	"email": "simon.mollweide@web.de",
 	"author": "Simon Mollweide <simon.mollweide@web.de>",
 	"url": "https://github.com/smollweide/material-ui-speed-dial",
@@ -9,7 +9,7 @@
 		"type": "github",
 		"url": "https://github.com/smollweide/material-ui-speed-dial"
 	},
-	"main": "index.js",
+	"main": "speed-dial.js",
 	"bugs": {
 		"url": "https://github.com/smollweide/material-ui-speed-dial/issues"
 	},
@@ -17,11 +17,14 @@
 	"private": false,
 	"license": "MIT",
 	"scripts": {
+		"preinstall": "npm install -g pushstate-server",
 		"start": "react-scripts start",
 		"build": "react-scripts build",
 		"test": "react-scripts test --env=jsdom",
 		"eject": "react-scripts eject",
-		"lint": "eslint ./"
+		"lint": "eslint ./src",
+		"prestatic-server": "open http://localhost:9000",
+		"static-server": "pushstate-server build"
 	},
 	"devDependencies": {
 		"@namics/eslint-config": "^2.0.0",
