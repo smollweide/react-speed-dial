@@ -1,17 +1,17 @@
 {
-	"name": "material-ui-speed-dial",
+	"name": "react-speed-dial",
 	"version": "0.1.0",
-	"description": "React Component that implements a Speed dial using Material-UI.",
+	"description": "React Component that implements a speed dial using Material-UI.",
 	"email": "simon.mollweide@web.de",
 	"author": "Simon Mollweide <simon.mollweide@web.de>",
-	"url": "https://github.com/smollweide/material-ui-speed-dial",
+	"url": "https://github.com/smollweide/react-speed-dial",
 	"repository": {
 		"type": "github",
-		"url": "https://github.com/smollweide/material-ui-speed-dial"
+		"url": "https://github.com/smollweide/react-speed-dial"
 	},
 	"main": "speed-dial.js",
 	"bugs": {
-		"url": "https://github.com/smollweide/material-ui-speed-dial/issues"
+		"url": "https://github.com/smollweide/react-speed-dial/issues"
 	},
 	"preferGlobal": false,
 	"private": false,
