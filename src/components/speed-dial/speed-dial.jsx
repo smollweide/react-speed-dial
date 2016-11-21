@@ -108,7 +108,7 @@ class SpeedDial extends React.Component {
 
 		return (
 			<div style={this.styles.main}>
-				<span style={this.styles.backdropWrap}>
+				<span style={isOpen ? this.styles.backdropWrap : this.styles.backdropWrapInvisible}>
 					<a
 						style={isOpen ? this.styles.backdrop : this.styles.backdropInvisible}
 						onTouchTap={handleClick}

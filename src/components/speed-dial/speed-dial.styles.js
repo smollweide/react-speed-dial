@@ -17,6 +17,13 @@ export default ({ baseTheme }) => {
 			overflow: 'hidden',
 			top: 0,
 		},
+		backdropWrapInvisible: {
+			position: 'fixed',
+			width: 0,
+			height: 0,
+			overflow: 'hidden',
+			top: 0,
+		},
 		backdrop: {
 			position: 'absolute',
 			backgroundColor: baseTheme.palette.borderColor,
