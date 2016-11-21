@@ -9,7 +9,7 @@
 		"type": "github",
 		"url": "https://github.com/smollweide/react-speed-dial"
 	},
-	"main": "speed-dial.js",
+	"main": "index.js",
 	"bugs": {
 		"url": "https://github.com/smollweide/react-speed-dial/issues"
 	},
@@ -28,9 +28,10 @@
 		"prestatic-server": "open http://localhost:9000",
 		"static-server": "pushstate-server build",
 		"prepublish": "npm run clean:publish",
-		"publish": "npm run publish:babel && npm run publish:index",
-		"publish:index": "BABEL_ENV=es babel ./src/speed-dial.js --out-file ./publish/index.es.js",
-		"publish:babel": "NODE_ENV=release babel ./src/components --out-dir ./publish/components --ignore spec.js"
+		"publish": "npm run publish:copy-files && npm run publish:babel && npm run publish:index",
+		"publish:index": "BABEL_ENV=es babel ./src/speed-dial.js --out-file ./publish/index.js",
+		"publish:babel": "NODE_ENV=release babel ./src/components --out-dir ./publish/components --ignore spec.js",
+		"publish:copy-files": "babel-node ./scripts/copy-files.js"
 	},
 	"peerDependencies": {
 		"material-ui": "^0.16.0",
@@ -54,6 +55,7 @@
 		"babel-preset-es2015": "^6.18.0",
 		"babel-preset-react": "^6.11.1",
 		"babel-runtime": "^6.18.0",
+		"nms-core-utils": "^1.0.0",
 		"react-scripts": "0.7.0",
 		"rimraf": "^2.5.4",
 		"webpack": "^1.13.3"
