@@ -11,9 +11,17 @@ const SpeedDialList = ({ children, isOpen, isInTransition }, muiTheme) => {
 		return children;
 	}
 
-	if (children instanceof Array) {
-		listItems = children.map((child) => {
+	if (
+		children instanceof Array
+	) {
+		listItems = children.map((child, index) => {
+
+			if (child.type && child.type.displayName !== 'SpeedDialList') {
+				return child;
+			}
+
 			return React.cloneElement(child, {
+				key: index,
 				isOpen,
 				isInTransition,
 			});
