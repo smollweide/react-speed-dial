@@ -7,7 +7,7 @@ const SpeedDialList = ({ children, isOpen, isInTransition }, muiTheme) => {
 	const styles = getStyles(muiTheme);
 	let listItems;
 
-	if (children.type && children.type.displayName !== 'SpeedDialList') {
+	if (children.type && children.type.displayName !== 'SpeedDialListItem') {
 		return children;
 	}
 
@@ -16,7 +16,7 @@ const SpeedDialList = ({ children, isOpen, isInTransition }, muiTheme) => {
 	) {
 		listItems = children.map((child, index) => {
 
-			if (child.type && child.type.displayName !== 'SpeedDialList') {
+			if (child.type && child.type.displayName !== 'SpeedDialListItem') {
 				return child;
 			}
 
