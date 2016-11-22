@@ -133,7 +133,6 @@ SpeedDial.propTypes = {
 	closeOnSecondClick: React.PropTypes.bool,
 	icon: React.PropTypes.object,
 	iconOpen: React.PropTypes.object,
-	list: React.PropTypes.object,
 };
 SpeedDial.defaultProps = {
 	closeOnSecondClick: true,
