@@ -1,5 +1,6 @@
 import React from 'react';
 import TableProps from '../table-props/table-props.jsx';
+import Example from '../example/example.jsx';
 
 import './home.css';
 
@@ -16,12 +17,14 @@ const Home = () => {
 			</div>
 			<div className="container">
 				<h2>Examples</h2>
-
-				<h3>Basic</h3>
-				<iframe src="/#/basic"></iframe>
-
-				<h3>Position top left</h3>
-				<iframe src="/#/top-left"></iframe>
+				<Example
+					exampleCode="basic"
+					title="Basic"
+				/>
+				<Example
+					exampleCode="top-left"
+					title="Position top left"
+				/>
 
 				<h2>Properties</h2>
 				<TableProps componentName="SpeedDial" />
