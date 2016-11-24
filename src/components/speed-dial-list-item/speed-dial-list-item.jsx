@@ -3,7 +3,7 @@ import React from 'react';
 import getStyles from './speed-dial-list-item.styles';
 
 const SpeedDialListItem = (
-	{ href, primaryText, rightAvatar, leftAvatar, isOpen, positionV },
+	{ href, primaryText, rightAvatar, leftAvatar, isOpen, positionV, onTouchTap, onClick },
 	{ muiTheme }
 ) => {
 
@@ -82,7 +82,10 @@ const SpeedDialListItem = (
 		);
 	} else {
 		link = (
-			<div style={styles.wrap}>
+			<div
+				style={styles.wrap}
+				onTouchTap={onTouchTap || onClick}
+			>
 				{content}
 			</div>
 		);
@@ -104,11 +107,14 @@ SpeedDialListItem.propTypes = {
 	positionV: React.PropTypes.string,
 	primaryText: React.PropTypes.string,
 	rightAvatar: React.PropTypes.object,
+	onClick: React.PropTypes.func,
+	onTouchTap: React.PropTypes.func,
 };
 SpeedDialListItem.defaultProps = {
 	isOpen: false,
 	isInTransition: false,
 	positionV: 'bottom',
+	onClick() {},
 };
 SpeedDialListItem.contextTypes = {
 	muiTheme: React.PropTypes.object.isRequired,

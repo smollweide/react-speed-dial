@@ -204,7 +204,7 @@ class SpeedDial extends React.Component {
 	 */
 	render() {
 
-		const { floatingActionButtonProps, primaryText } = this.props;
+		const { floatingActionButtonProps, primaryText, onClickPrimaryButton } = this.props;
 		const { isOpen } = this.state;
 		const handleClick = isOpen ? this.handleClickClose : this.handleClickOpen;
 
@@ -221,6 +221,7 @@ class SpeedDial extends React.Component {
 						<SpeedDialListItem
 							isOpen
 							primaryText={primaryText}
+							onClick={onClickPrimaryButton}
 						/>
 					</ul>
 					<FloatingActionButton ref="btn" {...btnProps}>

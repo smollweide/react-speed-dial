@@ -11,12 +11,36 @@ import SpeedDialListItem from './speed-dial-list-item.jsx';
 
 injectTapEventPlugin();
 
-it('<SpeedDialListItem /> renders without crashing', () => {
+it('renders without crashing', () => {
 	const div = document.createElement('div');
 	ReactDOM.render((
 		<MuiThemeProvider>
 			<SpeedDialListItem
 				primaryText="Hello world!"
+			/>
+		</MuiThemeProvider>
+	), div);
+});
+
+it('renders without crashing with onClick', () => {
+	const div = document.createElement('div');
+	ReactDOM.render((
+		<MuiThemeProvider>
+			<SpeedDialListItem
+				primaryText="Hello world!"
+				onClick={() => {}}
+			/>
+		</MuiThemeProvider>
+	), div);
+});
+
+it('renders without crashing with onTouchTap', () => {
+	const div = document.createElement('div');
+	ReactDOM.render((
+		<MuiThemeProvider>
+			<SpeedDialListItem
+				primaryText="Hello world!"
+				onTouchTap={() => {}}
 			/>
 		</MuiThemeProvider>
 	), div);
