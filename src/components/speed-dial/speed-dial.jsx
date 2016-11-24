@@ -200,11 +200,33 @@ class SpeedDial extends React.Component {
 	}
 
 	/**
+	 * @returns {XML} returns the primary text
+	 */
+	renderPrimaryText() {
+
+		const { primaryText, onClickPrimaryButton } = this.props;
+
+		if (!primaryText || primaryText === '') {
+			return null;
+		}
+
+		return (
+			<ul style={this.getStylesPrimaryText()}>
+				<SpeedDialListItem
+					isOpen
+					primaryText={primaryText}
+					onClick={onClickPrimaryButton}
+				/>
+			</ul>
+		);
+	}
+
+	/**
 	 * @returns {XML} returns the component
 	 */
 	render() {
 
-		const { floatingActionButtonProps, primaryText, onClickPrimaryButton } = this.props;
+		const { floatingActionButtonProps } = this.props;
 		const { isOpen } = this.state;
 		const handleClick = isOpen ? this.handleClickClose : this.handleClickOpen;
 
@@ -217,13 +239,7 @@ class SpeedDial extends React.Component {
 				{this.renderBackdrop()}
 				{this.renderChildren()}
 				<div style={this.getStylesBtn()}>
-					<ul style={this.getStylesPrimaryText()}>
-						<SpeedDialListItem
-							isOpen
-							primaryText={primaryText}
-							onClick={onClickPrimaryButton}
-						/>
-					</ul>
+					{this.renderPrimaryText()}
 					<FloatingActionButton ref="btn" {...btnProps}>
 						{this.renderIcon()}
 					</FloatingActionButton>
