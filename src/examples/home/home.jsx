@@ -25,6 +25,10 @@ const Home = () => {
 					exampleCode="top-left"
 					title="Position top left"
 				/>
+				<Example
+					exampleCode="no-backdrop"
+					title="Without backdrop"
+				/>
 
 				<h2>Properties</h2>
 				<TableProps componentName="SpeedDial" />

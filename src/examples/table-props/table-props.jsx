@@ -14,29 +14,37 @@ const props = {
 			required: false,
 			desc: 'If true, clicking or tapping the opened `FloatingActionButton` will close the speed dial.',
 		},
+		hasBackdrop: {
+			type: 'boolean',
+			defaultProp: 'true',
+			required: false,
+			desc: 'If true, the backdrop will be visible in open state.',
+		},
 		icon: {
 			type: 'object',
 			defaultProp: '<ContentAdd />',
 			required: false,
-			desc: 'This is the `Icon` element to be displayed as icon of the `FloatingActionButton` while in closed state.',
+			desc: 'This is the `Icon` element to be displayed as icon of the ' +
+			'`FloatingActionButton` while in close state.',
 		},
 		iconOpen: {
 			type: 'object',
 			defaultProp: '<NavigationClose />',
 			required: false,
-			desc: 'This is the `Icon` element to be displayed as icon of the `FloatingActionButton` while in opened state.'
+			desc: 'This is the `Icon` element to be displayed as icon of the ' +
+			'`FloatingActionButton` while in opene state.',
 		},
 		positionV: {
 			type: 'string',
 			defaultProp: 'bottom',
 			required: false,
-			desc: 'This string controls the vertical `FloatingActionButton` position.'
+			desc: 'This string controls the vertical `FloatingActionButton` position.',
 		},
 		positionH: {
 			type: 'string',
 			defaultProp: 'right',
 			required: false,
-			desc: 'This string controls the horizontal `FloatingActionButton` position.'
+			desc: 'This string controls the horizontal `FloatingActionButton` position.',
 		},
 	},
 	SpeedDialList: {
@@ -55,7 +63,8 @@ const props = {
 		primaryText: {
 			type: 'string',
 			required: false,
-			desc: 'This is the block element that contains the primary text. If a string is passed in, a div tag will be rendered.',
+			desc: 'This is the block element that contains the primary text. ' +
+			'If a string is passed in, a div tag will be rendered.',
 		},
 		rightAvatar: {
 			type: 'node',
@@ -121,10 +130,10 @@ const TableProps = ({ componentName }) => {
 
 TableProps.displayName = 'TableProps';
 TableProps.propTypes = {
-	componentName: React.PropTypes.string
+	componentName: React.PropTypes.string,
 };
 TableProps.defaultProps = {
-	componentName: 'SpeedDial'
+	componentName: 'SpeedDial',
 };
 
 export default TableProps;
