@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import ReactTestUtils from 'react-addons-test-utils';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 
@@ -80,6 +81,17 @@ it('renders without crashing with primaryText', () => {
 	ReactDOM.render((
 		<MuiThemeProvider>
 			<SpeedDial primaryText="primaryText">
+				<SpeedDialList />
+			</SpeedDial>
+		</MuiThemeProvider>
+	), div);
+});
+
+it('renders without crashing with onClickPrimaryButton', () => {
+	const div = document.createElement('div');
+	ReactDOM.render((
+		<MuiThemeProvider>
+			<SpeedDial onClickPrimaryButton={() => {}}>
 				<SpeedDialList />
 			</SpeedDial>
 		</MuiThemeProvider>

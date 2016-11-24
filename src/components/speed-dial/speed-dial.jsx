@@ -52,6 +52,10 @@ class SpeedDial extends React.Component {
 	 * @returns {void}
 	 */
 	handleClickClose() {
+
+		/* istanbul ignore next */
+		this.props.onClickPrimaryButton();
+
 		/* istanbul ignore next */
 		if (this.props.closeOnSecondClick) {
 			this.setState({
@@ -93,6 +97,7 @@ class SpeedDial extends React.Component {
 		const styles = this.styles;
 
 		return Object.assign(
+			{},
 			styles.btnWrap,
 			styles[`btnWrap${positionV}`],
 			styles[`btnWrap${positionH}`]
@@ -108,6 +113,7 @@ class SpeedDial extends React.Component {
 		const styles = this.styles;
 
 		return Object.assign(
+			{},
 			styles.main,
 			styles[`main${positionV}`]
 		);
@@ -123,6 +129,7 @@ class SpeedDial extends React.Component {
 		const styles = this.styles;
 
 		return Object.assign(
+			{},
 			styles.primaryText,
 			styles[`primaryText${isOpen}`],
 			styles[`primaryText${positionH}`]
@@ -206,7 +213,7 @@ class SpeedDial extends React.Component {
 		});
 
 		return (
-			<div style={this.getStylesMain()}>
+			<div ref="main" style={this.getStylesMain()}>
 				{this.renderBackdrop()}
 				{this.renderChildren()}
 				<div style={this.getStylesBtn()}>
@@ -216,7 +223,7 @@ class SpeedDial extends React.Component {
 							primaryText={primaryText}
 						/>
 					</ul>
-					<FloatingActionButton {...btnProps}>
+					<FloatingActionButton ref="btn" {...btnProps}>
 						{this.renderIcon()}
 					</FloatingActionButton>
 				</div>
@@ -246,6 +253,7 @@ SpeedDial.propTypes = {
 	positionH: React.PropTypes.string,
 	positionV: React.PropTypes.string,
 	primaryText: React.PropTypes.string,
+	onClickPrimaryButton: React.PropTypes.func,
 };
 SpeedDial.defaultProps = {
 	closeOnSecondClick: true,
@@ -254,6 +262,7 @@ SpeedDial.defaultProps = {
 	iconOpen: <IconClose />,
 	positionH: 'right',
 	positionV: 'bottom',
+	onClickPrimaryButton: () => {},
 };
 SpeedDial.contextTypes = {
 	muiTheme: React.PropTypes.object.isRequired,
