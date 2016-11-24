@@ -7,7 +7,12 @@ const Home = () => {
 	return (
 		<div className="home">
 			<div className="home__header">
-				<h1>Welcome to react speed dial (Material UI)</h1>
+				<h1>
+					React speed dial<br/>
+					<small>
+						for: <a href="https://github.com/callemall/material-ui" target="_blank">Material UI</a>
+					</small>
+				</h1>
 			</div>
 			<div className="container">
 				<h2>Examples</h2>
@@ -15,8 +20,8 @@ const Home = () => {
 				<h3>Basic</h3>
 				<iframe src="/#/basic"></iframe>
 
-				<h3>Minimal</h3>
-				<iframe src="/#/minimal"></iframe>
+				<h3>Position top left</h3>
+				<iframe src="/#/top-left"></iframe>
 
 				<h2>Properties</h2>
 				<TableProps componentName="SpeedDial" />

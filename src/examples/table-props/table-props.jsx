@@ -4,7 +4,7 @@ import './table-props.css';
 const props = {
 	SpeedDial: {
 		children: {
-			type: 'code',
+			type: 'node',
 			required: true,
 			desc: 'Children passed to speed dial.',
 		},
@@ -26,11 +26,23 @@ const props = {
 			required: false,
 			desc: 'This is the `Icon` element to be displayed as icon of the `FloatingActionButton` while in opened state.'
 		},
+		positionV: {
+			type: 'string',
+			defaultProp: 'bottom',
+			required: false,
+			desc: 'This string controls the vertical `FloatingActionButton` position.'
+		},
+		positionH: {
+			type: 'string',
+			defaultProp: 'right',
+			required: false,
+			desc: 'This string controls the horizontal `FloatingActionButton` position.'
+		},
 	},
 	SpeedDialList: {
 		children: {
 			type: 'node',
-			required: true,
+			required: false,
 			desc: 'Children passed to speed dial list.',
 		},
 	},

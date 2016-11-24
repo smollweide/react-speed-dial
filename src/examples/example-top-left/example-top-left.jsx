@@ -9,30 +9,33 @@ const list = {
 	items: [
 		{
 			primaryText: 'Eric Hoffman',
-			rightAvatar: <Avatar src={`${avatarImgUrl}/1`} />,
+			leftAvatar: <Avatar src={`${avatarImgUrl}/1`} />,
 		},
 		{
 			primaryText: 'Grace Ng',
-			rightAvatar: <Avatar src={`${avatarImgUrl}/3`} />,
+			leftAvatar: <Avatar src={`${avatarImgUrl}/3`} />,
 		},
 		{
 			primaryText: 'Kerem Suer',
-			rightAvatar: <Avatar src={`${avatarImgUrl}/6`} />,
+			leftAvatar: <Avatar src={`${avatarImgUrl}/6`} />,
 		},
 		{
 			primaryText: 'Raquel Parrado',
-			rightAvatar: <Avatar src={`${avatarImgUrl}/7`} />,
+			leftAvatar: <Avatar src={`${avatarImgUrl}/7`} />,
 		},
 		{
 			primaryText: 'Write',
-			rightAvatar: <Avatar backgroundColor={blue500} icon={<IconEdit />} />,
+			leftAvatar: <Avatar backgroundColor={blue500} icon={<IconEdit />} />,
 		},
 	],
 };
 
-const ExampleBasic = () => {
+const ExampleTopLeft = () => {
 	return (
-		<SpeedDial>
+		<SpeedDial
+			positionV="top"
+			positionH="left"
+		>
 			<SpeedDialList>
 				{list.items.map((item, index) => {
 					return (<SpeedDialListItem key={index} {...item} />);
@@ -42,6 +45,6 @@ const ExampleBasic = () => {
 	);
 };
 
-ExampleBasic.displayName = 'ExampleBasic';
+ExampleTopLeft.displayName = 'ExampleTopLeft';
 
-export default ExampleBasic;
+export default ExampleTopLeft;

@@ -4,3 +4,12 @@
 	color: white;
 	text-align: center;
 }
+
+.home__header h1,
+.home__header a {
+	color: aliceblue;
+}
+
+.home__header a:hover {
+	color: #266d90;
+}

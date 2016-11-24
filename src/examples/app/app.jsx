@@ -6,7 +6,7 @@ import injectTapEventPlugin from 'react-tap-event-plugin';
 
 import Home from '../home/home.jsx';
 import ExampleBasic from '../example-basic/example-basic.jsx';
-import ExampleMinimal from '../example-minimal/example-minimal.jsx';
+import ExampleTopLeft from '../example-top-left/example-top-left.jsx';
 
 injectTapEventPlugin();
 
@@ -20,7 +20,7 @@ const App = () => {
 				>
 					<Route component={Home} path="/" />
 					<Route component={ExampleBasic} path="/basic" />
-					<Route component={ExampleMinimal} path="/minimal" />
+					<Route component={ExampleTopLeft} path="/top-left" />
 				</Router>
 			</div>
 		</MuiThemeProvider>
