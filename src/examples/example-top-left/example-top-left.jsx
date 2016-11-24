@@ -33,8 +33,8 @@ const list = {
 const ExampleTopLeft = () => {
 	return (
 		<SpeedDial
-			positionV="top"
 			positionH="left"
+			positionV="top"
 		>
 			<SpeedDialList>
 				{list.items.map((item, index) => {

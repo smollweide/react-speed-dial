@@ -8,6 +8,7 @@ import Home from '../home/home.jsx';
 import ExampleBasic from '../example-basic/example-basic.jsx';
 import ExampleTopLeft from '../example-top-left/example-top-left.jsx';
 import ExampleNoBackdrop from '../example-no-backdrop/example-no-backdrop.jsx';
+import ExampleInbox from '../example-inbox/example-inbox.jsx';
 
 injectTapEventPlugin();
 
@@ -23,6 +24,7 @@ const App = () => {
 					<Route component={ExampleBasic} path="/basic" />
 					<Route component={ExampleTopLeft} path="/top-left" />
 					<Route component={ExampleNoBackdrop} path="/no-backdrop" />
+					<Route component={ExampleInbox} path="/inbox" />
 				</Router>
 			</div>
 		</MuiThemeProvider>

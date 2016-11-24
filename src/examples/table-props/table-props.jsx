@@ -14,6 +14,11 @@ const props = {
 			required: false,
 			desc: 'If true, clicking or tapping the opened `FloatingActionButton` will close the speed dial.',
 		},
+		floatingActionButtonProps: {
+			type: 'object',
+			required: false,
+			desc: 'As defined in material-ui http://www.material-ui.com/#/components/floating-action-button',
+		},
 		hasBackdrop: {
 			type: 'boolean',
 			defaultProp: 'true',
@@ -32,7 +37,7 @@ const props = {
 			defaultProp: '<NavigationClose />',
 			required: false,
 			desc: 'This is the `Icon` element to be displayed as icon of the ' +
-			'`FloatingActionButton` while in opene state.',
+			'`FloatingActionButton` while in open state.',
 		},
 		positionV: {
 			type: 'string',
@@ -45,6 +50,16 @@ const props = {
 			defaultProp: 'right',
 			required: false,
 			desc: 'This string controls the horizontal `FloatingActionButton` position.',
+		},
+		primaryText: {
+			type: 'string',
+			required: false,
+			desc: 'This is the text to be display beside the `FloatingActionButton`.',
+		},
+		onClickPrimaryButton: {
+			type: 'function',
+			required: false,
+			desc: 'Callback function fired when the priamry button is clicked or touched.',
 		},
 	},
 	SpeedDialList: {
@@ -70,6 +85,21 @@ const props = {
 			type: 'node',
 			required: false,
 			desc: 'This is the `Avatar` element to be displayed on the right side.',
+		},
+		leftAvatar: {
+			type: 'node',
+			required: false,
+			desc: 'This is the `Avatar` element to be displayed on the left side.',
+		},
+		onClick: {
+			type: 'function',
+			required: false,
+			desc: 'Callback function fired when the element is clicked or touched.',
+		},
+		onTouchTap: {
+			type: 'function',
+			required: false,
+			desc: 'Callback function fired when the element is clicked or touched.',
 		},
 	},
 };
@@ -110,9 +140,7 @@ const TableProps = ({ componentName }) => {
 		<div className="table-props prop-type-description">
 			<h3>{componentName} Properties</h3>
 			<table>
-				<thead
-					displaySelectAll={false}
-				>
+				<thead>
 					<tr>
 						<th>Name</th>
 						<th>Type</th>

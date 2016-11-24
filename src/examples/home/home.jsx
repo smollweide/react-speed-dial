@@ -9,7 +9,7 @@ const Home = () => {
 		<div className="home">
 			<div className="home__header">
 				<h1>
-					React speed dial<br/>
+					React speed dial<br />
 					<small>
 						for: <a href="https://github.com/callemall/material-ui" target="_blank">Material UI</a>
 					</small>
@@ -28,6 +28,10 @@ const Home = () => {
 				<Example
 					exampleCode="no-backdrop"
 					title="Without backdrop"
+				/>
+				<Example
+					exampleCode="inbox"
+					title="Like google inbox"
 				/>
 
 				<h2>Properties</h2>
