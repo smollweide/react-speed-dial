@@ -6,7 +6,7 @@
  */
 const getDomFromString = (htmlStr) => {
 	const wrapper= document.createElement('div');
-	wrapper.innerHTML= htmlStr;
+	wrapper.innerHTML = htmlStr;
 	if (!wrapper.firstChild) {
 		return undefined;
 	}

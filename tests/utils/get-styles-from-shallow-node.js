@@ -1,5 +1,6 @@
 
 import getDomFromString from './get-dom-from-string';
+import getStylesFromDomNode from './get-styles-from-dom-node';
 
 /**
  * returns styles from given shallowNode as object
@@ -8,21 +9,7 @@ import getDomFromString from './get-dom-from-string';
  * @returns {Object} returns the styles as object eg. { display: 'none' }
  */
 const getStylesFromShallowNode = (shallowNode) => {
-	const stylesObj = {};
-	const attrStyle = getDomFromString(shallowNode.html()).getAttribute('style');
-
-	if (!attrStyle) {
-		return {};
-	}
-
-	attrStyle.split(';').forEach((style) => {
-		const styleSpl = style.split(':');
-		if (styleSpl.length < 2) {
-			return true;
-		}
-		stylesObj[styleSpl[0]] = styleSpl[1];
-	});
-	return stylesObj;
+	return getStylesFromDomNode(getDomFromString(shallowNode.html()));
 };
 
 export default getStylesFromShallowNode;

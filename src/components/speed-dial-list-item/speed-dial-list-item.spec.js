@@ -52,8 +52,6 @@ it('<SpeedDialListItem /> with prop *rightAvatar* renders the avatar image', () 
 			primaryText="Hello world!"
 		/>, { context }
 	);
-
-	//console.log(wrapper.find('img').last().options);
 	expect(typeof wrapper.find('img')).toEqual('object');
 });
 
@@ -79,15 +77,14 @@ it('<SpeedDialListItem /> with prop *isOpen = true* has opacity=1', () => {
 	expect(getStylesFromShallowNode(wrapper).opacity).toEqual('1');
 });
 
-it('<SpeedDialListItem /> with prop *isInTransition = true* should render', () => {
-	const div = document.createElement('div');
-	ReactDOM.render((
-		<MuiThemeProvider>
-			<SpeedDialListItem
-				isOpen
-				isInTransition
-				primaryText="Hello world!"
-			/>
-		</MuiThemeProvider>
-	), div);
+it('<SpeedDialListItem /> with prop *leftAvatar* renders the avatar image', () => {
+	const context = { muiTheme };
+	const wrapper = shallow(
+		<SpeedDialListItem
+			leftAvatar={<Avatar src={'http://lorempixel.com/80/80/people/1'} />}
+			primaryText="Hello world!"
+		/>, { context }
+	);
+
+	expect(typeof wrapper.find('img')).toEqual('object');
 });
