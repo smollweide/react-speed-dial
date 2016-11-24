@@ -4,5 +4,7 @@ module.exports = {
 	'globals': {
 		'it': true,
 		'expect': true,
+		'describe': true,
+		'beforeEach': true,
 	}
 };
