@@ -7,8 +7,13 @@ export default ({ baseTheme }) => {
 		main: {
 			position: 'fixed',
 			width: '100%',
-			bottom: 0,
 			left: 0,
+		},
+		maintop: {
+			top: 0,
+		},
+		mainbottom: {
+			bottom: 0,
 		},
 		backdropWrap: {
 			position: 'fixed',
@@ -45,7 +50,17 @@ export default ({ baseTheme }) => {
 		},
 		btnWrap: {
 			position: 'absolute',
+		},
+		btnWrapbottom: {
 			bottom: 16,
+		},
+		btnWraptop: {
+			top: 16,
+		},
+		btnWrapleft: {
+			left: 16,
+		},
+		btnWrapright: {
 			right: 16,
 		},
 		iconClosedInvisible: {

@@ -3,7 +3,6 @@ import transitions from 'material-ui/styles/transitions';
 export default ({ paper, baseTheme }) => {
 	return {
 		main: {
-			textAlign: 'right',
 			backgroundColor: 'transparent',
 			listStyle: 'none',
 			marginTop: 14,
@@ -12,12 +11,24 @@ export default ({ paper, baseTheme }) => {
 			transition: transitions.easeOut(),
 		},
 		mainInvisible: {
-			textAlign: 'right',
 			backgroundColor: 'transparent',
 			listStyle: 'none',
-			marginTop: -40,
 			opacity: 0,
 			transition: transitions.easeOut(),
+		},
+		mainLeft: {
+			textAlign: 'left',
+		},
+		mainRight: {
+			textAlign: 'right',
+		},
+		mainBottom: {},
+		mainTop: {},
+		mainInvisibleBottom: {
+			marginTop: -40,
+		},
+		mainInvisibleTop: {
+			marginBottom: -40,
 		},
 		wrap: {
 			position: 'relative',
@@ -25,23 +36,26 @@ export default ({ paper, baseTheme }) => {
 			lineHeight: '40px',
 		},
 		text: {
-			padding: '6px 12px 5px',
 			borderRadius: '5px',
+			padding: '6px 12px 5px',
 			fontSize: 14,
-			marginRight: 24,
 			color: baseTheme.palette.secondaryTextColor,
 			backgroundColor: baseTheme.palette.canvasColor,
 			boxShadow: paper.zDepthShadows[1],
 		},
-		textFinal: {
-
+		textLeft: {
+			marginLeft: 24,
+		},
+		textRight: {
+			marginRight: 24,
 		},
 		rightAvatar: {
 			float: 'right',
 			boxShadow: paper.zDepthShadows[1],
 		},
-		rightAvatarFinal: {
-
+		leftAvatar: {
+			float: 'left',
+			boxShadow: paper.zDepthShadows[1],
 		},
 	};
 };

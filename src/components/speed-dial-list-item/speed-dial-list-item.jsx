@@ -2,31 +2,72 @@
 import React from 'react';
 import getStyles from './speed-dial-list-item.styles';
 
-const SpeedDialListItem = ({ href, primaryText, rightAvatar, isOpen, isInTransition }, { muiTheme }) => {
+const SpeedDialListItem = (
+	{ href, primaryText, rightAvatar, leftAvatar, isOpen, positionV },
+	{ muiTheme }
+) => {
 
 	const styles = getStyles(muiTheme);
 	let rightAvatarMapped;
-	let stylesText;
-	let stylesAvatar;
+	let leftAvatarMapped;
 	let link;
 
-	if (isInTransition) {
-		stylesText = styles.text;
-		stylesAvatar = styles.rightAvatar;
-	} else {
-		stylesText = Object.assign(styles.text, styles.textFinal);
-		stylesAvatar = Object.assign(styles.rightAvatar, styles.rightAvatarFinal);
-	}
+	const getStylesMain = () => {
+
+		const baseStyle = isOpen ? styles.main : styles.mainInvisible;
+		let verticalStyle;
+
+		if (isOpen) {
+			verticalStyle = positionV === 'bottom' ? styles.mainBottom : styles.mainTop;
+		} else {
+			verticalStyle = positionV === 'bottom' ? styles.mainInvisibleBottom : styles.mainInvisibleTop;
+		}
+
+		if (leftAvatar) {
+			return Object.assign(
+				baseStyle,
+				styles.mainLeft,
+				verticalStyle
+			);
+		}
+
+		return Object.assign(
+			baseStyle,
+			styles.mainRight,
+			verticalStyle
+		);
+	};
+
+	const getStylesText = () => {
+		if (leftAvatar) {
+			return Object.assign(
+				styles.text,
+				styles.textLeft
+			);
+		}
+
+		return Object.assign(
+			styles.text,
+			styles.textRight
+		);
+	};
 
 	if (rightAvatar) {
 		rightAvatarMapped = React.cloneElement(rightAvatar, {
-			style: Object.assign({}, rightAvatar.props.style, stylesAvatar),
+			style: Object.assign({}, rightAvatar.props.style, styles.rightAvatar),
+		});
+	}
+
+	if (leftAvatar) {
+		leftAvatarMapped = React.cloneElement(leftAvatar, {
+			style: Object.assign({}, leftAvatar.props.style, styles.leftAvatar),
 		});
 	}
 
 	const content = (
 		<span>
-			<span style={stylesText}>{primaryText}</span>
+			{leftAvatarMapped}
+			<span style={getStylesText()}>{primaryText}</span>
 			{rightAvatarMapped}
 		</span>
 	);
@@ -46,7 +87,7 @@ const SpeedDialListItem = ({ href, primaryText, rightAvatar, isOpen, isInTransit
 	}
 
 	return (
-		<li style={isOpen ? styles.main : styles.mainInvisible}>
+		<li style={getStylesMain()}>
 			{link}
 		</li>
 	);
@@ -59,10 +100,13 @@ SpeedDialListItem.propTypes = {
 	isOpen: React.PropTypes.bool,
 	primaryText: React.PropTypes.string,
 	rightAvatar: React.PropTypes.object,
+	leftAvatar: React.PropTypes.object,
+	positionV: React.PropTypes.string,
 };
 SpeedDialListItem.defaultProps = {
 	isOpen: false,
 	isInTransition: false,
+	positionV: 'bottom',
 };
 SpeedDialListItem.contextTypes = {
 	muiTheme: React.PropTypes.object.isRequired,

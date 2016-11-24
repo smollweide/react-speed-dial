@@ -33,10 +33,12 @@ class SpeedDial extends React.Component {
 	 * @returns {void}
 	 */
 	handleClickOpen() {
+		/* istanbul ignore next */
 		this.setState({
 			isOpen: true,
 			isInTransition: true,
 		});
+		/* istanbul ignore next */
 		setTimeout(() => {
 			this.setState({
 				isInTransition: false,
@@ -48,16 +50,47 @@ class SpeedDial extends React.Component {
 	 * @returns {void}
 	 */
 	handleClickClose() {
+		/* istanbul ignore next */
 		if (this.props.closeOnSecondClick) {
 			this.setState({
 				isOpen: false,
 			});
 		}
+		/* istanbul ignore next */
 		setTimeout(() => {
 			this.setState({
 				isInTransition: false,
 			});
 		}, animTime);
+	}
+
+	/**
+	 * @returns {Object} merged styles for the `FloatingActionButton`
+	 */
+	getStylesBtn() {
+
+		const { positionV, positionH } = this.props;
+		const styles = this.styles;
+
+		return Object.assign(
+			styles.btnWrap,
+			styles[`btnWrap${positionV}`],
+			styles[`btnWrap${positionH}`]
+		);
+	}
+
+	/**
+	 * @returns {Object} merged styles for the `FloatingActionButton`
+	 */
+	getStylesMain() {
+
+		const { positionV } = this.props;
+		const styles = this.styles;
+
+		return Object.assign(
+			styles.main,
+			styles[`main${positionV}`]
+		);
 	}
 
 	/**
@@ -85,7 +118,7 @@ class SpeedDial extends React.Component {
 	 */
 	renderChildren() {
 
-		const { children } = this.props;
+		const { children, positionV, positionH } = this.props;
 		const { isOpen, isInTransition } = this.state;
 
 		if (children.type.displayName !== 'SpeedDialList') {
@@ -95,6 +128,8 @@ class SpeedDial extends React.Component {
 		return React.cloneElement(children, {
 			isOpen,
 			isInTransition,
+			positionV,
+			positionH,
 		});
 	}
 
@@ -104,18 +139,19 @@ class SpeedDial extends React.Component {
 	render() {
 
 		const { isOpen } = this.state;
+		const styles = this.styles;
 		const handleClick = isOpen ? this.handleClickClose : this.handleClickOpen;
 
 		return (
-			<div style={this.styles.main}>
-				<span style={isOpen ? this.styles.backdropWrap : this.styles.backdropWrapInvisible}>
+			<div style={this.getStylesMain()}>
+				<span style={isOpen ? styles.backdropWrap : styles.backdropWrapInvisible}>
 					<a
-						style={isOpen ? this.styles.backdrop : this.styles.backdropInvisible}
+						style={isOpen ? styles.backdrop : styles.backdropInvisible}
 						onTouchTap={handleClick}
 					/>
 				</span>
 				{this.renderChildren()}
-				<div style={this.styles.btnWrap}>
+				<div style={this.getStylesBtn()}>
 					<FloatingActionButton
 						onTouchTap={handleClick}
 					>
@@ -133,11 +169,15 @@ SpeedDial.propTypes = {
 	closeOnSecondClick: React.PropTypes.bool,
 	icon: React.PropTypes.object,
 	iconOpen: React.PropTypes.object,
+	positionV: React.PropTypes.string,
+	positionH: React.PropTypes.string,
 };
 SpeedDial.defaultProps = {
 	closeOnSecondClick: true,
 	icon: <IconAdd />,
 	iconOpen: <IconClose />,
+	positionV: 'bottom',
+	positionH: 'right',
 };
 SpeedDial.contextTypes = {
 	muiTheme: React.PropTypes.object.isRequired,
