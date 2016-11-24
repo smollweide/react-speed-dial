@@ -75,6 +75,17 @@ it('renders without crashing with floatingActionButtonProps', () => {
 	), div);
 });
 
+it('renders without crashing with primaryText', () => {
+	const div = document.createElement('div');
+	ReactDOM.render((
+		<MuiThemeProvider>
+			<SpeedDial primaryText="primaryText">
+				<SpeedDialList />
+			</SpeedDial>
+		</MuiThemeProvider>
+	), div);
+});
+
 it('<SpeedDial /> with prop [positionV="top"] has top=0', () => {
 	const div = document.createElement('div');
 	ReactDOM.render((

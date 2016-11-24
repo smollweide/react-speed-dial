@@ -3,6 +3,7 @@ import React from 'react';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 import IconAdd from 'material-ui/svg-icons/content/add';
 import IconClose from 'material-ui/svg-icons/navigation/close';
+import SpeedDialListItem from '../speed-dial-list-item/speed-dial-list-item.jsx';
 import getStyles from './speed-dial.styles';
 
 const animTime = 450;
@@ -113,6 +114,22 @@ class SpeedDial extends React.Component {
 	}
 
 	/**
+	 * @returns {Object} merged styles for the primary text
+	 */
+	getStylesPrimaryText() {
+
+		const { positionH } = this.props;
+		const { isOpen } = this.state;
+		const styles = this.styles;
+
+		return Object.assign(
+			styles.primaryText,
+			styles[`primaryText${isOpen}`],
+			styles[`primaryText${positionH}`]
+		);
+	}
+
+	/**
 	 * @returns {Array} returns the icon component's
 	 */
 	renderIcon() {
@@ -180,7 +197,7 @@ class SpeedDial extends React.Component {
 	 */
 	render() {
 
-		const { floatingActionButtonProps } = this.props;
+		const { floatingActionButtonProps, primaryText } = this.props;
 		const { isOpen } = this.state;
 		const handleClick = isOpen ? this.handleClickClose : this.handleClickOpen;
 
@@ -193,6 +210,12 @@ class SpeedDial extends React.Component {
 				{this.renderBackdrop()}
 				{this.renderChildren()}
 				<div style={this.getStylesBtn()}>
+					<ul style={this.getStylesPrimaryText()}>
+						<SpeedDialListItem
+							isOpen
+							primaryText={primaryText}
+						/>
+					</ul>
 					<FloatingActionButton {...btnProps}>
 						{this.renderIcon()}
 					</FloatingActionButton>
@@ -222,6 +245,7 @@ SpeedDial.propTypes = {
 	iconOpen: React.PropTypes.object,
 	positionH: React.PropTypes.string,
 	positionV: React.PropTypes.string,
+	primaryText: React.PropTypes.string,
 };
 SpeedDial.defaultProps = {
 	closeOnSecondClick: true,

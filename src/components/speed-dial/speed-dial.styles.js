@@ -81,5 +81,23 @@ export default ({ baseTheme }) => {
 			transform: 'rotate(0deg)',
 			opacity: 1,
 		},
+		primaryText: {
+			position: 'absolute',
+			bottom: 10,
+			margin: 0,
+			transition: transitions.easeOut(),
+		},
+		primaryTexttrue: {
+			opacity: 1,
+		},
+		primaryTextfalse: {
+			opacity: 0,
+		},
+		primaryTextleft: {
+			left: 33,
+		},
+		primaryTextright: {
+			right: 49,
+		},
 	};
 };
