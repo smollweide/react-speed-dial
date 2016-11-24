@@ -70,14 +70,14 @@ SpeedDialList.propTypes = {
 	children: React.PropTypes.any,
 	isInTransition: React.PropTypes.bool,
 	isOpen: React.PropTypes.bool,
-	positionV: React.PropTypes.string,
 	positionH: React.PropTypes.string,
+	positionV: React.PropTypes.string,
 };
 SpeedDialList.defaultProps = {
 	isOpen: false,
 	isInTransition: false,
-	positionV: 'bottom',
 	positionH: 'right',
+	positionV: 'bottom',
 };
 SpeedDialList.contextTypes = {
 	muiTheme: React.PropTypes.object.isRequired,

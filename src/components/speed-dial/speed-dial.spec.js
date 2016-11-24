@@ -2,14 +2,11 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import injectTapEventPlugin from 'react-tap-event-plugin';
-import { shallow } from 'enzyme';
 
 import SpeedDial from './speed-dial.jsx';
 import SpeedDialList from '../speed-dial-list/speed-dial-list.jsx';
 import getDomFromString from '../../../tests/utils/get-dom-from-string';
-import getStylesFromShallowNode from '../../../tests/utils/get-styles-from-shallow-node';
 import getStylesFromDomNode from '../../../tests/utils/get-styles-from-dom-node';
-import muiTheme from '../../../tests/context-mui-theme';
 
 injectTapEventPlugin();
 
@@ -40,6 +37,17 @@ it('renders without crashing with closeOnSecondClick', () => {
 	ReactDOM.render((
 		<MuiThemeProvider>
 			<SpeedDial closeOnSecondClick>
+				<SpeedDialList />
+			</SpeedDial>
+		</MuiThemeProvider>
+	), div);
+});
+
+it('renders without crashing with hasBackdrop=false', () => {
+	const div = document.createElement('div');
+	ReactDOM.render((
+		<MuiThemeProvider>
+			<SpeedDial hasBackdrop={false}>
 				<SpeedDialList />
 			</SpeedDial>
 		</MuiThemeProvider>
@@ -109,3 +117,4 @@ it('<SpeedDial /> with prop [positionH="bottom"] button wrapper has bottom=16px'
 	);
 	expect(button.bottom).toEqual('16px');
 });
+

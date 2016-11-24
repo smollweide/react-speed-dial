@@ -77,7 +77,7 @@ it('renders mixture between li and listItems', () => {
 	), div);
 });
 
-it('<SpeedDialListItem /> prop [positionV=top][isOpen=false] has top=16px', () => {
+it('<SpeedDialList /> prop [positionV=top][isOpen=false] has top=16px', () => {
 	const context = { muiTheme };
 	const wrapper = shallow(
 		<SpeedDialList positionV="top" />, { context }
@@ -85,7 +85,7 @@ it('<SpeedDialListItem /> prop [positionV=top][isOpen=false] has top=16px', () =
 	expect(getStylesFromShallowNode(wrapper).top).toEqual('16px');
 });
 
-it('<SpeedDialListItem /> prop [positionV=top][isOpen=true] has top=72px', () => {
+it('<SpeedDialList /> prop [positionV=top][isOpen=true] has top=72px', () => {
 	const context = { muiTheme };
 	const wrapper = shallow(
 		<SpeedDialList isOpen positionV="top" />, { context }
@@ -93,7 +93,7 @@ it('<SpeedDialListItem /> prop [positionV=top][isOpen=true] has top=72px', () =>
 	expect(getStylesFromShallowNode(wrapper).top).toEqual('72px');
 });
 
-it('<SpeedDialListItem /> prop [positionV=bottom][isOpen=false] has top=16px', () => {
+it('<SpeedDialList /> prop [positionV=bottom][isOpen=false] has top=16px', () => {
 	const context = { muiTheme };
 	const wrapper = shallow(
 		<SpeedDialList positionV="bottom" />, { context }
@@ -101,7 +101,7 @@ it('<SpeedDialListItem /> prop [positionV=bottom][isOpen=false] has top=16px', (
 	expect(getStylesFromShallowNode(wrapper).bottom).toEqual('16px');
 });
 
-it('<SpeedDialListItem /> prop [positionV=bottom][isOpen=true] has top=72px', () => {
+it('<SpeedDialList /> prop [positionV=bottom][isOpen=true] has top=72px', () => {
 	const context = { muiTheme };
 	const wrapper = shallow(
 		<SpeedDialList isOpen positionV="bottom" />, { context }
@@ -109,7 +109,7 @@ it('<SpeedDialListItem /> prop [positionV=bottom][isOpen=true] has top=72px', ()
 	expect(getStylesFromShallowNode(wrapper).bottom).toEqual('72px');
 });
 
-it('<SpeedDialListItem /> prop [positionH=left] has left=24px', () => {
+it('<SpeedDialList /> prop [positionH=left] has left=24px', () => {
 	const context = { muiTheme };
 	const wrapper = shallow(
 		<SpeedDialList positionH="left" />, { context }
@@ -117,7 +117,7 @@ it('<SpeedDialListItem /> prop [positionH=left] has left=24px', () => {
 	expect(getStylesFromShallowNode(wrapper).left).toEqual('24px');
 });
 
-it('<SpeedDialListItem /> prop [positionH=right] has right=24px', () => {
+it('<SpeedDialList /> prop [positionH=right] has right=24px', () => {
 	const context = { muiTheme };
 	const wrapper = shallow(
 		<SpeedDialList positionH="right" />, { context }

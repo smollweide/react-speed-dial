@@ -5,7 +5,7 @@
  * @returns {Node|undefined} returns the dom node eg. <a />
  */
 const getDomFromString = (htmlStr) => {
-	const wrapper= document.createElement('div');
+	const wrapper = document.createElement('div');
 	wrapper.innerHTML = htmlStr;
 	if (!wrapper.firstChild) {
 		return undefined;
