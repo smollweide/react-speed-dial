@@ -134,22 +134,40 @@ class SpeedDial extends React.Component {
 	}
 
 	/**
+	 * @param {function} handleClick - the click handle method
+	 * @returns {XML} returns the backdrop
+	 */
+	renderBackdrop(handleClick) {
+
+		const { hasBackdrop } = this.props;
+		const { isOpen } = this.state;
+		const styles = this.styles;
+
+		if (!hasBackdrop) {
+			return null;
+		}
+
+		return (
+			<span style={isOpen ? styles.backdropWrap : styles.backdropWrapInvisible}>
+				<a
+					style={isOpen ? styles.backdrop : styles.backdropInvisible}
+					onTouchTap={handleClick}
+				/>
+			</span>
+		);
+	}
+
+	/**
 	 * @returns {XML} returns the component
 	 */
 	render() {
 
 		const { isOpen } = this.state;
-		const styles = this.styles;
 		const handleClick = isOpen ? this.handleClickClose : this.handleClickOpen;
 
 		return (
 			<div style={this.getStylesMain()}>
-				<span style={isOpen ? styles.backdropWrap : styles.backdropWrapInvisible}>
-					<a
-						style={isOpen ? styles.backdrop : styles.backdropInvisible}
-						onTouchTap={handleClick}
-					/>
-				</span>
+				{this.renderBackdrop(handleClick)}
 				{this.renderChildren()}
 				<div style={this.getStylesBtn()}>
 					<FloatingActionButton
@@ -167,17 +185,19 @@ SpeedDial.displayName = 'SpeedDial';
 SpeedDial.propTypes = {
 	children: React.PropTypes.any.isRequired,
 	closeOnSecondClick: React.PropTypes.bool,
+	hasBackdrop: React.PropTypes.bool,
 	icon: React.PropTypes.object,
 	iconOpen: React.PropTypes.object,
-	positionV: React.PropTypes.string,
 	positionH: React.PropTypes.string,
+	positionV: React.PropTypes.string,
 };
 SpeedDial.defaultProps = {
 	closeOnSecondClick: true,
+	hasBackdrop: true,
 	icon: <IconAdd />,
 	iconOpen: <IconClose />,
-	positionV: 'bottom',
 	positionH: 'right',
+	positionV: 'bottom',
 };
 SpeedDial.contextTypes = {
 	muiTheme: React.PropTypes.object.isRequired,
