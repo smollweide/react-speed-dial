@@ -26,6 +26,7 @@ class SpeedDial extends React.Component {
 		};
 		this.handleClickOpen = this.handleClickOpen.bind(this);
 		this.handleClickClose = this.handleClickClose.bind(this);
+		this.handleClickBackdrop = this.handleClickBackdrop.bind(this);
 		this.styles = getStyles(context.muiTheme);
 	}
 
@@ -54,8 +55,26 @@ class SpeedDial extends React.Component {
 		if (this.props.closeOnSecondClick) {
 			this.setState({
 				isOpen: false,
+				isInTransition: true,
 			});
 		}
+		/* istanbul ignore next */
+		setTimeout(() => {
+			this.setState({
+				isInTransition: false,
+			});
+		}, animTime);
+	}
+
+	/**
+	 * @returns {void}
+	 */
+	handleClickBackdrop() {
+		/* istanbul ignore next */
+		this.setState({
+			isOpen: false,
+			isInTransition: true,
+		});
 		/* istanbul ignore next */
 		setTimeout(() => {
 			this.setState({
@@ -134,10 +153,9 @@ class SpeedDial extends React.Component {
 	}
 
 	/**
-	 * @param {function} handleClick - the click handle method
 	 * @returns {XML} returns the backdrop
 	 */
-	renderBackdrop(handleClick) {
+	renderBackdrop() {
 
 		const { hasBackdrop } = this.props;
 		const { isOpen } = this.state;
@@ -151,7 +169,7 @@ class SpeedDial extends React.Component {
 			<span style={isOpen ? styles.backdropWrap : styles.backdropWrapInvisible}>
 				<a
 					style={isOpen ? styles.backdrop : styles.backdropInvisible}
-					onTouchTap={handleClick}
+					onTouchTap={this.handleClickBackdrop}
 				/>
 			</span>
 		);
@@ -162,17 +180,20 @@ class SpeedDial extends React.Component {
 	 */
 	render() {
 
+		const { floatingActionButtonProps } = this.props;
 		const { isOpen } = this.state;
 		const handleClick = isOpen ? this.handleClickClose : this.handleClickOpen;
 
+		const btnProps = Object.assign({}, floatingActionButtonProps, {
+			onTouchTap: handleClick,
+		});
+
 		return (
 			<div style={this.getStylesMain()}>
-				{this.renderBackdrop(handleClick)}
+				{this.renderBackdrop()}
 				{this.renderChildren()}
 				<div style={this.getStylesBtn()}>
-					<FloatingActionButton
-						onTouchTap={handleClick}
-					>
+					<FloatingActionButton {...btnProps}>
 						{this.renderIcon()}
 					</FloatingActionButton>
 				</div>
@@ -185,6 +206,17 @@ SpeedDial.displayName = 'SpeedDial';
 SpeedDial.propTypes = {
 	children: React.PropTypes.any.isRequired,
 	closeOnSecondClick: React.PropTypes.bool,
+	floatingActionButtonProps: React.PropTypes.shape({
+		backgroundColor: React.PropTypes.string,
+		className: React.PropTypes.string,
+		disabled: React.PropTypes.bool,
+		iconClassName: React.PropTypes.string,
+		iconStyle: React.PropTypes.object,
+		mini: React.PropTypes.bool,
+		secondary: React.PropTypes.bool,
+		style: React.PropTypes.object,
+		zDepth: React.PropTypes.number,
+	}),
 	hasBackdrop: React.PropTypes.bool,
 	icon: React.PropTypes.object,
 	iconOpen: React.PropTypes.object,

@@ -8,20 +8,22 @@ const SpeedDialListItem = (
 ) => {
 
 	const styles = getStyles(muiTheme);
-	let rightAvatarMapped;
-	let leftAvatarMapped;
+	let rightAvatarCloned;
+	let leftAvatarCloned;
 	let link;
+
+	const getVerticalStyleMain = () => {
+		if (isOpen) {
+			return positionV === 'bottom' ? styles.mainBottom : styles.mainTop;
+		}
+
+		return positionV === 'bottom' ? styles.mainInvisibleBottom : styles.mainInvisibleTop;
+	};
 
 	const getStylesMain = () => {
 
 		const baseStyle = isOpen ? styles.main : styles.mainInvisible;
-		let verticalStyle;
-
-		if (isOpen) {
-			verticalStyle = positionV === 'bottom' ? styles.mainBottom : styles.mainTop;
-		} else {
-			verticalStyle = positionV === 'bottom' ? styles.mainInvisibleBottom : styles.mainInvisibleTop;
-		}
+		const verticalStyle = getVerticalStyleMain();
 
 		if (leftAvatar) {
 			return Object.assign(
@@ -53,22 +55,22 @@ const SpeedDialListItem = (
 	};
 
 	if (rightAvatar) {
-		rightAvatarMapped = React.cloneElement(rightAvatar, {
+		rightAvatarCloned = React.cloneElement(rightAvatar, {
 			style: Object.assign({}, rightAvatar.props.style, styles.rightAvatar),
 		});
 	}
 
 	if (leftAvatar) {
-		leftAvatarMapped = React.cloneElement(leftAvatar, {
+		leftAvatarCloned = React.cloneElement(leftAvatar, {
 			style: Object.assign({}, leftAvatar.props.style, styles.leftAvatar),
 		});
 	}
 
 	const content = (
 		<span>
-			{leftAvatarMapped}
+			{leftAvatarCloned}
 			<span style={getStylesText()}>{primaryText}</span>
-			{rightAvatarMapped}
+			{rightAvatarCloned}
 		</span>
 	);
 
@@ -98,10 +100,10 @@ SpeedDialListItem.propTypes = {
 	href: React.PropTypes.string,
 	isInTransition: React.PropTypes.bool,
 	isOpen: React.PropTypes.bool,
-	primaryText: React.PropTypes.string,
-	rightAvatar: React.PropTypes.object,
 	leftAvatar: React.PropTypes.object,
 	positionV: React.PropTypes.string,
+	primaryText: React.PropTypes.string,
+	rightAvatar: React.PropTypes.object,
 };
 SpeedDialListItem.defaultProps = {
 	isOpen: false,

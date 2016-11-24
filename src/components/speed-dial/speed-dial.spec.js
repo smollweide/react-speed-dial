@@ -54,6 +54,27 @@ it('renders without crashing with hasBackdrop=false', () => {
 	), div);
 });
 
+it('renders without crashing with floatingActionButtonProps', () => {
+	const div = document.createElement('div');
+	const floatingActionButtonProps = {
+		backgroundColor: '#fff',
+		className: 'className',
+		disabled: true,
+		iconStyle: {},
+		mini: true,
+		secondary: true,
+		style: {},
+		zDepth: 3,
+	};
+	ReactDOM.render((
+		<MuiThemeProvider>
+			<SpeedDial floatingActionButtonProps={floatingActionButtonProps}>
+				<SpeedDialList />
+			</SpeedDial>
+		</MuiThemeProvider>
+	), div);
+});
+
 it('<SpeedDial /> with prop [positionV="top"] has top=0', () => {
 	const div = document.createElement('div');
 	ReactDOM.render((
