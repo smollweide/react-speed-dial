@@ -48,8 +48,8 @@ it('<SpeedDialListItem /> with prop *rightAvatar* renders the avatar image', () 
 	const context = { muiTheme };
 	const wrapper = shallow(
 		<SpeedDialListItem
-			rightAvatar={<Avatar src={'http://lorempixel.com/80/80/people/1'} />}
 			primaryText="Hello world!"
+			rightAvatar={<Avatar src={'http://lorempixel.com/80/80/people/1'} />}
 		/>, { context }
 	);
 	expect(typeof wrapper.find('img')).toEqual('object');

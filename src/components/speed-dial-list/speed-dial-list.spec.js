@@ -6,9 +6,7 @@ import { shallow } from 'enzyme';
 
 import SpeedDialList from './speed-dial-list.jsx';
 import SpeedDialListItem from '../speed-dial-list-item/speed-dial-list-item.jsx';
-import getDomFromString from '../../../tests/utils/get-dom-from-string';
 import getStylesFromShallowNode from '../../../tests/utils/get-styles-from-shallow-node';
-import getStylesFromDomNode from '../../../tests/utils/get-styles-from-dom-node';
 import muiTheme from '../../../tests/context-mui-theme';
 
 injectTapEventPlugin();
@@ -124,8 +122,3 @@ it('<SpeedDialList /> prop [positionH=right] has right=24px', () => {
 	);
 	expect(getStylesFromShallowNode(wrapper).right).toEqual('24px');
 });
-
-
-
-
-
