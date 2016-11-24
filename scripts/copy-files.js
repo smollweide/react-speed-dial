@@ -1,21 +1,27 @@
 
-import path from 'path';
-import fs from 'fs';
 import utils from 'nms-core-utils';
 
 const rootDir = `${__dirname}/../`;
 const publishDir = `${rootDir}/publish`;
 const packagePath = `${rootDir}/package.json`;
 const files = [
-	`${rootDir}/README.md`,
-	`${rootDir}/LICENSE`,
+	'README.md',
+	'LICENSE',
 ];
 
-function copyFile (path) {
-	utils.writeFile(path, utils.readFile(path));
+/**
+ * @param {string} srcPath - the source path to file
+ * @param {string} destPath - the destination path to file
+ * @returns {void}
+ */
+function copyFile(srcPath, destPath) {
+	utils.writeFile(destPath, utils.readFile(srcPath));
 }
 
-function createPackageFile () {
+/**
+ * @returns {void}
+ */
+function createPackageFile() {
 	const packageData = JSON.parse(utils.readFile(packagePath));
 	delete packageData.scripts;
 	delete packageData.devDependencies;
@@ -26,7 +32,7 @@ if (!utils.isDir(publishDir)) {
 	utils.writeDir(publishDir);
 }
 
-files.map((file) => {
-	copyFile(file);
+files.forEach((file) => {
+	copyFile(`${rootDir}/${file}`, `${publishDir}/${file}`);
 });
 createPackageFile();
