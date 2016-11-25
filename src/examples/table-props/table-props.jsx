@@ -78,6 +78,11 @@ const props = {
 		},
 	},
 	SpeedDialList: {
+		className: {
+			type: 'string',
+			required: false,
+			desc: 'Applied to the speed dial list\'s root element.',
+		},
 		children: {
 			type: 'node',
 			required: false,
