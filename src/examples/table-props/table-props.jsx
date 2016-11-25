@@ -23,6 +23,16 @@ const props = {
 			required: false,
 			desc: 'Applied to the div which is wrapping the `FloatingActionButton` component.',
 		},
+		classNameInTransition: {
+			type: 'string',
+			required: false,
+			desc: 'Applied to the speed dial\'s main element while in transition.',
+		},
+		classNameOpen: {
+			type: 'string',
+			required: false,
+			desc: 'Applied to the speed dial\'s main element when opened.',
+		},
 		closeOnSecondClick: {
 			type: 'boolean',
 			defaultProp: 'true',
