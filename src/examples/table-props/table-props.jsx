@@ -90,6 +90,11 @@ const props = {
 		},
 	},
 	SpeedDialListItem: {
+		className: {
+			type: 'string',
+			required: false,
+			desc: 'Applied to the speed dial list item\'s root element.',
+		},
 		href: {
 			type: 'string',
 			required: false,
