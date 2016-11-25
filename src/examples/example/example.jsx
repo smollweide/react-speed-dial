@@ -15,7 +15,7 @@ const Example = ({ exampleCode, title, subtitle }) => {
 					title={title}
 				/>
 				<CardText expandable>
-					<iframe src={`/${exampleCode}`} />
+					<iframe src={`/#/${exampleCode}`} />
 				</CardText>
 				<CardText expandable>
 					Place example code here.
