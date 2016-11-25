@@ -229,16 +229,31 @@ class SpeedDial extends React.Component {
 	 */
 	render() {
 
-		const { floatingActionButtonProps, className, classNameButtonWrap } = this.props;
-		const { isOpen } = this.state;
+		const {
+			floatingActionButtonProps,
+			className,
+			classNameInTransition,
+			classNameOpen,
+			classNameButtonWrap,
+		} = this.props;
+		const { isOpen, isInTransition } = this.state;
 		const handleClick = isOpen ? this.handleClickClose : this.handleClickOpen;
+		const classNames = [className];
 
 		const btnProps = Object.assign({}, floatingActionButtonProps, {
 			onTouchTap: handleClick,
 		});
 
+		if (isInTransition && classNameInTransition) {
+			classNames.push(classNameInTransition);
+		}
+
+		if (isOpen && classNameOpen) {
+			classNames.push(classNameOpen);
+		}
+
 		return (
-			<div className={className} style={this.getStylesMain()}>
+			<div className={classNames.join(' ')} style={this.getStylesMain()}>
 				{this.renderBackdrop()}
 				{this.renderChildren()}
 				<div className={classNameButtonWrap} style={this.getStylesBtn()}>
@@ -258,6 +273,8 @@ SpeedDial.propTypes = {
 	className: React.PropTypes.string,
 	classNameBackdrop: React.PropTypes.string,
 	classNameButtonWrap: React.PropTypes.string,
+	classNameInTransition: React.PropTypes.string,
+	classNameOpen: React.PropTypes.string,
 	closeOnSecondClick: React.PropTypes.bool,
 	floatingActionButtonProps: React.PropTypes.shape({
 		backgroundColor: React.PropTypes.string,

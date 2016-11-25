@@ -179,3 +179,29 @@ it('<SpeedDialList /> find className, classNameBackdrop and classNameButtonWrap'
 	expect(wrapper.find('.o-speed-dial__btn-wrap').length).toEqual(1);
 });
 
+it('<SpeedDial /> find classNameInTransition', () => {
+	const context = { muiTheme };
+	const props = {
+		children: [(<ul key="0"><li><a /></li></ul>)],
+		classNameInTransition: 'm-speed-dial-list--in-transition',
+	};
+	const wrapper = shallow(
+		<SpeedDial {...props} />, { context }
+	);
+	wrapper.setState({ isInTransition: true });
+	expect(wrapper.find('.m-speed-dial-list--in-transition').length).toEqual(1);
+});
+
+it('<SpeedDial /> find classNameOpen', () => {
+	const context = { muiTheme };
+	const props = {
+		children: [(<ul key="0"><li><a /></li></ul>)],
+		classNameOpen: 'm-speed-dial-list--open',
+	};
+	const wrapper = shallow(
+		<SpeedDial {...props} />, { context }
+	);
+	wrapper.setState({ isOpen: true });
+	expect(wrapper.find('.m-speed-dial-list--open').length).toEqual(1);
+});
+
