@@ -112,3 +112,15 @@ it('<SpeedDialListItem /> with prop *leftAvatar* renders the avatar image', () =
 
 	expect(typeof wrapper.find('img')).toEqual('object');
 });
+
+it('<SpeedDialListItem /> find className', () => {
+	const context = { muiTheme };
+	const props = {
+		className: 'm-speed-dial-list-item',
+	};
+	const wrapper = shallow(
+		<SpeedDialListItem {...props} />, { context }
+	);
+	expect(wrapper.find('.m-speed-dial-list-item').length).toEqual(1);
+});
+

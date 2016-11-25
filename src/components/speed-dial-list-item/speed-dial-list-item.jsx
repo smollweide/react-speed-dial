@@ -3,7 +3,7 @@ import React from 'react';
 import getStyles from './speed-dial-list-item.styles';
 
 const SpeedDialListItem = (
-	{ href, primaryText, rightAvatar, leftAvatar, isOpen, positionV, onTouchTap, onClick },
+	{ href, primaryText, rightAvatar, leftAvatar, isOpen, positionV, onTouchTap, onClick, className },
 	{ muiTheme }
 ) => {
 
@@ -92,7 +92,7 @@ const SpeedDialListItem = (
 	}
 
 	return (
-		<li style={getStylesMain()}>
+		<li className={className} style={getStylesMain()}>
 			{link}
 		</li>
 	);
@@ -100,6 +100,7 @@ const SpeedDialListItem = (
 
 SpeedDialListItem.displayName = 'SpeedDialListItem';
 SpeedDialListItem.propTypes = {
+	className: React.PropTypes.string,
 	href: React.PropTypes.string,
 	isInTransition: React.PropTypes.bool,
 	isOpen: React.PropTypes.bool,
