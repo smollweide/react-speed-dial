@@ -2,28 +2,50 @@
 import React from 'react';
 import getStyles from './speed-dial-list-item.styles';
 
-const SpeedDialListItem = (
-	{ href, primaryText, rightAvatar, leftAvatar, isOpen, positionV, onTouchTap, onClick, className },
-	{ muiTheme }
-) => {
 
-	const styles = getStyles(muiTheme);
-	let rightAvatarCloned;
-	let leftAvatarCloned;
-	let link;
+/**
+ * Class SpeedDial
+ */
+class SpeedDialListItem extends React.Component {
 
-	const getVerticalStyleMain = () => {
+	/**
+	 * @param {Object} props - component props
+	 * @param {Object} muiTheme - the muiTheme in context
+	 * @returns {void}
+	 */
+	constructor(props, { muiTheme }) {
+		super(props);
+
+		this.styles = getStyles(muiTheme);
+		this.getVerticalStyleMain = this.getVerticalStyleMain.bind(this);
+		this.getStylesMain = this.getStylesMain.bind(this);
+		this.getStylesText = this.getStylesText.bind(this);
+	}
+
+	/**
+	 * @returns {Object} vertical styles for root element
+	 */
+	getVerticalStyleMain() {
+
+		const { isOpen, positionV } = this.props;
+		const styles = this.styles;
+
 		if (isOpen) {
 			return positionV === 'bottom' ? styles.mainBottom : styles.mainTop;
 		}
 
 		return positionV === 'bottom' ? styles.mainInvisibleBottom : styles.mainInvisibleTop;
-	};
+	}
 
-	const getStylesMain = () => {
+	/**
+	 * @returns {Object} styles for root element
+	 */
+	getStylesMain() {
 
+		const { isOpen, leftAvatar } = this.props;
+		const styles = this.styles;
 		const baseStyle = isOpen ? styles.main : styles.mainInvisible;
-		const verticalStyle = getVerticalStyleMain();
+		const verticalStyle = this.getVerticalStyleMain();
 
 		if (leftAvatar) {
 			return Object.assign(
@@ -38,9 +60,16 @@ const SpeedDialListItem = (
 			styles.mainRight,
 			verticalStyle
 		);
-	};
+	}
 
-	const getStylesText = () => {
+	/**
+	 * @returns {Object} styles for text element
+	 */
+	getStylesText() {
+
+		const { leftAvatar } = this.props;
+		const styles = this.styles;
+
 		if (leftAvatar) {
 			return Object.assign(
 				styles.text,
@@ -52,51 +81,82 @@ const SpeedDialListItem = (
 			styles.text,
 			styles.textRight
 		);
-	};
+	}
 
-	if (rightAvatar) {
-		rightAvatarCloned = React.cloneElement(rightAvatar, {
-			style: Object.assign({}, rightAvatar.props.style, styles.rightAvatar),
+	/**
+	 * @param {string} name - the name in styles eg. (rightAvatar|leftAvatar)
+	 * @returns {XML} returns the cloned Avatar
+	 */
+	renderAvatar(name) {
+
+		const styles = this.styles;
+		const avatar = this.props[name];
+
+		if (!avatar) {
+			return null;
+		}
+
+		return React.cloneElement(avatar, {
+			style: Object.assign({}, avatar.props.style, styles[name]),
 		});
 	}
 
-	if (leftAvatar) {
-		leftAvatarCloned = React.cloneElement(leftAvatar, {
-			style: Object.assign({}, leftAvatar.props.style, styles.leftAvatar),
-		});
-	}
+	/**
+	 * @returns {XML} returns the content
+	 */
+	renderContent() {
 
-	const content = (
-		<span>
-			{leftAvatarCloned}
-			<span style={getStylesText()}>{primaryText}</span>
-			{rightAvatarCloned}
-		</span>
-	);
+		const { primaryText } = this.props;
 
-	if (href) {
-		link = (
-			<a href={href} style={styles.wrap}>
-				{content}
-			</a>
+		return (
+			<span>
+				{this.renderAvatar('leftAvatar')}
+				<span style={this.getStylesText()}>{primaryText}</span>
+				{this.renderAvatar('rightAvatar')}
+			</span>
 		);
-	} else {
-		link = (
-			<div
+	}
+
+	/**
+	 * @returns {XML} returns the link
+	 */
+	renderLink() {
+
+		const { href, onTouchTap, onClick } = this.props;
+		const styles = this.styles;
+
+		if (href) {
+			return (
+				<a href={href} style={styles.wrap}>
+					{this.renderContent()}
+				</a>
+			);
+		}
+
+		return (
+			<a
 				style={styles.wrap}
+				tabIndex="0"
 				onTouchTap={onTouchTap || onClick}
 			>
-				{content}
-			</div>
+				{this.renderContent()}
+			</a>
 		);
 	}
 
-	return (
-		<li className={className} style={getStylesMain()}>
-			{link}
-		</li>
-	);
-};
+	/**
+	 * @returns {XML} returns the component
+	 */
+	render() {
+		const { className } = this.props;
+
+		return (
+			<li className={className} style={this.getStylesMain()}>
+				{this.renderLink()}
+			</li>
+		);
+	}
+}
 
 SpeedDialListItem.displayName = 'SpeedDialListItem';
 SpeedDialListItem.propTypes = {
