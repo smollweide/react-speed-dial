@@ -25,8 +25,14 @@ function createPackageFile() {
 	const packageData = JSON.parse(utils.readFile(packagePath));
 	delete packageData.scripts;
 	delete packageData.devDependencies;
+	delete packageData.dependencies['material-ui'];
+	delete packageData.dependencies.react;
+	delete packageData.dependencies['react-dom'];
+	delete packageData.dependencies['react-tap-event-plugin'];
+	delete packageData.dependencies['react-router'];
 	utils.writeFile(`${publishDir}/package.json`, JSON.stringify(packageData, null, 2));
 }
+
 
 if (!utils.isDir(publishDir)) {
 	utils.writeDir(publishDir);

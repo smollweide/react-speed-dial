@@ -31,7 +31,7 @@ const Home = () => {
 				/>
 				<Example
 					exampleCode="inbox"
-					title="Like google inbox"
+					title="Like inbox"
 				/>
 
 				<h2>Properties</h2>

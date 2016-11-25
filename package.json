@@ -16,6 +16,7 @@
 	"preferGlobal": false,
 	"private": false,
 	"license": "MIT",
+	"homepage": "http://smollweide.github.io/react-speed-dial/",
 	"scripts": {
 		"clean:build": "rimraf build",
 		"clean:publish": "rimraf publish",
@@ -35,6 +36,14 @@
 		"publish:babel": "NODE_ENV=release babel ./src/components --out-dir ./publish/components --ignore spec.js",
 		"publish:copy-files": "babel-node ./scripts/copy-files.js"
 	},
+	"keywords": [
+		"react",
+		"react-component",
+		"material design",
+		"material-ui",
+		"speed-dial",
+		"speed dial"
+	],
 	"peerDependencies": {
 		"material-ui": "^0.16.0",
 		"react": "^15.0.0",
