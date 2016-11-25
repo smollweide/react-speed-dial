@@ -23,7 +23,6 @@
 		"preinstall": "npm install -g pushstate-server",
 		"start": "react-scripts start",
 		"build": "react-scripts build",
-		"postbuild": "npm run static-server",
 		"test": "react-scripts test --env=jsdom",
 		"test:coverage": "npm test -- --coverage",
 		"eject": "react-scripts eject",
