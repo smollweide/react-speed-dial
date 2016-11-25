@@ -4,7 +4,7 @@ import getStyles from './speed-dial-list-item.styles';
 
 
 /**
- * Class SpeedDial
+ * Class SpeedDialListItem
  */
 class SpeedDialListItem extends React.Component {
 
@@ -127,7 +127,11 @@ class SpeedDialListItem extends React.Component {
 
 		if (href) {
 			return (
-				<a href={href} style={styles.wrap}>
+				<a
+					href={href}
+					ref="link"
+					style={styles.wrap}
+				>
 					{this.renderContent()}
 				</a>
 			);
@@ -135,6 +139,7 @@ class SpeedDialListItem extends React.Component {
 
 		return (
 			<a
+				ref="link"
 				style={styles.wrap}
 				tabIndex="0"
 				onTouchTap={onTouchTap || onClick}
@@ -151,7 +156,11 @@ class SpeedDialListItem extends React.Component {
 		const { className } = this.props;
 
 		return (
-			<li className={className} style={this.getStylesMain()}>
+			<li
+				className={className}
+				ref="item"
+				style={this.getStylesMain()}
+			>
 				{this.renderLink()}
 			</li>
 		);

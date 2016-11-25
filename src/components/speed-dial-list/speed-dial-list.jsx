@@ -2,15 +2,32 @@
 import React from 'react';
 import getStyles from './speed-dial-list.styles';
 
-const SpeedDialList = (
-	{ children, isOpen, isInTransition, positionV, positionH, className },
-	muiTheme
-) => {
+/**
+ * Class SpeedDialList
+ */
+class SpeedDialList extends React.Component {
 
-	const styles = getStyles(muiTheme);
-	let listItems;
+	/**
+	 * @param {Object} props - component props
+	 * @param {Object} muiTheme - the muiTheme in context
+	 * @returns {void}
+	 */
+	constructor(props, { muiTheme }) {
+		super(props);
 
-	const getStylesMain = () => {
+		this.styles = getStyles(muiTheme);
+		this.getStylesMain = this.getStylesMain.bind(this);
+		this.renderChild = this.renderChild.bind(this);
+	}
+
+	/**
+	 * @returns {Object} styles for root element
+	 */
+	getStylesMain() {
+
+		const { isOpen, positionV, positionH } = this.props;
+		const styles = this.styles;
+
 		if (isOpen) {
 			return Object.assign(
 				styles.main,
@@ -24,51 +41,81 @@ const SpeedDialList = (
 			styles[`mainInvisible${positionV}`],
 			styles[`mainInvisible${positionH}`]
 		);
-	};
-
-	if (!children) {
-		return (<ul style={getStylesMain()} />);
 	}
 
-	if (children.type && children.type.displayName !== 'SpeedDialListItem') {
-		return children;
-	}
+	/**
+	 * @param {XML|Object} child - the child component
+	 * @param {string|undefined} child.type - the child component type
+	 * @param {string|undefined} child.type.displayName - the child component displayName
+	 * @param {number} index - the child index
+	 * @returns {XML} returns the cloned child component
+	 */
+	renderChild(child, index) {
 
-	if (
-		children instanceof Array
-	) {
-		listItems = children.map((child, index) => {
+		const { isOpen, isInTransition, positionV } = this.props;
 
-			if (child.type && child.type.displayName !== 'SpeedDialListItem') {
-				return child;
-			}
+		if (child.type && child.type.displayName !== 'SpeedDialListItem') {
+			return child;
+		}
 
-			return React.cloneElement(child, {
-				key: index,
-				isOpen,
-				isInTransition,
-				positionV,
-			});
-		});
-	} else {
-		listItems = React.cloneElement(children, {
+		return React.cloneElement(child, {
+			key: index,
 			isOpen,
 			isInTransition,
 			positionV,
+			ref: 'listItem',
 		});
 	}
 
-	return (
-		<ul className={className} style={getStylesMain()} >
-			{listItems}
-		</ul>
-	);
-};
+	/**
+	 * @returns {XML} returns the children component's
+	 */
+	renderChildren() {
+
+		const { children, isOpen, isInTransition, positionV } = this.props;
+
+		if (!children) {
+			return (<ul style={this.getStylesMain()} />);
+		}
+
+		if (children.type && children.type.displayName !== 'SpeedDialListItem') {
+			return children;
+		}
+
+		if (
+			children instanceof Array
+		) {
+			return children.map(this.renderChild);
+		}
+
+		return React.cloneElement(children, {
+			isOpen,
+			isInTransition,
+			positionV,
+			ref: 'listItem',
+		});
+	}
+
+	/**
+	 * @returns {XML} returns the component
+	 */
+	render() {
+
+		const { className } = this.props;
+
+		return (
+			<ul className={className} style={this.getStylesMain()} >
+				{this.renderChildren()}
+			</ul>
+		);
+	}
+
+}
 
 SpeedDialList.displayName = 'SpeedDialList';
 SpeedDialList.propTypes = {
-	className: React.PropTypes.string,
 	children: React.PropTypes.any,
+	className: React.PropTypes.string,
 	isInTransition: React.PropTypes.bool,
 	isOpen: React.PropTypes.bool,
 	positionH: React.PropTypes.string,
