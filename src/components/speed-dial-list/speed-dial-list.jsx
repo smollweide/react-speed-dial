@@ -63,12 +63,12 @@ class SpeedDialList extends React.Component {
 			isOpen,
 			isInTransition,
 			positionV,
-			ref: 'listItem',
+			ref: `listItem${index}`,
 		});
 	}
 
 	/**
-	 * @returns {XML} returns the children component's
+	 * @returns {XML|Array} returns the children component's
 	 */
 	renderChildren() {
 
@@ -82,9 +82,7 @@ class SpeedDialList extends React.Component {
 			return children;
 		}
 
-		if (
-			children instanceof Array
-		) {
+		if (children instanceof Array) {
 			return children.map(this.renderChild);
 		}
 
@@ -109,7 +107,6 @@ class SpeedDialList extends React.Component {
 			</ul>
 		);
 	}
-
 }
 
 SpeedDialList.displayName = 'SpeedDialList';

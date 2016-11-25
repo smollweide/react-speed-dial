@@ -48,6 +48,10 @@ export default ({ baseTheme }) => {
 			right: 16,
 			opacity: 0,
 		},
+		backdropFocused: {
+			backgroundColor: baseTheme.palette.secondaryTextColor,
+			opacity: 0.4,
+		},
 		btnWrap: {
 			position: 'absolute',
 		},

@@ -34,6 +34,8 @@ export default ({ paper, baseTheme }) => {
 			position: 'relative',
 			display: 'inline-block',
 			lineHeight: '40px',
+			outline: 0,
+			textDecoration: 'none',
 		},
 		text: {
 			borderRadius: '5px',
@@ -56,6 +58,15 @@ export default ({ paper, baseTheme }) => {
 		leftAvatar: {
 			float: 'left',
 			boxShadow: paper.zDepthShadows[1],
+		},
+
+		focus: {
+			avatar: {
+				boxShadow: paper.zDepthShadows[2],
+			},
+			text: {
+				boxShadow: paper.zDepthShadows[2],
+			},
 		},
 	};
 };

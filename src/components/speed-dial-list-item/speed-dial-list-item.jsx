@@ -2,7 +2,6 @@
 import React from 'react';
 import getStyles from './speed-dial-list-item.styles';
 
-
 /**
  * Class SpeedDialListItem
  */
@@ -16,10 +15,61 @@ class SpeedDialListItem extends React.Component {
 	constructor(props, { muiTheme }) {
 		super(props);
 
+		this.state = {
+			isKeyboardFocused: false,
+		};
+
 		this.styles = getStyles(muiTheme);
 		this.getVerticalStyleMain = this.getVerticalStyleMain.bind(this);
 		this.getStylesMain = this.getStylesMain.bind(this);
 		this.getStylesText = this.getStylesText.bind(this);
+		this.getStylesFocus = this.getStylesFocus.bind(this);
+		this.setFocus = this.setFocus.bind(this);
+		this.handleFocus = this.handleFocus.bind(this);
+		this.handleKeyUp = this.handleKeyUp.bind(this);
+		this.handleBlur = this.handleBlur.bind(this);
+	}
+
+	/**
+	 * @returns {void}
+	 */
+	handleBlur() {
+		this.setState({
+			isKeyboardFocused: false,
+		});
+		this.props.onBlur();
+	}
+
+	/**
+	 * @returns {void}
+	 */
+	handleFocus() {
+		this.setState({
+			isKeyboardFocused: true,
+		});
+		this.props.onFocus();
+	}
+
+	/**
+	 * @param {Object} event - the keyUp event object
+	 * @returns {void}
+	 */
+	handleKeyUp(event) {
+
+		if (!this.state.isKeyboardFocused || event.keyCode !== 13) {
+			return;
+		}
+
+		const { onTouchTap, onClick } = this.props;
+
+		(onTouchTap || onClick)(event);
+	}
+
+	/**
+	 * @returns {void}
+	 */
+	setFocus() {
+		this.refs.link.focus();
 	}
 
 	/**
@@ -63,6 +113,20 @@ class SpeedDialListItem extends React.Component {
 	}
 
 	/**
+	 * @param {string} elementName - the element name eg. (avatar|text)
+	 * @returns {Object} styles for focused element
+	 */
+	getStylesFocus(elementName) {
+		const { isKeyboardFocused } = this.state;
+
+		if (!isKeyboardFocused) {
+			return {};
+		}
+
+		return this.styles.focus[elementName];
+	}
+
+	/**
 	 * @returns {Object} styles for text element
 	 */
 	getStylesText() {
@@ -72,14 +136,18 @@ class SpeedDialListItem extends React.Component {
 
 		if (leftAvatar) {
 			return Object.assign(
+				{},
 				styles.text,
-				styles.textLeft
+				styles.textLeft,
+				this.getStylesFocus('text')
 			);
 		}
 
 		return Object.assign(
+			{},
 			styles.text,
-			styles.textRight
+			styles.textRight,
+			this.getStylesFocus('text')
 		);
 	}
 
@@ -97,7 +165,7 @@ class SpeedDialListItem extends React.Component {
 		}
 
 		return React.cloneElement(avatar, {
-			style: Object.assign({}, avatar.props.style, styles[name]),
+			style: Object.assign({}, avatar.props.style, styles[name], this.getStylesFocus('avatar')),
 		});
 	}
 
@@ -122,7 +190,7 @@ class SpeedDialListItem extends React.Component {
 	 */
 	renderLink() {
 
-		const { href, onTouchTap, onClick } = this.props;
+		const { href, onTouchTap, onClick, tabIndex, isOpen } = this.props;
 		const styles = this.styles;
 
 		if (href) {
@@ -131,6 +199,9 @@ class SpeedDialListItem extends React.Component {
 					href={href}
 					ref="link"
 					style={styles.wrap}
+					tabIndex={isOpen ? tabIndex : -1}
+					onBlur={this.handleBlur}
+					onFocus={this.handleFocus}
 				>
 					{this.renderContent()}
 				</a>
@@ -141,7 +212,10 @@ class SpeedDialListItem extends React.Component {
 			<a
 				ref="link"
 				style={styles.wrap}
-				tabIndex="0"
+				tabIndex={isOpen ? tabIndex : -1}
+				onBlur={this.handleBlur}
+				onFocus={this.handleFocus}
+				onKeyUp={this.handleKeyUp}
 				onTouchTap={onTouchTap || onClick}
 			>
 				{this.renderContent()}
@@ -177,14 +251,40 @@ SpeedDialListItem.propTypes = {
 	positionV: React.PropTypes.string,
 	primaryText: React.PropTypes.string,
 	rightAvatar: React.PropTypes.object,
+	tabIndex: React.PropTypes.oneOfType([
+		React.PropTypes.string,
+		React.PropTypes.number,
+	]),
+	onBlur: React.PropTypes.func,
 	onClick: React.PropTypes.func,
+	onFocus: React.PropTypes.func,
+	onKeyboardFocus: React.PropTypes.func,
+	onKeyDown: React.PropTypes.func,
+	onKeyUp: React.PropTypes.func,
+	onMouseDown: React.PropTypes.func,
+	onMouseEnter: React.PropTypes.func,
+	onMouseLeave: React.PropTypes.func,
+	onMouseUp: React.PropTypes.func,
+	onTouchEnd: React.PropTypes.func,
+	onTouchStart: React.PropTypes.func,
 	onTouchTap: React.PropTypes.func,
 };
 SpeedDialListItem.defaultProps = {
 	isOpen: false,
 	isInTransition: false,
 	positionV: 'bottom',
+	tabIndex: 1,
+	onBlur() {},
 	onClick() {},
+	onFocus() {},
+	onKeyDown() {},
+	onKeyUp() {},
+	onMouseDown() {},
+	onMouseEnter() {},
+	onMouseLeave() {},
+	onMouseUp() {},
+	onTouchEnd() {},
+	onTouchStart() {},
 };
 SpeedDialListItem.contextTypes = {
 	muiTheme: React.PropTypes.object.isRequired,

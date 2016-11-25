@@ -9,6 +9,18 @@ import getStyles from './speed-dial.styles';
 const animTime = 450;
 
 /**
+ * @param {Object} refs - the component refs
+ * @returns {void}
+ */
+function handleFocusFirstListItem(refs) {
+	if (!refs.list || !refs.list.refs || !refs.list.refs.listItem0) {
+		return;
+	}
+
+	refs.list.refs.listItem0.setFocus();
+}
+
+/**
  * Class SpeedDial
  */
 class SpeedDial extends React.Component {
@@ -24,10 +36,16 @@ class SpeedDial extends React.Component {
 		this.state = {
 			isOpen: false,
 			isInTransition: false,
+			isBackdropFocused: false,
 		};
+		this.getStylesBackdrop = this.getStylesBackdrop.bind(this);
 		this.handleClickOpen = this.handleClickOpen.bind(this);
 		this.handleClickClose = this.handleClickClose.bind(this);
 		this.handleClickBackdrop = this.handleClickBackdrop.bind(this);
+		this.handleFocusPrimaryText = this.handleFocusPrimaryText.bind(this);
+		this.handleFocusBackdrop = this.handleFocusBackdrop.bind(this);
+		this.handleBlurBackdrop = this.handleBlurBackdrop.bind(this);
+		this.handleBackdropKeyUp = this.handleBackdropKeyUp.bind(this);
 		this.styles = getStyles(context.muiTheme);
 	}
 
@@ -35,17 +53,24 @@ class SpeedDial extends React.Component {
 	 * @returns {void}
 	 */
 	handleClickOpen() {
+
 		/* istanbul ignore next */
 		this.setState({
 			isOpen: true,
 			isInTransition: true,
 		});
+
 		/* istanbul ignore next */
 		setTimeout(() => {
 			this.setState({
 				isInTransition: false,
 			});
 		}, animTime);
+
+		/* istanbul ignore next */
+		setTimeout(() => {
+			handleFocusFirstListItem(this.refs);
+		}, animTime + 100);
 	}
 
 	/**
@@ -86,6 +111,43 @@ class SpeedDial extends React.Component {
 				isInTransition: false,
 			});
 		}, animTime);
+	}
+
+	/**
+	 * @returns {void}
+	 */
+	handleFocusPrimaryText() {
+		this.refs.btn.refs.container.refs.enhancedButton.focus();
+	}
+
+	/**
+	 * @returns {void}
+	 */
+	handleFocusBackdrop() {
+		this.setState({
+			isBackdropFocused: true,
+		});
+	}
+
+	/**
+	 * @returns {void}
+	 */
+	handleBlurBackdrop() {
+		this.setState({
+			isBackdropFocused: false,
+		});
+	}
+
+	/**
+	 * @param {Object} event - the backdrop keyUp event
+	 * @returns {void}
+	 */
+	handleBackdropKeyUp(event) {
+		if (event.keyCode !== 13) {
+			return;
+		}
+
+		this.handleClickBackdrop();
 	}
 
 	/**
@@ -137,6 +199,18 @@ class SpeedDial extends React.Component {
 	}
 
 	/**
+	 * @returns {Object} styles for backdrop element
+	 */
+	getStylesBackdrop() {
+		const { isOpen, isBackdropFocused } = this.state;
+		const styles = this.styles;
+		const stylesLink = isOpen ? styles.backdrop : styles.backdropInvisible;
+		const stylesLinkFocused = isBackdropFocused ? styles.backdropFocused : {};
+
+		return Object.assign({}, stylesLink, stylesLinkFocused);
+	}
+
+	/**
 	 * @returns {Array} returns the icon component's
 	 */
 	renderIcon() {
@@ -173,6 +247,7 @@ class SpeedDial extends React.Component {
 			isInTransition,
 			positionV,
 			positionH,
+			ref: 'list',
 		});
 	}
 
@@ -181,9 +256,10 @@ class SpeedDial extends React.Component {
 	 */
 	renderBackdrop() {
 
-		const { hasBackdrop, classNameBackdrop } = this.props;
+		const { hasBackdrop, classNameBackdrop, tabIndex } = this.props;
 		const { isOpen } = this.state;
 		const styles = this.styles;
+		const stylesWrap = isOpen ? styles.backdropWrap : styles.backdropWrapInvisible;
 
 		if (!hasBackdrop) {
 			return null;
@@ -192,10 +268,14 @@ class SpeedDial extends React.Component {
 		return (
 			<span
 				className={classNameBackdrop}
-				style={isOpen ? styles.backdropWrap : styles.backdropWrapInvisible}
+				style={stylesWrap}
 			>
 				<a
-					style={isOpen ? styles.backdrop : styles.backdropInvisible}
+					style={this.getStylesBackdrop()}
+					tabIndex={isOpen ? (tabIndex + 1) : -1}
+					onBlur={this.handleBlurBackdrop}
+					onFocus={this.handleFocusBackdrop}
+					onKeyUp={this.handleBackdropKeyUp}
 					onTouchTap={this.handleClickBackdrop}
 				/>
 			</span>
@@ -207,7 +287,8 @@ class SpeedDial extends React.Component {
 	 */
 	renderPrimaryText() {
 
-		const { primaryText, onClickPrimaryButton } = this.props;
+		const { primaryText, onClickPrimaryButton, tabIndex } = this.props;
+		const { isOpen } = this.state;
 
 		if (!primaryText || primaryText === '') {
 			return null;
@@ -218,7 +299,9 @@ class SpeedDial extends React.Component {
 				<SpeedDialListItem
 					isOpen
 					primaryText={primaryText}
+					tabIndex={isOpen ? tabIndex : -1}
 					onClick={onClickPrimaryButton}
+					onFocus={this.handleFocusPrimaryText}
 				/>
 			</ul>
 		);
@@ -235,6 +318,7 @@ class SpeedDial extends React.Component {
 			classNameInTransition,
 			classNameOpen,
 			classNameButtonWrap,
+			tabIndex,
 		} = this.props;
 		const { isOpen, isInTransition } = this.state;
 		const handleClick = isOpen ? this.handleClickClose : this.handleClickOpen;
@@ -258,7 +342,11 @@ class SpeedDial extends React.Component {
 				{this.renderChildren()}
 				<div className={classNameButtonWrap} style={this.getStylesBtn()}>
 					{this.renderPrimaryText()}
-					<FloatingActionButton {...btnProps}>
+					<FloatingActionButton
+						ref="btn"
+						tabIndex={tabIndex}
+						{...btnProps}
+					>
 						{this.renderIcon()}
 					</FloatingActionButton>
 				</div>
@@ -293,6 +381,10 @@ SpeedDial.propTypes = {
 	positionH: React.PropTypes.string,
 	positionV: React.PropTypes.string,
 	primaryText: React.PropTypes.string,
+	tabIndex: React.PropTypes.oneOfType([
+		React.PropTypes.string,
+		React.PropTypes.number,
+	]),
 	onClickPrimaryButton: React.PropTypes.func,
 };
 SpeedDial.defaultProps = {
@@ -302,11 +394,11 @@ SpeedDial.defaultProps = {
 	iconOpen: <IconClose />,
 	positionH: 'right',
 	positionV: 'bottom',
-	onClickPrimaryButton: () => {},
+	tabIndex: 1,
+	onClickPrimaryButton() {},
 };
 SpeedDial.contextTypes = {
 	muiTheme: React.PropTypes.object.isRequired,
 };
-
 
 export default SpeedDial;

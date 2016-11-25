@@ -18,7 +18,7 @@ const list = {
 		{
 			primaryText: 'Grace Ng',
 			rightAvatar: <Avatar src={`${avatarImgUrl}/3`} />,
-			onTouchTap() { console.log('touchTap on "Grace Ng"'); },
+			href: '/#/',
 		},
 		{
 			primaryText: 'Raquel Parrado',
