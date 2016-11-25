@@ -8,6 +8,21 @@ const props = {
 			required: true,
 			desc: 'Children passed to speed dial.',
 		},
+		className: {
+			type: 'string',
+			required: false,
+			desc: 'Applied to the speed dial\'s root element.',
+		},
+		classNameBackdrop: {
+			type: 'string',
+			required: false,
+			desc: 'Applied to the speed dial\'s backdrop element.',
+		},
+		classNameButtonWrap: {
+			type: 'string',
+			required: false,
+			desc: 'Applied to the div which is wrapping the `FloatingActionButton` component.',
+		},
 		closeOnSecondClick: {
 			type: 'boolean',
 			defaultProp: 'true',
