@@ -163,7 +163,7 @@ it('<SpeedDial /> with prop [positionH="bottom"] button wrapper has bottom=16px'
 	expect(button.bottom).toEqual('16px');
 });
 
-it('<SpeedDialList /> fidn className, classNameBackdrop and classNameButtonWrap', () => {
+it('<SpeedDialList /> find className, classNameBackdrop and classNameButtonWrap', () => {
 	const context = { muiTheme };
 	const props = {
 		children: [(<ul key="0"><li><a /></li></ul>)],

@@ -3,7 +3,7 @@ import React from 'react';
 import getStyles from './speed-dial-list.styles';
 
 const SpeedDialList = (
-	{ children, isOpen, isInTransition, positionV, positionH },
+	{ children, isOpen, isInTransition, positionV, positionH, className },
 	muiTheme
 ) => {
 
@@ -59,7 +59,7 @@ const SpeedDialList = (
 	}
 
 	return (
-		<ul style={getStylesMain()} >
+		<ul className={className} style={getStylesMain()} >
 			{listItems}
 		</ul>
 	);
@@ -67,6 +67,7 @@ const SpeedDialList = (
 
 SpeedDialList.displayName = 'SpeedDialList';
 SpeedDialList.propTypes = {
+	className: React.PropTypes.string,
 	children: React.PropTypes.any,
 	isInTransition: React.PropTypes.bool,
 	isOpen: React.PropTypes.bool,

@@ -122,3 +122,15 @@ it('<SpeedDialList /> prop [positionH=right] has right=24px', () => {
 	);
 	expect(getStylesFromShallowNode(wrapper).right).toEqual('24px');
 });
+
+it('<SpeedDialList /> find className', () => {
+	const context = { muiTheme };
+	const props = {
+		children: [(<li key="0"><a /></li>)],
+		className: 'm-speed-dial-list',
+	};
+	const wrapper = shallow(
+		<SpeedDialList {...props} />, { context }
+	);
+	expect(wrapper.find('.m-speed-dial-list').length).toEqual(1);
+});
