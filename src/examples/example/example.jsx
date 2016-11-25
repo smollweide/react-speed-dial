@@ -5,6 +5,8 @@ import './example.css';
 
 const Example = ({ exampleCode, title, subtitle }) => {
 
+	const githubSrcUrl = 'https://github.com/smollweide/react-speed-dial/tree/master/src';
+
 	return (
 		<div className="example">
 			<Card>
@@ -15,10 +17,15 @@ const Example = ({ exampleCode, title, subtitle }) => {
 					title={title}
 				/>
 				<CardText expandable>
-					<iframe src={`/#/${exampleCode}`} />
+					<a
+						href={`${githubSrcUrl}/examples/example-${exampleCode}/example-${exampleCode}.jsx`}
+						target="_black"
+					>
+						Example code on github
+					</a>
 				</CardText>
 				<CardText expandable>
-					Place example code here.
+					<iframe src={`/#/${exampleCode}`} />
 				</CardText>
 			</Card>
 		</div>
