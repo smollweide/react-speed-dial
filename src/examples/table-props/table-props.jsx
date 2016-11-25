@@ -81,6 +81,12 @@ const props = {
 			required: false,
 			desc: 'This is the text to be display beside the `FloatingActionButton`.',
 		},
+		tabIndex: {
+			type: 'number',
+			defaultProp: '1',
+			required: false,
+			desc: 'This is the index to define the tabIndex for the `FloatingActionButton`. The backdrop has tabIndex + 1.',
+		},
 		onClickPrimaryButton: {
 			type: 'function',
 			required: false,
@@ -125,6 +131,12 @@ const props = {
 			type: 'node',
 			required: false,
 			desc: 'This is the `Avatar` element to be displayed on the left side.',
+		},
+		tabIndex: {
+			type: 'number',
+			defaultProp: '1',
+			required: false,
+			desc: 'This is the index to define the tabIndex for the link.',
 		},
 		onClick: {
 			type: 'function',
