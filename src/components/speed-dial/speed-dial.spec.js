@@ -2,7 +2,9 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import injectTapEventPlugin from 'react-tap-event-plugin';
+import { shallow } from 'enzyme';
 
+import muiTheme from '../../../tests/context-mui-theme';
 import SpeedDial from './speed-dial.jsx';
 import SpeedDialList from '../speed-dial-list/speed-dial-list.jsx';
 import getDomFromString from '../../../tests/utils/get-dom-from-string';
@@ -159,5 +161,21 @@ it('<SpeedDial /> with prop [positionH="bottom"] button wrapper has bottom=16px'
 		getDomFromString(div.innerHTML).getElementsByTagName('button')[0].parentNode.parentNode
 	);
 	expect(button.bottom).toEqual('16px');
+});
+
+it('<SpeedDialList /> fidn className, classNameBackdrop and classNameButtonWrap', () => {
+	const context = { muiTheme };
+	const props = {
+		children: [(<ul key="0"><li><a /></li></ul>)],
+		className: 'o-speed-dial',
+		classNameBackdrop: 'o-speed-dial__backdrop',
+		classNameButtonWrap: 'o-speed-dial__btn-wrap',
+	};
+	const wrapper = shallow(
+		<SpeedDial {...props} />, { context }
+	);
+	expect(wrapper.find('.o-speed-dial').length).toEqual(1);
+	expect(wrapper.find('.o-speed-dial__backdrop').length).toEqual(1);
+	expect(wrapper.find('.o-speed-dial__btn-wrap').length).toEqual(1);
 });
 

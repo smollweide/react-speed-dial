@@ -164,7 +164,7 @@ class SpeedDial extends React.Component {
 		const { children, positionV, positionH } = this.props;
 		const { isOpen, isInTransition } = this.state;
 
-		if (children.type.displayName !== 'SpeedDialList') {
+		if (!children.type || children.type.displayName !== 'SpeedDialList') {
 			return children;
 		}
 
@@ -181,7 +181,7 @@ class SpeedDial extends React.Component {
 	 */
 	renderBackdrop() {
 
-		const { hasBackdrop } = this.props;
+		const { hasBackdrop, classNameBackdrop } = this.props;
 		const { isOpen } = this.state;
 		const styles = this.styles;
 
@@ -190,7 +190,10 @@ class SpeedDial extends React.Component {
 		}
 
 		return (
-			<span style={isOpen ? styles.backdropWrap : styles.backdropWrapInvisible}>
+			<span
+				className={classNameBackdrop}
+				style={isOpen ? styles.backdropWrap : styles.backdropWrapInvisible}
+			>
 				<a
 					style={isOpen ? styles.backdrop : styles.backdropInvisible}
 					onTouchTap={this.handleClickBackdrop}
@@ -226,7 +229,7 @@ class SpeedDial extends React.Component {
 	 */
 	render() {
 
-		const { floatingActionButtonProps } = this.props;
+		const { floatingActionButtonProps, className, classNameButtonWrap } = this.props;
 		const { isOpen } = this.state;
 		const handleClick = isOpen ? this.handleClickClose : this.handleClickOpen;
 
@@ -235,12 +238,12 @@ class SpeedDial extends React.Component {
 		});
 
 		return (
-			<div ref="main" style={this.getStylesMain()}>
+			<div className={className} style={this.getStylesMain()}>
 				{this.renderBackdrop()}
 				{this.renderChildren()}
-				<div style={this.getStylesBtn()}>
+				<div className={classNameButtonWrap} style={this.getStylesBtn()}>
 					{this.renderPrimaryText()}
-					<FloatingActionButton ref="btn" {...btnProps}>
+					<FloatingActionButton {...btnProps}>
 						{this.renderIcon()}
 					</FloatingActionButton>
 				</div>
@@ -252,6 +255,9 @@ class SpeedDial extends React.Component {
 SpeedDial.displayName = 'SpeedDial';
 SpeedDial.propTypes = {
 	children: React.PropTypes.any.isRequired,
+	className: React.PropTypes.string,
+	classNameBackdrop: React.PropTypes.string,
+	classNameButtonWrap: React.PropTypes.string,
 	closeOnSecondClick: React.PropTypes.bool,
 	floatingActionButtonProps: React.PropTypes.shape({
 		backgroundColor: React.PropTypes.string,
