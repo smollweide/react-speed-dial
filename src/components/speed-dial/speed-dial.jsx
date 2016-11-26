@@ -65,12 +65,8 @@ class SpeedDial extends React.Component {
 			this.setState({
 				isInTransition: false,
 			});
-		}, animTime);
-
-		/* istanbul ignore next */
-		setTimeout(() => {
 			handleFocusFirstListItem(this.refs);
-		}, animTime + 100);
+		}, animTime);
 	}
 
 	/**
