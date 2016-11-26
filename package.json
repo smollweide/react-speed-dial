@@ -35,6 +35,7 @@
 		"publish:index": "BABEL_ENV=es babel ./src/speed-dial.js --out-file ./publish/index.js",
 		"publish:babel": "NODE_ENV=release babel ./src/components --out-dir ./publish/components --ignore spec.js",
 		"publish:copy-files": "babel-node ./scripts/copy-files.js",
+		"predeploy": "npm run build",
 		"deploy": "gh-pages -d build"
 	},
 	"keywords": [
