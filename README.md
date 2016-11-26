@@ -50,17 +50,31 @@ App.displayName = 'App';
 
 export default App;
 ```
+## Documentation
+[http://smollweide.github.io/react-speed-dial/](http://smollweide.github.io/react-speed-dial/)
 
-
-### develop
+## Contributing
 
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
-- Checkout `git clone https://github.com/smollweide/react-speed-dial.git`
+### Getting started
+
+1. Fork the React-speed-dial repository on Github
+2. Clone your fork to your local machine `git clone git@github.com:<yourname>/react-speed-dial.git`
+3. Create a branch `git checkout -b my-topic-branch`
+4. Make your changes and add tests for them, lint, test then push to to github with `git push --set-upstream origin my-topic-branch`.
+5. Visit github and make your pull request.
+
+### Scripts
 - Install `npm install`
 - Start developing `npm start`
 - Lint `npm run lint`
-- Tests tests `npm test`
+- Test `npm test`
 - Build `npm run build`
+- Publish `npm run publish`
 - Static server `npm run static-server`
 
+### Coding style
+Please follow the coding style of the current code base.
+React-speed-dial uses eslint, so if possible, enable linting in your editor to get realtime feedback.
+The linting rules can be run manually with `npm run lint`.
