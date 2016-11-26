@@ -5,7 +5,7 @@ import Avatar from 'material-ui/Avatar';
 import { blue500, red600 } from 'material-ui/styles/colors';
 import IconEdit from 'material-ui/svg-icons/image/edit';
 import IconRemember from 'material-ui/svg-icons/action/touch-app';
-import { SpeedDial, SpeedDialList, SpeedDialListItem } from '../../speed-dial';
+import { SpeedDial, BubbleList, BubbleListItem } from '../../speed-dial';
 
 const avatarImgUrl = 'http://lorempixel.com/80/80/people';
 const list = {
@@ -47,11 +47,11 @@ const ExampleInbox = () => {
 			primaryText="Write"
 			onClickPrimaryButton={() => { console.log('clicked write button'); }}
 		>
-			<SpeedDialList>
+			<BubbleList>
 				{list.items.map((item, index) => {
-					return (<SpeedDialListItem key={index} {...item} />);
+					return (<BubbleListItem key={index} {...item} />);
 				})}
-			</SpeedDialList>
+			</BubbleList>
 		</SpeedDial>
 	);
 };

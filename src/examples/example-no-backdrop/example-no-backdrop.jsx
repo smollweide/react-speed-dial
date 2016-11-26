@@ -2,7 +2,7 @@ import React from 'react';
 import Avatar from 'material-ui/Avatar';
 import { blue500 } from 'material-ui/styles/colors';
 import IconEdit from 'material-ui/svg-icons/image/edit';
-import { SpeedDial, SpeedDialList, SpeedDialListItem } from '../../speed-dial';
+import { SpeedDial, BubbleList, BubbleListItem } from '../../speed-dial';
 
 const list = {
 	items: [
@@ -16,11 +16,11 @@ const list = {
 const ExampleNoBackdrop = () => {
 	return (
 		<SpeedDial hasBackdrop={false}>
-			<SpeedDialList>
+			<BubbleList>
 				{list.items.map((item, index) => {
-					return (<SpeedDialListItem key={index} {...item} />);
+					return (<BubbleListItem key={index} {...item} />);
 				})}
-			</SpeedDialList>
+			</BubbleList>
 		</SpeedDial>
 	);
 };

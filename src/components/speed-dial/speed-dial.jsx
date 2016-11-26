@@ -3,7 +3,7 @@ import React from 'react';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 import IconAdd from 'material-ui/svg-icons/content/add';
 import IconClose from 'material-ui/svg-icons/navigation/close';
-import SpeedDialListItem from '../speed-dial-list-item/speed-dial-list-item.jsx';
+import BubbleListItem from '../bubble-list-item/bubble-list-item.jsx';
 import getStyles from './speed-dial.styles';
 
 const animTime = 450;
@@ -238,7 +238,7 @@ class SpeedDial extends React.Component {
 		const { children, positionV, positionH } = this.props;
 		const { isOpen, isInTransition } = this.state;
 
-		if (!children.type || children.type.displayName !== 'SpeedDialList') {
+		if (!children.type || children.type.displayName !== 'BubbleList') {
 			return children;
 		}
 
@@ -296,7 +296,7 @@ class SpeedDial extends React.Component {
 
 		return (
 			<ul style={this.getStylesPrimaryText()}>
-				<SpeedDialListItem
+				<BubbleListItem
 					isOpen
 					primaryText={primaryText}
 					tabIndex={isOpen ? tabIndex : -1}

@@ -1,11 +1,11 @@
 
 import React from 'react';
-import getStyles from './speed-dial-list-item.styles';
+import getStyles from './bubble-list-item.styles';
 
 /**
- * Class SpeedDialListItem
+ * Class BubbleListItem
  */
-class SpeedDialListItem extends React.Component {
+class BubbleListItem extends React.Component {
 
 	/**
 	 * @param {Object} props - component props
@@ -241,8 +241,8 @@ class SpeedDialListItem extends React.Component {
 	}
 }
 
-SpeedDialListItem.displayName = 'SpeedDialListItem';
-SpeedDialListItem.propTypes = {
+BubbleListItem.displayName = 'BubbleListItem';
+BubbleListItem.propTypes = {
 	className: React.PropTypes.string,
 	href: React.PropTypes.string,
 	isInTransition: React.PropTypes.bool,
@@ -269,7 +269,7 @@ SpeedDialListItem.propTypes = {
 	onTouchStart: React.PropTypes.func,
 	onTouchTap: React.PropTypes.func,
 };
-SpeedDialListItem.defaultProps = {
+BubbleListItem.defaultProps = {
 	isOpen: false,
 	isInTransition: false,
 	positionV: 'bottom',
@@ -286,7 +286,7 @@ SpeedDialListItem.defaultProps = {
 	onTouchEnd() {},
 	onTouchStart() {},
 };
-SpeedDialListItem.contextTypes = {
+BubbleListItem.contextTypes = {
 	muiTheme: React.PropTypes.object.isRequired,
 };
-export default SpeedDialListItem;
+export default BubbleListItem;

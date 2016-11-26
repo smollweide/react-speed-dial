@@ -1,11 +1,11 @@
 
 import React from 'react';
-import getStyles from './speed-dial-list.styles';
+import getStyles from './bubble-list.styles';
 
 /**
- * Class SpeedDialList
+ * Class BubbleList
  */
-class SpeedDialList extends React.Component {
+class BubbleList extends React.Component {
 
 	/**
 	 * @param {Object} props - component props
@@ -54,7 +54,7 @@ class SpeedDialList extends React.Component {
 
 		const { isOpen, isInTransition, positionV } = this.props;
 
-		if (child.type && child.type.displayName !== 'SpeedDialListItem') {
+		if (child.type && child.type.displayName !== 'BubbleListItem') {
 			return child;
 		}
 
@@ -78,7 +78,7 @@ class SpeedDialList extends React.Component {
 			return (<ul style={this.getStylesMain()} />);
 		}
 
-		if (children.type && children.type.displayName !== 'SpeedDialListItem') {
+		if (children.type && children.type.displayName !== 'BubbleListItem') {
 			return children;
 		}
 
@@ -109,8 +109,8 @@ class SpeedDialList extends React.Component {
 	}
 }
 
-SpeedDialList.displayName = 'SpeedDialList';
-SpeedDialList.propTypes = {
+BubbleList.displayName = 'BubbleList';
+BubbleList.propTypes = {
 	children: React.PropTypes.any,
 	className: React.PropTypes.string,
 	isInTransition: React.PropTypes.bool,
@@ -118,14 +118,14 @@ SpeedDialList.propTypes = {
 	positionH: React.PropTypes.string,
 	positionV: React.PropTypes.string,
 };
-SpeedDialList.defaultProps = {
+BubbleList.defaultProps = {
 	isOpen: false,
 	isInTransition: false,
 	positionH: 'right',
 	positionV: 'bottom',
 };
-SpeedDialList.contextTypes = {
+BubbleList.contextTypes = {
 	muiTheme: React.PropTypes.object.isRequired,
 };
 
-export default SpeedDialList;
+export default BubbleList;

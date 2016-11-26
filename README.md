@@ -27,7 +27,7 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 
 import Avatar from 'material-ui/Avatar';
-import { SpeedDial, SpeedDialList, SpeedDialListItem } from 'react-speed-dial';
+import { SpeedDial, BubbleList, BubbleListItem } from 'react-speed-dial';
 
 injectTapEventPlugin();
 
@@ -35,12 +35,12 @@ const App = () => {
   return (
     <MuiThemeProvider>
       <SpeedDial>
-        <SpeedDialList>
-          <SpeedDialListItem
+        <BubbleList>
+          <BubbleListItem
             primaryText="Eric Hoffman"
             rightAvatar={<Avatar src="http://lorempixel.com/80/80" />}
           />
-        </SpeedDialList>
+        </BubbleList>
       </SpeedDial>
     </MuiThemeProvider>
   );

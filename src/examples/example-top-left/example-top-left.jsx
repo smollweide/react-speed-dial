@@ -2,7 +2,7 @@ import React from 'react';
 import Avatar from 'material-ui/Avatar';
 import { blue500 } from 'material-ui/styles/colors';
 import IconEdit from 'material-ui/svg-icons/image/edit';
-import { SpeedDial, SpeedDialList, SpeedDialListItem } from '../../speed-dial';
+import { SpeedDial, BubbleList, BubbleListItem } from '../../speed-dial';
 
 const avatarImgUrl = 'http://lorempixel.com/80/80/people';
 const list = {
@@ -36,11 +36,11 @@ const ExampleTopLeft = () => {
 			positionH="left"
 			positionV="top"
 		>
-			<SpeedDialList>
+			<BubbleList>
 				{list.items.map((item, index) => {
-					return (<SpeedDialListItem key={index} {...item} />);
+					return (<BubbleListItem key={index} {...item} />);
 				})}
-			</SpeedDialList>
+			</BubbleList>
 		</SpeedDial>
 	);
 };

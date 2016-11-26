@@ -6,7 +6,7 @@ import { shallow } from 'enzyme';
 
 import muiTheme from '../../../tests/context-mui-theme';
 import SpeedDial from './speed-dial.jsx';
-import SpeedDialList from '../speed-dial-list/speed-dial-list.jsx';
+import BubbleList from '../bubble-list/bubble-list.jsx';
 import getDomFromString from '../../../tests/utils/get-dom-from-string';
 import getStylesFromDomNode from '../../../tests/utils/get-styles-from-dom-node';
 
@@ -23,12 +23,12 @@ it('renders without crashing', () => {
 	), div);
 });
 
-it('renders without crashing with SpeedDialList', () => {
+it('renders without crashing with BubbleList', () => {
 	const div = document.createElement('div');
 	ReactDOM.render((
 		<MuiThemeProvider>
 			<SpeedDial>
-				<SpeedDialList />
+				<BubbleList />
 			</SpeedDial>
 		</MuiThemeProvider>
 	), div);
@@ -39,7 +39,7 @@ it('renders without crashing with closeOnSecondClick', () => {
 	ReactDOM.render((
 		<MuiThemeProvider>
 			<SpeedDial closeOnSecondClick>
-				<SpeedDialList />
+				<BubbleList />
 			</SpeedDial>
 		</MuiThemeProvider>
 	), div);
@@ -50,7 +50,7 @@ it('renders without crashing with hasBackdrop=false', () => {
 	ReactDOM.render((
 		<MuiThemeProvider>
 			<SpeedDial hasBackdrop={false}>
-				<SpeedDialList />
+				<BubbleList />
 			</SpeedDial>
 		</MuiThemeProvider>
 	), div);
@@ -71,7 +71,7 @@ it('renders without crashing with floatingActionButtonProps', () => {
 	ReactDOM.render((
 		<MuiThemeProvider>
 			<SpeedDial floatingActionButtonProps={floatingActionButtonProps}>
-				<SpeedDialList />
+				<BubbleList />
 			</SpeedDial>
 		</MuiThemeProvider>
 	), div);
@@ -82,7 +82,7 @@ it('renders without crashing with primaryText', () => {
 	ReactDOM.render((
 		<MuiThemeProvider>
 			<SpeedDial primaryText="primaryText">
-				<SpeedDialList />
+				<BubbleList />
 			</SpeedDial>
 		</MuiThemeProvider>
 	), div);
@@ -93,7 +93,7 @@ it('renders without crashing with onClickPrimaryButton', () => {
 	ReactDOM.render((
 		<MuiThemeProvider>
 			<SpeedDial onClickPrimaryButton={() => {}}>
-				<SpeedDialList />
+				<BubbleList />
 			</SpeedDial>
 		</MuiThemeProvider>
 	), div);
@@ -163,7 +163,7 @@ it('<SpeedDial /> with prop [positionH="bottom"] button wrapper has bottom=16px'
 	expect(button.bottom).toEqual('16px');
 });
 
-it('<SpeedDialList /> find className, classNameBackdrop and classNameButtonWrap', () => {
+it('<BubbleList /> find className, classNameBackdrop and classNameButtonWrap', () => {
 	const context = { muiTheme };
 	const props = {
 		children: [(<ul key="0"><li><a /></li></ul>)],
@@ -183,25 +183,25 @@ it('<SpeedDial /> find classNameInTransition', () => {
 	const context = { muiTheme };
 	const props = {
 		children: [(<ul key="0"><li><a /></li></ul>)],
-		classNameInTransition: 'm-speed-dial-list--in-transition',
+		classNameInTransition: 'm-bubble-list--in-transition',
 	};
 	const wrapper = shallow(
 		<SpeedDial {...props} />, { context }
 	);
 	wrapper.setState({ isInTransition: true });
-	expect(wrapper.find('.m-speed-dial-list--in-transition').length).toEqual(1);
+	expect(wrapper.find('.m-bubble-list--in-transition').length).toEqual(1);
 });
 
 it('<SpeedDial /> find classNameOpen', () => {
 	const context = { muiTheme };
 	const props = {
 		children: [(<ul key="0"><li><a /></li></ul>)],
-		classNameOpen: 'm-speed-dial-list--open',
+		classNameOpen: 'm-bubble-list--open',
 	};
 	const wrapper = shallow(
 		<SpeedDial {...props} />, { context }
 	);
 	wrapper.setState({ isOpen: true });
-	expect(wrapper.find('.m-speed-dial-list--open').length).toEqual(1);
+	expect(wrapper.find('.m-bubble-list--open').length).toEqual(1);
 });
 

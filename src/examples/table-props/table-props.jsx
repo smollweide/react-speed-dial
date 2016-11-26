@@ -93,7 +93,7 @@ const props = {
 			desc: 'Callback function fired when the priamry button is clicked or touched.',
 		},
 	},
-	SpeedDialList: {
+	BubbleList: {
 		className: {
 			type: 'string',
 			required: false,
@@ -105,7 +105,7 @@ const props = {
 			desc: 'Children passed to speed dial list.',
 		},
 	},
-	SpeedDialListItem: {
+	BubbleListItem: {
 		className: {
 			type: 'string',
 			required: false,

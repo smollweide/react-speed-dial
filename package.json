@@ -22,6 +22,7 @@
 		"clean:publish": "rimraf publish",
 		"preinstall": "npm install -g pushstate-server",
 		"start": "react-scripts start",
+		"prebuild": "npm run lint",
 		"build": "react-scripts build",
 		"test": "react-scripts test --env=jsdom",
 		"test:coverage": "npm test -- --coverage",

@@ -29,9 +29,9 @@ const Home = () => {
 				/>
 
 				<h2>Properties</h2>
-				<TableProps componentName="SpeedDial"/>
-				<TableProps componentName="SpeedDialList"/>
-				<TableProps componentName="SpeedDialListItem"/>
+				<TableProps componentName="SpeedDial" />
+				<TableProps componentName="BubbleList" />
+				<TableProps componentName="BubbleListItem" />
 			</div>
 		</div>
 	);
