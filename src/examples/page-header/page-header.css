@@ -1,0 +1,121 @@
+
+.page-header {
+	color: #fff;
+	text-align: center;
+	background-color: #159957;
+	background-image: linear-gradient(120deg, #155799, #159957);
+}
+
+@media screen and (min-width: 64em) {
+	.page-header {
+		padding: 5rem 6rem;
+	}
+}
+
+@media screen and (min-width: 42em) and (max-width: 64em) {
+	.page-header {
+		padding: 3rem 4rem;
+	}
+}
+
+@media screen and (max-width: 42em) {
+	.page-header {
+		padding: 2rem 1rem;
+	}
+}
+
+.page-header__title {
+	margin-top: 0;
+	margin-bottom: .1rem;
+	color: #fff;
+}
+
+@media screen and (min-width: 64em) {
+	.page-header__title {
+		font-size: 3.25rem
+	}
+}
+
+@media screen and (min-width: 42em) and (max-width: 64em) {
+	.page-header__title {
+		font-size: 2.25rem
+	}
+}
+
+@media screen and (max-width: 42em) {
+	.page-header__title {
+		font-size: 1.75rem
+	}
+}
+
+.page-header__subtitle {
+	margin-bottom: 2rem;
+	font-weight: 400;
+	opacity: .7;
+	color: #fff;
+}
+
+@media screen and (min-width: 64em) {
+	.page-header__subtitle {
+		font-size: 1.25rem
+	}
+}
+
+@media screen and (min-width: 42em) and (max-width: 64em) {
+	.page-header__subtitle {
+		font-size: 1.15rem
+	}
+}
+
+@media screen and (max-width: 42em) {
+	.page-header__subtitle {
+		font-size: 1rem
+	}
+}
+
+.page-header__btn {
+	display: inline-block;
+	margin-bottom: 1rem;
+	color: hsla(0, 0%, 100%, .7);
+	background-color: hsla(0, 0%, 100%, .08);
+	border: 1px solid hsla(0, 0%, 100%, .2);
+	border-radius: .3rem;
+	transition: color .2s, background-color .2s, border-color .2s;
+	text-decoration: none;
+}
+
+.page-header__btn + .page-header__btn {
+	margin-left: 1rem
+}
+
+.page-header__btn:hover {
+	color: hsla(0, 0%, 100%, .8);
+	background-color: hsla(0, 0%, 100%, .2);
+	border-color: hsla(0, 0%, 100%, .3)
+}
+
+@media screen and (min-width: 64em) {
+	.page-header__btn {
+		padding: .75rem 1rem
+	}
+}
+
+@media screen and (min-width: 42em) and (max-width: 64em) {
+	.page-header__btn {
+		padding: .6rem .9rem;
+		font-size: .9rem
+	}
+}
+
+@media screen and (max-width: 42em) {
+	.page-header__btn {
+		display: block;
+		padding: .75rem;
+		font-size: .9rem
+	}
+
+	.page-header__btn + .page-header__btn {
+		margin-top: 1rem;
+		margin-left: 0
+	}
+}

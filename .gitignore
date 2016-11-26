@@ -3,3 +3,19 @@
 .idea
 node_modules
 npm-debug.log
+# See http://help.github.com/ignore-files/ for more about ignoring files.
+
+# dependencies
+node_modules
+
+# testing
+coverage
+
+# production
+build
+publish
+
+# misc
+.DS_Store
+.env
+npm-debug.log

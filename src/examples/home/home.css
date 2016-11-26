@@ -1,0 +1,15 @@
+.home__header {
+	background-color: #222;
+	padding: 20px 20px 30px 20px;
+	color: white;
+	text-align: center;
+}
+
+.home__header h1,
+.home__header a {
+	color: aliceblue;
+}
+
+.home__header a:hover {
+	color: #266d90;
+}
