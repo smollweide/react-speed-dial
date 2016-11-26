@@ -53,6 +53,12 @@ export default App;
 ## Documentation
 [http://smollweide.github.io/react-speed-dial/](http://smollweide.github.io/react-speed-dial/)
 
+## Examples
+- [Basic](https://smollweide.github.io/react-speed-dial/#/basic)
+- [Position top left](https://smollweide.github.io/react-speed-dial/#/top-left)
+- [Without backdrop](https://smollweide.github.io/react-speed-dial/#/no-backdrop)
+- [Like inbox](https://smollweide.github.io/react-speed-dial/#/inbox)
+
 ## Contributing
 
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
