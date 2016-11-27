@@ -3,7 +3,7 @@ import React from 'react';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 import IconAdd from 'material-ui/svg-icons/content/add';
 import IconClose from 'material-ui/svg-icons/navigation/close';
-import BubbleListItem from '../bubble-list-item/bubble-list-item.jsx';
+import BubbleListItem from '../bubble-list-item/bubble-list-item.js';
 import getStyles from './speed-dial.styles';
 
 const animTime = 450;

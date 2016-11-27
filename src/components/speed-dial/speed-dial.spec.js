@@ -5,8 +5,8 @@ import injectTapEventPlugin from 'react-tap-event-plugin';
 import { shallow } from 'enzyme';
 
 import muiTheme from '../../../tests/context-mui-theme';
-import SpeedDial from './speed-dial.jsx';
-import BubbleList from '../bubble-list/bubble-list.jsx';
+import SpeedDial from './speed-dial.js';
+import BubbleList from '../bubble-list/bubble-list.js';
 import getDomFromString from '../../../tests/utils/get-dom-from-string';
 import getStylesFromDomNode from '../../../tests/utils/get-styles-from-dom-node';
 

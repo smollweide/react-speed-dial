@@ -1,7 +1,7 @@
 import React from 'react';
-import TableProps from '../table-props/table-props.jsx';
-import Example from '../example/example.jsx';
-import PageHeader from '../page-header/page-header.jsx';
+import TableProps from '../table-props/table-props.js';
+import Example from '../example/example.js';
+import PageHeader from '../page-header/page-header.js';
 
 import './home.css';
 

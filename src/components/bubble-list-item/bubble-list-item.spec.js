@@ -7,7 +7,7 @@ import { shallow } from 'enzyme';
 
 import muiTheme from '../../../tests/context-mui-theme';
 import getStylesFromShallowNode from '../../../tests/utils/get-styles-from-shallow-node';
-import BubbleListItem from './bubble-list-item.jsx';
+import BubbleListItem from './bubble-list-item.js';
 
 injectTapEventPlugin();
 

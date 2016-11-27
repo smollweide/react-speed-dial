@@ -4,11 +4,11 @@ import { Router, Route, hashHistory } from 'react-router';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 
-import Home from '../home/home.jsx';
-import ExampleBasic from '../example-basic/example-basic.jsx';
-import ExampleTopLeft from '../example-top-left/example-top-left.jsx';
-import ExampleNoBackdrop from '../example-no-backdrop/example-no-backdrop.jsx';
-import ExampleInbox from '../example-inbox/example-inbox.jsx';
+import Home from '../home/home.js';
+import ExampleBasic from '../example-basic/example-basic.js';
+import ExampleTopLeft from '../example-top-left/example-top-left.js';
+import ExampleNoBackdrop from '../example-no-backdrop/example-no-backdrop.js';
+import ExampleInbox from '../example-inbox/example-inbox.js';
 
 injectTapEventPlugin();
 

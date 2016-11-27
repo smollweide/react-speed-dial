@@ -18,7 +18,7 @@ const Example = ({ exampleCode, title, subtitle }) => {
 				/>
 				<CardText expandable>
 					<a
-						href={`${githubSrcUrl}/examples/example-${exampleCode}/example-${exampleCode}.jsx`}
+						href={`${githubSrcUrl}/examples/example-${exampleCode}/example-${exampleCode}.js`}
 						target="_black"
 					>
 						Example code on github
