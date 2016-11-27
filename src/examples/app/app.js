@@ -16,10 +16,7 @@ const App = () => {
 	return (
 		<MuiThemeProvider>
 			<div className="app">
-				<Router
-					history={hashHistory}
-					onUpdate={() => window.scrollTo(0, 0)}
-				>
+				<Router history={hashHistory}>
 					<Route component={Home} path="/" />
 					<Route component={ExampleBasic} path="/basic" />
 					<Route component={ExampleTopLeft} path="/top-left" />
