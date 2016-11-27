@@ -39,7 +39,7 @@ class BubbleList extends React.Component {
 
 		return Object.assign(
 			{},
-			styles.rootInvisible,
+			styles.rootInvisible.main,
 			styles.rootInvisible[positionV],
 			styles.rootInvisible[positionH]
 		);

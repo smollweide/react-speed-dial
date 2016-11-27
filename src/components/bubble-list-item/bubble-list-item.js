@@ -20,7 +20,6 @@ class BubbleListItem extends React.Component {
 		};
 
 		this.styles = getStyles(muiTheme);
-		this.getVerticalStyleMain = this.getVerticalStyleMain.bind(this);
 		this.getStylesMain = this.getStylesMain.bind(this);
 		this.getStylesText = this.getStylesText.bind(this);
 		this.getStylesFocus = this.getStylesFocus.bind(this);
@@ -75,40 +74,26 @@ class BubbleListItem extends React.Component {
 	/**
 	 * @returns {Object} vertical styles for root element
 	 */
-	getVerticalStyleMain() {
+	getStylesMain() {
 
-		const { isOpen, positionV } = this.props;
+		const { isOpen, positionV, leftAvatar } = this.props;
+		const positionH = Boolean(leftAvatar) ? 'left' : 'right';
 		const styles = this.styles;
 
 		if (isOpen) {
-			return positionV === 'bottom' ? styles.mainBottom : styles.mainTop;
-		}
-
-		return positionV === 'bottom' ? styles.mainInvisibleBottom : styles.mainInvisibleTop;
-	}
-
-	/**
-	 * @returns {Object} styles for root element
-	 */
-	getStylesMain() {
-
-		const { isOpen, leftAvatar } = this.props;
-		const styles = this.styles;
-		const baseStyle = isOpen ? styles.main : styles.mainInvisible;
-		const verticalStyle = this.getVerticalStyleMain();
-
-		if (leftAvatar) {
 			return Object.assign(
-				baseStyle,
-				styles.mainLeft,
-				verticalStyle
+				{},
+				styles.root.main,
+				styles.root[positionV],
+				styles.root[positionH]
 			);
 		}
 
 		return Object.assign(
-			baseStyle,
-			styles.mainRight,
-			verticalStyle
+			{},
+			styles.rootInvisible.main,
+			styles.rootInvisible[positionV],
+			styles.rootInvisible[positionH]
 		);
 	}
 
@@ -132,21 +117,13 @@ class BubbleListItem extends React.Component {
 	getStylesText() {
 
 		const { leftAvatar } = this.props;
+		const positionH = Boolean(leftAvatar) ? 'left' : 'right';
 		const styles = this.styles;
-
-		if (leftAvatar) {
-			return Object.assign(
-				{},
-				styles.text,
-				styles.textLeft,
-				this.getStylesFocus('text')
-			);
-		}
 
 		return Object.assign(
 			{},
-			styles.text,
-			styles.textRight,
+			styles.text.main,
+			styles.text[positionH],
 			this.getStylesFocus('text')
 		);
 	}
@@ -198,7 +175,7 @@ class BubbleListItem extends React.Component {
 				<a
 					href={href}
 					ref="link"
-					style={styles.wrap}
+					style={styles.wrap.main}
 					tabIndex={isOpen ? tabIndex : -1}
 					onBlur={this.handleBlur}
 					onFocus={this.handleFocus}
@@ -211,7 +188,7 @@ class BubbleListItem extends React.Component {
 		return (
 			<a
 				ref="link"
-				style={styles.wrap}
+				style={styles.wrap.main}
 				tabIndex={isOpen ? tabIndex : -1}
 				onBlur={this.handleBlur}
 				onFocus={this.handleFocus}
