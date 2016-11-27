@@ -156,9 +156,9 @@ class SpeedDial extends React.Component {
 
 		return Object.assign(
 			{},
-			styles.btnWrap,
-			styles[`btnWrap${positionV}`],
-			styles[`btnWrap${positionH}`]
+			styles.btnWrap.main,
+			styles.btnWrap[positionV],
+			styles.btnWrap[positionH]
 		);
 	}
 
@@ -172,8 +172,8 @@ class SpeedDial extends React.Component {
 
 		return Object.assign(
 			{},
-			styles.main,
-			styles[`main${positionV}`]
+			styles.root.main,
+			styles.root[positionV]
 		);
 	}
 
@@ -188,9 +188,9 @@ class SpeedDial extends React.Component {
 
 		return Object.assign(
 			{},
-			styles.primaryText,
-			styles[`primaryText${isOpen}`],
-			styles[`primaryText${positionH}`]
+			styles.primaryText.main,
+			styles.primaryText[String(isOpen)],
+			styles.primaryText[positionH]
 		);
 	}
 
@@ -200,8 +200,8 @@ class SpeedDial extends React.Component {
 	getStylesBackdrop() {
 		const { isOpen, isBackdropFocused } = this.state;
 		const styles = this.styles;
-		const stylesLink = isOpen ? styles.backdrop : styles.backdropInvisible;
-		const stylesLinkFocused = isBackdropFocused ? styles.backdropFocused : {};
+		const stylesLink = isOpen ? styles.backdrop.main : styles.backdrop.invisible;
+		const stylesLinkFocused = isBackdropFocused ? styles.backdrop.focus : {};
 
 		return Object.assign({}, stylesLink, stylesLinkFocused);
 	}
@@ -217,11 +217,11 @@ class SpeedDial extends React.Component {
 		return [
 			React.cloneElement(icon, {
 				key: '0',
-				style: isOpen ? this.styles.iconClosedInvisible : this.styles.iconClosed,
+				style: isOpen ? this.styles.iconClosed.invisible : this.styles.iconClosed.main,
 			}),
 			React.cloneElement(iconOpen, {
 				key: '1',
-				style: isOpen ? this.styles.iconOpen : this.styles.iconOpenInvisible,
+				style: isOpen ? this.styles.iconOpen.main : this.styles.iconOpen.invisible,
 			}),
 		];
 	}
@@ -255,7 +255,7 @@ class SpeedDial extends React.Component {
 		const { hasBackdrop, classNameBackdrop, tabIndex } = this.props;
 		const { isOpen } = this.state;
 		const styles = this.styles;
-		const stylesWrap = isOpen ? styles.backdropWrap : styles.backdropWrapInvisible;
+		const stylesWrap = isOpen ? styles.backdropWrap.main : styles.backdropWrap.invisible;
 
 		if (!hasBackdrop) {
 			return null;
