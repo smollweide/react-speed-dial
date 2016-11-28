@@ -1,10 +1,10 @@
 
 # react-speed-dial
 
+[![npm version](https://badge.fury.io/js/react-speed-dial.svg)](https://badge.fury.io/js/react-speed-dial)
 [![Build Status](https://img.shields.io/travis/smollweide/react-speed-dial/master.svg)](https://travis-ci.org/smollweide/react-speed-dial)
+[![Coverage Status](https://coveralls.io/repos/github/smollweide/react-speed-dial/badge.svg?branch=master)](https://coveralls.io/github/smollweide/react-speed-dial?branch=master)
 [![Dependencies](https://img.shields.io/david/smollweide/react-speed-dial/master.svg)](https://david-dm.org/smollweide/react-speed-dial)
-[![npm](https://img.shields.io/npm/v/react-speed-dial.svg)](https://www.npmjs.com/package/react-speed-dial)
-[![npm](https://img.shields.io/npm/dt/react-speed-dial.svg)](https://www.npmjs.com/package/react-speed-dial)
 [![Codestyle](https://img.shields.io/badge/codestyle-namics-green.svg)](https://github.com/namics/eslint-config-namics)
 
 > React Component that implements a speed dial using [Material-UI](http://www.material-ui.com).
