@@ -6,4 +6,4 @@ node_js:
 script:
   - npm run test:coverage
 after_success:
-  - ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
+  - cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
