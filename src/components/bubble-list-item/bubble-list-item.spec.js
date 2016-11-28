@@ -4,123 +4,218 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import Avatar from 'material-ui/Avatar';
 import { shallow } from 'enzyme';
+import sinon from 'sinon';
 
 import muiTheme from '../../../tests/context-mui-theme';
+import getDomFromString from '../../../tests/utils/get-dom-from-string';
 import getStylesFromShallowNode from '../../../tests/utils/get-styles-from-shallow-node';
 import BubbleListItem from './bubble-list-item.js';
 
 injectTapEventPlugin();
 
-it('renders without crashing', () => {
-	const div = document.createElement('div');
-	ReactDOM.render((
-		<MuiThemeProvider>
+describe('<BubbleListItem />', () => {
+
+	const context = { muiTheme };
+
+	it('renders without crashing', () => {
+		const div = document.createElement('div');
+		ReactDOM.render((
+			<MuiThemeProvider>
+				<BubbleListItem
+					primaryText="Hello world!"
+				/>
+			</MuiThemeProvider>
+		), div);
+	});
+
+	it('renders *primary text*', () => {
+		const wrapper = shallow(
 			<BubbleListItem
 				primaryText="Hello world!"
-			/>
-		</MuiThemeProvider>
-	), div);
-});
+			/>, { context }
+		);
+		expect(wrapper.text()).toEqual('Hello world!');
+	});
 
-it('renders without crashing with onClick', () => {
-	const div = document.createElement('div');
-	ReactDOM.render((
-		<MuiThemeProvider>
+	it('with prop *href* renders a "a" tag with href attribute', () => {
+		const wrapper = shallow(
+			<BubbleListItem
+				href="/"
+				primaryText="Hello world!"
+			/>, { context }
+		);
+		expect(wrapper.find('a').nodes[0].props.href).toEqual('/');
+	});
+
+	it('with prop *rightAvatar* renders the avatar image', () => {
+		const wrapper = shallow(
 			<BubbleListItem
 				primaryText="Hello world!"
-				onClick={() => {}}
-			/>
-		</MuiThemeProvider>
-	), div);
-});
+				rightAvatar={<Avatar src={'http://lorempixel.com/80/80/people/1'} />}
+			/>, { context }
+		);
+		expect(typeof wrapper.find('img')).toEqual('object');
+	});
 
-it('renders without crashing with onTouchTap', () => {
-	const div = document.createElement('div');
-	ReactDOM.render((
-		<MuiThemeProvider>
+	it('with prop *isOpen = false* has opacity=0', () => {
+		const wrapper = shallow(
+			<BubbleListItem
+				isOpen={false}
+				primaryText="Hello world!"
+			/>, { context }
+		);
+		expect(getStylesFromShallowNode(wrapper).opacity).toEqual('0');
+	});
+
+	it('with prop *isOpen = true* has opacity=1', () => {
+		const wrapper = shallow(
+			<BubbleListItem
+				isOpen
+				primaryText="Hello world!"
+			/>, { context }
+		);
+		expect(getStylesFromShallowNode(wrapper).opacity).toEqual('1');
+	});
+
+	it('with prop *leftAvatar* renders the avatar image', () => {
+		const wrapper = shallow(
+			<BubbleListItem
+				leftAvatar={<Avatar src={'http://lorempixel.com/80/80/people/1'} />}
+				primaryText="Hello world!"
+			/>, { context }
+		);
+		expect(typeof wrapper.find('img')).toEqual('object');
+	});
+
+	it('find className', () => {
+		const wrapper = shallow(
+			<BubbleListItem
+				className="m-bubble-list-item"
+			/>, { context }
+		);
+		expect(wrapper.find('.m-bubble-list-item').length).toEqual(1);
+	});
+
+	it('simulate onTouchTap', () => {
+		const onButtonClick = sinon.spy();
+		const wrapper = shallow(
 			<BubbleListItem
 				primaryText="Hello world!"
-				onTouchTap={() => {}}
-			/>
-		</MuiThemeProvider>
-	), div);
-});
+				onTouchTap={onButtonClick}
+			/>, { context }
+		);
+		wrapper.find('a').simulate('touchTap');
+		expect(onButtonClick.calledOnce).toEqual(true);
+	});
 
-it('<BubbleListItem /> renders *primary text*', () => {
-	const context = { muiTheme };
-	const wrapper = shallow(
-		<BubbleListItem
-			primaryText="Hello world!"
-		/>, { context }
-	);
-	expect(wrapper.text()).toEqual('Hello world!');
-});
+	it('simulate onClick', () => {
+		const onButtonClick = sinon.spy();
+		const wrapper = shallow(
+			<BubbleListItem
+				primaryText="Hello world!"
+				onClick={onButtonClick}
+			/>, { context }
+		);
+		wrapper.find('a').simulate('touchTap');
+		expect(onButtonClick.calledOnce).toEqual(true);
+	});
 
+	it('on keyUp enter onClick | onTouchTap is fired', () => {
+		const onKeyUp = sinon.spy();
+		const wrapper = shallow(
+			<BubbleListItem
+				primaryText="Hello world!"
+				onClick={onKeyUp}
+			/>, { context }
+		);
+		wrapper.setState({
+			isKeyboardFocused: true,
+		});
+		wrapper.find('a').simulate('keyUp', {
+			keyCode: 13,
+		});
+		expect(onKeyUp.calledOnce).toEqual(true);
+	});
 
-it('<BubbleListItem /> with prop *href* renders a "a" tag', () => {
-	const context = { muiTheme };
-	const wrapper = shallow(
-		<BubbleListItem
-			href="/"
-			primaryText="Hello world!"
-		/>, { context }
-	);
-	expect(typeof wrapper.find('a')).toEqual('object');
-});
+	it('on keyUp enter not allowed', () => {
+		const onKeyUp = sinon.spy();
+		const wrapper = shallow(
+			<BubbleListItem
+				primaryText="Hello world!"
+				onClick={onKeyUp}
+			/>, { context }
+		);
+		wrapper.setState({
+			isKeyboardFocused: false,
+		});
+		wrapper.find('a').simulate('keyUp', {
+			keyCode: 13,
+		});
+		expect(onKeyUp.calledOnce).toEqual(false);
+	});
 
-it('<BubbleListItem /> with prop *rightAvatar* renders the avatar image', () => {
-	const context = { muiTheme };
-	const wrapper = shallow(
-		<BubbleListItem
-			primaryText="Hello world!"
-			rightAvatar={<Avatar src={'http://lorempixel.com/80/80/people/1'} />}
-		/>, { context }
-	);
-	expect(typeof wrapper.find('img')).toEqual('object');
-});
+	it('simulate onFocus', () => {
+		const onFocus = sinon.spy();
+		const wrapper = shallow(
+			<BubbleListItem
+				primaryText="Hello world!"
+				onFocus={onFocus}
+			/>, { context }
+		);
+		wrapper.find('a').simulate('focus');
+		expect(onFocus.calledOnce).toEqual(true);
+	});
 
-it('<BubbleListItem /> with prop *isOpen = false* has opacity=0', () => {
-	const context = { muiTheme };
-	const wrapper = shallow(
-		<BubbleListItem
-			isOpen={false}
-			primaryText="Hello world!"
-		/>, { context }
-	);
-	expect(getStylesFromShallowNode(wrapper).opacity).toEqual('0');
-});
+	it('simulate onBlur', () => {
+		const onBlur = sinon.spy();
+		const wrapper = shallow(
+			<BubbleListItem
+				primaryText="Hello world!"
+				onBlur={onBlur}
+			/>, { context }
+		);
+		wrapper.find('a').simulate('blur');
+		expect(onBlur.calledOnce).toEqual(true);
+	});
 
-it('<BubbleListItem /> with prop *isOpen = true* has opacity=1', () => {
-	const context = { muiTheme };
-	const wrapper = shallow(
-		<BubbleListItem
-			isOpen
-			primaryText="Hello world!"
-		/>, { context }
-	);
-	expect(getStylesFromShallowNode(wrapper).opacity).toEqual('1');
-});
+	it('setFocus should focus refs.link', () => {
+		const onFocus = sinon.spy();
+		const instance = new BubbleListItem({
+			primaryText: 'Hello world!',
+		}, context);
 
-it('<BubbleListItem /> with prop *leftAvatar* renders the avatar image', () => {
-	const context = { muiTheme };
-	const wrapper = shallow(
-		<BubbleListItem
-			leftAvatar={<Avatar src={'http://lorempixel.com/80/80/people/1'} />}
-			primaryText="Hello world!"
-		/>, { context }
-	);
+		instance.refs = {
+			link: {
+				focus: onFocus,
+			},
+		};
 
-	expect(typeof wrapper.find('img')).toEqual('object');
-});
+		instance.setFocus();
+		expect(onFocus.calledOnce).toEqual(true);
+	});
 
-it('<BubbleListItem /> find className', () => {
-	const context = { muiTheme };
-	const props = {
-		className: 'm-bubble-list-item',
-	};
-	const wrapper = shallow(
-		<BubbleListItem {...props} />, { context }
-	);
-	expect(wrapper.find('.m-bubble-list-item').length).toEqual(1);
+	it('tabIndex for href link should be 2 if open', () => {
+		const wrapper = shallow(
+			<BubbleListItem
+				isOpen
+				href="/"
+				primaryText="Hello world!"
+				tabIndex={2}
+			/>, { context }
+		);
+		expect(getDomFromString(wrapper.find('a').html()).getAttribute('tabindex')).toEqual('2');
+	});
+
+	it('tabIndex for href link should be 1 if open', () => {
+		const wrapper = shallow(
+			<BubbleListItem
+				isOpen
+				href="/"
+				primaryText="Hello world!"
+			/>, { context }
+		);
+		expect(getDomFromString(wrapper.find('a').html()).getAttribute('tabindex')).toEqual('1');
+	});
+
 });
 
