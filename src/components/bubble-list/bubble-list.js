@@ -30,16 +30,18 @@ class BubbleList extends React.Component {
 
 		if (isOpen) {
 			return Object.assign(
-				styles.main,
-				styles[`main${positionV}`],
-				styles[`main${positionH}`]
+				{},
+				styles.root.main,
+				styles.root[positionV],
+				styles.root[positionH]
 			);
 		}
 
 		return Object.assign(
-			styles.mainInvisible,
-			styles[`mainInvisible${positionV}`],
-			styles[`mainInvisible${positionH}`]
+			{},
+			styles.rootInvisible.main,
+			styles.rootInvisible[positionV],
+			styles.rootInvisible[positionH]
 		);
 	}
 

@@ -2,41 +2,46 @@ import transitions from 'material-ui/styles/transitions';
 
 export default () => {
 	return {
-		main: {
-			position: 'absolute',
-			opacity: 1,
-			padding: 0,
-			transition: transitions.easeOut(),
+		root: {
+			main: {
+				position: 'absolute',
+				opacity: 1,
+				padding: 0,
+				transition: transitions.easeOut(),
+			},
+			top: {
+				top: 72,
+			},
+			bottom: {
+				bottom: 72,
+			},
+			right: {
+				right: 24,
+			},
+			left: {
+				left: 24,
+			},
 		},
-		maintop: {
-			top: 72,
-		},
-		mainbottom: {
-			bottom: 72,
-		},
-		mainright: {
-			right: 24,
-		},
-		mainleft: {
-			left: 24,
-		},
-		mainInvisible: {
-			position: 'absolute',
-			opacity: 0,
-			padding: 0,
-			transition: transitions.easeOut(),
-		},
-		mainInvisibletop: {
-			top: 16,
-		},
-		mainInvisiblebottom: {
-			bottom: 16,
-		},
-		mainInvisibleright: {
-			right: 24,
-		},
-		mainInvisibleleft: {
-			left: 24,
+
+		rootInvisible: {
+			main: {
+				position: 'absolute',
+				opacity: 0,
+				padding: 0,
+				transition: transitions.easeOut(),
+			},
+			top: {
+				top: 16,
+			},
+			bottom: {
+				bottom: 16,
+			},
+			right: {
+				right: 24,
+			},
+			left: {
+				left: 24,
+			},
 		},
 	};
 };

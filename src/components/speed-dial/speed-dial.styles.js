@@ -1,107 +1,117 @@
 import transitions from 'material-ui/styles/transitions';
 
-const backdropSize = 1600 * 3;
-
 export default ({ baseTheme }) => {
 	return {
-		main: {
-			position: 'fixed',
-			width: '100%',
-			left: 0,
+		root: {
+			main: {
+				position: 'fixed',
+				width: '100%',
+				left: 0,
+			},
+			top: {
+				top: 0,
+			},
+			bottom: {
+				bottom: 0,
+			},
 		},
-		maintop: {
-			top: 0,
-		},
-		mainbottom: {
-			bottom: 0,
-		},
+
 		backdropWrap: {
-			position: 'fixed',
-			width: '100%',
-			height: '100%',
-			overflow: 'hidden',
-			top: 0,
+			main: {
+				position: 'fixed',
+				width: '100%',
+				height: '100%',
+				overflow: 'hidden',
+				top: 0,
+				opacity: 1,
+			},
+			invisible: {
+				opacity: 0,
+			},
 		},
-		backdropWrapInvisible: {
-			position: 'fixed',
-			width: 0,
-			height: 0,
-			overflow: 'hidden',
-			top: 0,
-		},
+
 		backdrop: {
-			position: 'absolute',
-			backgroundColor: baseTheme.palette.borderColor,
-			display: 'block',
-			borderRadius: '50%',
-			transition: transitions.easeOut(),
-			width: backdropSize,
-			height: backdropSize,
-			bottom: -(backdropSize / 2 - 8),
-			right: -(backdropSize / 2 - 8),
-			opacity: 0.8,
+			main: {
+				position: 'absolute',
+				backgroundColor: baseTheme.palette.borderColor,
+				display: 'block',
+				transition: transitions.easeOut(),
+				width: '100%',
+				height: '100%',
+				top: 0,
+				right: 0,
+				opacity: 0.8,
+			},
+			invisible: {
+				opacity: 0,
+			},
+			focus: {
+				backgroundColor: baseTheme.palette.secondaryTextColor,
+				opacity: 0.4,
+			},
 		},
-		backdropInvisible: {
-			width: 0,
-			height: 0,
-			bottom: 16,
-			right: 16,
-			opacity: 0,
-		},
-		backdropFocused: {
-			backgroundColor: baseTheme.palette.secondaryTextColor,
-			opacity: 0.4,
-		},
+
 		btnWrap: {
-			position: 'absolute',
+			main: {
+				position: 'absolute',
+			},
+			bottom: {
+				bottom: 16,
+			},
+			top: {
+				top: 16,
+			},
+			left: {
+				left: 16,
+			},
+			right: {
+				right: 16,
+			},
 		},
-		btnWrapbottom: {
-			bottom: 16,
-		},
-		btnWraptop: {
-			top: 16,
-		},
-		btnWrapleft: {
-			left: 16,
-		},
-		btnWrapright: {
-			right: 16,
-		},
-		iconClosedInvisible: {
-			position: 'absolute',
-			transform: 'rotate(90deg)',
-			opacity: 0,
-		},
+
 		iconClosed: {
-			position: 'absolute',
-			transform: 'rotate(0deg)',
-			opacity: 1,
+			main: {
+				position: 'absolute',
+				transform: 'rotate(0deg)',
+				opacity: 1,
+			},
+			invisible: {
+				position: 'absolute',
+				transform: 'rotate(90deg)',
+				opacity: 0,
+			},
 		},
-		iconOpenInvisible: {
-			transform: 'rotate(-90deg)',
-			opacity: 0,
-		},
+
 		iconOpen: {
-			transform: 'rotate(0deg)',
-			opacity: 1,
+			main: {
+				transform: 'rotate(0deg)',
+				opacity: 1,
+			},
+			invisible: {
+				transform: 'rotate(-90deg)',
+				opacity: 0,
+			},
 		},
+
 		primaryText: {
-			position: 'absolute',
-			bottom: 10,
-			margin: 0,
-			transition: transitions.easeOut(),
-		},
-		primaryTexttrue: {
-			opacity: 1,
-		},
-		primaryTextfalse: {
-			opacity: 0,
-		},
-		primaryTextleft: {
-			left: 33,
-		},
-		primaryTextright: {
-			right: 49,
+			main: {
+				position: 'absolute',
+				bottom: 10,
+				margin: 0,
+				transition: transitions.easeOut(),
+			},
+			true: {
+				opacity: 1,
+			},
+			false: {
+				opacity: 0,
+			},
+			left: {
+				left: 33,
+			},
+			right: {
+				right: 49,
+			},
 		},
 	};
 };
