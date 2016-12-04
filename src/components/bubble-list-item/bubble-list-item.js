@@ -72,28 +72,19 @@ class BubbleListItem extends React.Component {
 	}
 
 	/**
-	 * @returns {Object} vertical styles for root element
+	 * @returns {Object} styles for root element
 	 */
 	getStylesMain() {
-
-		const { isOpen, positionV, leftAvatar } = this.props;
-		const positionH = Boolean(leftAvatar) ? 'left' : 'right';
+		const { isOpen, direction, alignment } = this.props;
 		const styles = this.styles;
-
-		if (isOpen) {
-			return Object.assign(
-				{},
-				styles.root.main,
-				styles.root[positionV],
-				styles.root[positionH]
-			);
-		}
-
+		const visibleStr = isOpen ? 'visible' : 'invisible';
 		return Object.assign(
 			{},
-			styles.rootInvisible.main,
-			styles.rootInvisible[positionV],
-			styles.rootInvisible[positionH]
+			styles.root.main,
+			styles.root[visibleStr].main,
+			styles.root.direction[direction],
+			styles.root[visibleStr].direction[direction],
+			styles.root.alignment[alignment]
 		);
 	}
 
@@ -116,14 +107,13 @@ class BubbleListItem extends React.Component {
 	 */
 	getStylesText() {
 
-		const { leftAvatar } = this.props;
-		const positionH = Boolean(leftAvatar) ? 'left' : 'right';
+		const { alignment } = this.props;
 		const styles = this.styles;
 
 		return Object.assign(
 			{},
 			styles.text.main,
-			styles.text[positionH],
+			styles.text.alignment[alignment],
 			this.getStylesFocus('text')
 		);
 	}
@@ -151,12 +141,17 @@ class BubbleListItem extends React.Component {
 	 */
 	renderContent() {
 
-		const { primaryText } = this.props;
+		const { primaryText, direction } = this.props;
+		let content = (<span style={this.getStylesText()}>{primaryText}</span>);
+
+		if (['left', 'right'].indexOf(direction) >= 0) {
+			content = null;
+		}
 
 		return (
 			<span>
 				{this.renderAvatar('leftAvatar')}
-				<span style={this.getStylesText()}>{primaryText}</span>
+				{content}
 				{this.renderAvatar('rightAvatar')}
 			</span>
 		);
@@ -220,7 +215,9 @@ class BubbleListItem extends React.Component {
 
 BubbleListItem.displayName = 'BubbleListItem';
 BubbleListItem.propTypes = {
+	alignment: React.PropTypes.string,
 	className: React.PropTypes.string,
+	direction: React.PropTypes.string,
 	href: React.PropTypes.string,
 	isInTransition: React.PropTypes.bool,
 	isOpen: React.PropTypes.bool,

@@ -27,6 +27,10 @@ const Home = () => {
 					exampleCode="inbox"
 					title="Like inbox"
 				/>
+				<Example
+					exampleCode="direction"
+					title="Custom direction"
+				/>
 
 				<h2>Properties</h2>
 				<TableProps componentName="SpeedDial" />

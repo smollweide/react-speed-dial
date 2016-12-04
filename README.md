@@ -58,6 +58,7 @@ export default App;
 - [Position top left](https://smollweide.github.io/react-speed-dial/#/top-left)
 - [Without backdrop](https://smollweide.github.io/react-speed-dial/#/no-backdrop)
 - [Like inbox](https://smollweide.github.io/react-speed-dial/#/inbox)
+- [Custom direction](https://smollweide.github.io/react-speed-dial/#/direction)
 
 ## Contributing
 

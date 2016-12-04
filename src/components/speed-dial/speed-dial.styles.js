@@ -16,6 +16,48 @@ export default ({ baseTheme }) => {
 			},
 		},
 
+		contentWrap: {
+			main: {
+				position: 'absolute',
+			},
+			top: {
+				top: 88,
+			},
+			bottom: {
+				bottom: 88,
+			},
+			left: {
+				left: 25,
+			},
+			right: {
+				right: 25,
+			},
+
+			// BubbleList direction
+			direction: {
+				up: {},
+				down: {},
+				left: {
+					right: 88,
+				},
+				right: {
+					left: 88,
+				},
+			},
+
+			// BubbleList alignment
+			alignment: {
+				up: {
+					bottom: 25,
+				},
+				down: {
+					top: 25,
+				},
+				left: {},
+				right: {},
+			},
+		},
+
 		backdropWrap: {
 			main: {
 				position: 'fixed',
@@ -110,7 +152,7 @@ export default ({ baseTheme }) => {
 				left: 33,
 			},
 			right: {
-				right: 49,
+				right: 73,
 			},
 		},
 	};

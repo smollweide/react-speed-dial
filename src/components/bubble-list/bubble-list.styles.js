@@ -7,40 +7,57 @@ export default () => {
 				position: 'absolute',
 				opacity: 1,
 				padding: 0,
+				margin: 0,
+				width: 320,
 				transition: transitions.easeOut(),
 			},
-			top: {
-				top: 72,
-			},
-			bottom: {
-				bottom: 72,
-			},
-			right: {
-				right: 24,
-			},
-			left: {
-				left: 24,
-			},
-		},
 
-		rootInvisible: {
-			main: {
-				position: 'absolute',
-				opacity: 0,
-				padding: 0,
-				transition: transitions.easeOut(),
+			// prop direction
+			direction: {
+				down: {
+					top: 0,
+				},
+				up: {
+					bottom: 0,
+				},
+				right: {
+					left: 0,
+				},
+				left: {
+					right: 0,
+				},
 			},
-			top: {
-				top: 16,
+
+			// prop alignment
+			alignment: {
+				down: {
+					top: 0,
+				},
+				up: {
+					bottom: -7,
+				},
+				right: {
+					right: 0,
+					textAlign: 'right',
+				},
+				left: {
+					left: 0,
+					textAlign: 'left',
+				},
 			},
-			bottom: {
-				bottom: 16,
+
+			// prop isOpen = true
+			visible: {
+				main: {
+					opacity: 1,
+				},
 			},
-			right: {
-				right: 24,
-			},
-			left: {
-				left: 24,
+
+			// prop isOpen = false
+			invisible: {
+				main: {
+					opacity: 0,
+				},
 			},
 		},
 	};

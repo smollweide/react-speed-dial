@@ -24,24 +24,15 @@ class BubbleList extends React.Component {
 	 * @returns {Object} styles for root element
 	 */
 	getStylesMain() {
-
-		const { isOpen, positionV, positionH } = this.props;
+		const { isOpen, direction = 'up', alignment = 'right' } = this.props;
 		const styles = this.styles;
-
-		if (isOpen) {
-			return Object.assign(
-				{},
-				styles.root.main,
-				styles.root[positionV],
-				styles.root[positionH]
-			);
-		}
-
+		const visibleStr = isOpen ? 'visible' : 'invisible';
 		return Object.assign(
 			{},
-			styles.rootInvisible.main,
-			styles.rootInvisible[positionV],
-			styles.rootInvisible[positionH]
+			styles.root.main,
+			styles.root[visibleStr].main,
+			styles.root.direction[direction],
+			styles.root.alignment[alignment]
 		);
 	}
 
@@ -54,7 +45,7 @@ class BubbleList extends React.Component {
 	 */
 	renderChild(child, index) {
 
-		const { isOpen, isInTransition, positionV } = this.props;
+		const { isOpen, isInTransition, direction = 'up', alignment = 'right' } = this.props;
 
 		if (child.type && child.type.displayName !== 'BubbleListItem') {
 			return child;
@@ -64,7 +55,8 @@ class BubbleList extends React.Component {
 			key: index,
 			isOpen,
 			isInTransition,
-			positionV,
+			alignment,
+			direction,
 			ref: `listItem${index}`,
 		});
 	}
@@ -74,7 +66,7 @@ class BubbleList extends React.Component {
 	 */
 	renderChildren() {
 
-		const { children, isOpen, isInTransition, positionV } = this.props;
+		const { children } = this.props;
 
 		if (!children) {
 			return (<ul style={this.getStylesMain()} />);
@@ -88,12 +80,7 @@ class BubbleList extends React.Component {
 			return children.map(this.renderChild);
 		}
 
-		return React.cloneElement(children, {
-			isOpen,
-			isInTransition,
-			positionV,
-			ref: 'listItem',
-		});
+		return this.renderChild(children, 0);
 	}
 
 	/**
@@ -113,18 +100,16 @@ class BubbleList extends React.Component {
 
 BubbleList.displayName = 'BubbleList';
 BubbleList.propTypes = {
+	alignment: React.PropTypes.string,
 	children: React.PropTypes.any,
 	className: React.PropTypes.string,
+	direction: React.PropTypes.string,
 	isInTransition: React.PropTypes.bool,
 	isOpen: React.PropTypes.bool,
-	positionH: React.PropTypes.string,
-	positionV: React.PropTypes.string,
 };
 BubbleList.defaultProps = {
 	isOpen: false,
 	isInTransition: false,
-	positionH: 'right',
-	positionV: 'bottom',
 };
 BubbleList.contextTypes = {
 	muiTheme: React.PropTypes.object.isRequired,
