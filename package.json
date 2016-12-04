@@ -1,6 +1,6 @@
 {
 	"name": "react-speed-dial",
-	"version": "0.1.1",
+	"version": "0.1.2",
 	"description": "React Component that implements a speed dial using Material-UI.",
 	"email": "simon.mollweide@web.de",
 	"author": "Simon Mollweide <simon.mollweide@web.de>",
@@ -30,7 +30,8 @@
 		"pretest:coverage": "npm run clean:coverage",
 		"test:coverage": "npm test -- --coverage",
 		"eject": "react-scripts eject",
-		"lint": "eslint src/**/*.jsx src/**/*.js",
+		"lint": "npm run lint:js",
+		"lint:js": "node_modules/.bin/eslint src/**/*.jsx src/**/*.js",
 		"prestatic-server": "open http://localhost:9000",
 		"static-server": "pushstate-server build",
 		"prepublish": "npm run clean:publish",
