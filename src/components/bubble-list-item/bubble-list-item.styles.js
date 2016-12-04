@@ -7,39 +7,72 @@ export default ({ paper, baseTheme }) => {
 			main: {
 				backgroundColor: 'transparent',
 				listStyle: 'none',
-				marginTop: 14,
-				opacity: 1,
 				cursor: 'pointer',
 				transition: transitions.easeOut(),
 			},
-			left: {
-				textAlign: 'left',
-			},
-			right: {
-				textAlign: 'right',
-			},
-			bottom: {},
-			top: {},
-		},
 
-		rootInvisible: {
-			main: {
-				backgroundColor: 'transparent',
-				listStyle: 'none',
-				opacity: 0,
-				transition: transitions.easeOut(),
+			// prop direction
+			direction: {
+				down: {
+					marginBottom: 14,
+				},
+				up: {
+					marginTop: 14,
+				},
+				right: {
+					textAlign: 'left',
+					float: 'left',
+					marginRight: 14,
+				},
+				left: {
+					textAlign: 'right',
+					float: 'right',
+					marginLeft: 14,
+				},
 			},
-			left: {
-				textAlign: 'left',
+
+			// prop alignment
+			alignment: {
+				right: {},
+				left: {},
 			},
-			right: {
-				textAlign: 'right',
+
+			// prop isOpen = true
+			visible: {
+				main: {
+					opacity: 1,
+				},
+
+				// prop direction
+				direction: {
+					down: {},
+					up: {},
+					right: {},
+					left: {},
+				},
 			},
-			bottom: {
-				marginTop: -40,
-			},
-			top: {
-				marginBottom: -40,
+
+			// prop isOpen = false
+			invisible: {
+				main: {
+					opacity: 0,
+				},
+
+				// prop direction
+				direction: {
+					left: {
+						marginRight: -20,
+					},
+					right: {
+						marginLeft: -20,
+					},
+					up: {
+						marginTop: -40,
+					},
+					down: {
+						marginBottom: -40,
+					},
+				},
 			},
 		},
 
@@ -61,12 +94,17 @@ export default ({ paper, baseTheme }) => {
 				color: baseTheme.palette.secondaryTextColor,
 				backgroundColor: baseTheme.palette.canvasColor,
 				boxShadow: paper.zDepthShadows[1],
+				whiteSpace: 'nowrap',
 			},
-			left: {
-				marginLeft: 24,
-			},
-			right: {
-				marginRight: 24,
+
+			// prop direction
+			alignment: {
+				left: {
+					marginLeft: 24,
+				},
+				right: {
+					marginRight: 24,
+				},
 			},
 		},
 

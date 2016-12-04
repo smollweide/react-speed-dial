@@ -66,15 +66,17 @@ const props = {
 		},
 		positionV: {
 			type: 'string',
-			defaultProp: 'bottom',
+			defaultProp: '"bottom"',
 			required: false,
-			desc: 'This string controls the vertical `FloatingActionButton` position.',
+			desc: 'This string controls the vertical `FloatingActionButton` position. ' +
+			'The possible values are `top` and `bottom`.',
 		},
 		positionH: {
 			type: 'string',
-			defaultProp: 'right',
+			defaultProp: '"right"',
 			required: false,
-			desc: 'This string controls the horizontal `FloatingActionButton` position.',
+			desc: 'This string controls the horizontal `FloatingActionButton` position. ' +
+			'The possible values are `left` and `right`.',
 		},
 		primaryText: {
 			type: 'string',
@@ -94,6 +96,13 @@ const props = {
 		},
 	},
 	BubbleList: {
+		alignment: {
+			type: 'string',
+			required: false,
+			desc: 'This string controls the `BubbleList` alignment. ' +
+			'The possible values are `up`, `down`, `left` and `right`. ' +
+			'This prop will be set automatically by `SpeedDial` component but can be overwritten.',
+		},
 		className: {
 			type: 'string',
 			required: false,
@@ -103,6 +112,13 @@ const props = {
 			type: 'node',
 			required: false,
 			desc: 'Children passed to speed dial list.',
+		},
+		direction: {
+			type: 'string',
+			required: false,
+			desc: 'This string controls the `BubbleList` direction. ' +
+			'The possible values are `up`, `down`, `left` and `right`. ' +
+			'This prop will be set automatically by `SpeedDial` component but can be overwritten.',
 		},
 	},
 	BubbleListItem: {

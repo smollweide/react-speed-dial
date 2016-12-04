@@ -26,6 +26,7 @@ class SpeedDial extends React.Component {
 			isInTransition: false,
 			isBackdropFocused: false,
 		};
+
 		this.getStylesBackdrop = this.getStylesBackdrop.bind(this);
 		this.handleClickOpen = this.handleClickOpen.bind(this);
 		this.handleClickClose = this.handleClickClose.bind(this);
@@ -145,6 +146,34 @@ class SpeedDial extends React.Component {
 	}
 
 	/**
+	 * @returns {string} the BubbleList direction
+	 */
+	getDirection() {
+
+		const { children, positionV } = this.props;
+
+		if (children && children.props && children.props.direction) {
+			return children.props.direction;
+		}
+
+		return positionV === 'bottom' ? 'up' : 'down';
+	}
+
+	/**
+	 * @returns {string} the BubbleList alignment
+	 */
+	getAlignment() {
+
+		const { children, positionH } = this.props;
+
+		if (children && children.props && children.props.alignment) {
+			return children.props.alignment;
+		}
+
+		return positionH;
+	}
+
+	/**
 	 * @returns {Object} merged styles for the `FloatingActionButton`
 	 */
 	getStylesBtn() {
@@ -172,6 +201,24 @@ class SpeedDial extends React.Component {
 			{},
 			styles.root.main,
 			styles.root[positionV]
+		);
+	}
+
+	/**
+	 * @returns {Object} merged styles for the `FloatingActionButton`
+	 */
+	getStylesContentWrap() {
+
+		const { positionV, positionH } = this.props;
+		const styles = this.styles;
+
+		return Object.assign(
+			{},
+			styles.contentWrap.main,
+			styles.contentWrap[positionV],
+			styles.contentWrap[positionH],
+			styles.contentWrap.direction[this.getDirection()],
+			styles.contentWrap.alignment[this.getAlignment()]
 		);
 	}
 
@@ -229,7 +276,7 @@ class SpeedDial extends React.Component {
 	 */
 	renderChildren() {
 
-		const { children, positionV, positionH } = this.props;
+		const { children } = this.props;
 		const { isOpen, isInTransition } = this.state;
 
 		if (!children.type || children.type.displayName !== 'BubbleList') {
@@ -239,8 +286,8 @@ class SpeedDial extends React.Component {
 		return React.cloneElement(children, {
 			isOpen,
 			isInTransition,
-			positionV,
-			positionH,
+			direction: this.getDirection(),
+			alignment: this.getAlignment(),
 			ref: 'list',
 		});
 	}
@@ -283,6 +330,10 @@ class SpeedDial extends React.Component {
 
 		const { primaryText, onClickPrimaryButton, tabIndex } = this.props;
 		const { isOpen } = this.state;
+
+		if (['left', 'right'].indexOf(this.getDirection()) >= 0) {
+			return null;
+		}
 
 		if (!primaryText || primaryText === '') {
 			return null;
@@ -333,7 +384,9 @@ class SpeedDial extends React.Component {
 		return (
 			<div className={classNames.join(' ')} style={this.getStylesMain()}>
 				{this.renderBackdrop()}
-				{this.renderChildren()}
+				<div style={this.getStylesContentWrap()}>
+					{this.renderChildren()}
+				</div>
 				<div className={classNameButtonWrap} style={this.getStylesBtn()}>
 					{this.renderPrimaryText()}
 					<FloatingActionButton

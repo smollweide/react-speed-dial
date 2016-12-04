@@ -374,5 +374,65 @@ describe('<SpeedDial />', () => {
 		expect(wrapper.state().isOpen).toEqual(true);
 	});
 
+	it('getDirection by children `BubbleList`', () => {
+		const props = {
+			primaryText: 'Hallo',
+			children: {
+				props: {
+					direction: 'down',
+				},
+			},
+		};
+		const instance = new SpeedDial(props, context);
+		expect(instance.getDirection()).toEqual('down');
+	});
+
+	it('getDirection by positionV', () => {
+		const props = {
+			primaryText: 'Hallo',
+			positionV: 'bottom',
+			children: [(<ul key="0"><li><a /></li></ul>)],
+		};
+		const instance = new SpeedDial(props, context);
+		expect(instance.getDirection()).toEqual('up');
+	});
+
+	it('renderPrimaryText returns null if direction is left or right', () => {
+		const props = {
+			primaryText: 'Hallo',
+			positionV: 'bottom',
+			children: {
+				props: {
+					direction: 'left',
+				},
+			},
+		};
+		const instance = new SpeedDial(props, context);
+		expect(instance.renderPrimaryText()).toEqual(null);
+	});
+
+	it('getAlignment by children `BubbleList`', () => {
+		const props = {
+			primaryText: 'Hallo',
+			children: {
+				props: {
+					alignment: 'left',
+				},
+			},
+		};
+		const instance = new SpeedDial(props, context);
+		expect(instance.getAlignment()).toEqual('left');
+	});
+
+	it('getAlignment by positionH', () => {
+		const props = {
+			primaryText: 'Hallo',
+			positionH: 'right',
+			children: [(<ul key="0"><li><a /></li></ul>)],
+		};
+		const instance = new SpeedDial(props, context);
+		expect(instance.getAlignment()).toEqual('right');
+	});
+
 });
 
