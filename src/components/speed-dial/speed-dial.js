@@ -178,14 +178,15 @@ class SpeedDial extends React.Component {
 	 */
 	getStylesBtn() {
 
-		const { positionV, positionH } = this.props;
+		const { positionV, positionH, styleButtonWrap } = this.props;
 		const styles = this.styles;
 
 		return Object.assign(
 			{},
 			styles.btnWrap.main,
 			styles.btnWrap[positionV],
-			styles.btnWrap[positionH]
+			styles.btnWrap[positionH],
+			styleButtonWrap
 		);
 	}
 
@@ -194,13 +195,14 @@ class SpeedDial extends React.Component {
 	 */
 	getStylesMain() {
 
-		const { positionV } = this.props;
+		const { positionV, style } = this.props;
 		const styles = this.styles;
 
 		return Object.assign(
 			{},
 			styles.root.main,
-			styles.root[positionV]
+			styles.root[positionV],
+			style
 		);
 	}
 
@@ -297,7 +299,7 @@ class SpeedDial extends React.Component {
 	 */
 	renderBackdrop() {
 
-		const { hasBackdrop, classNameBackdrop, tabIndex } = this.props;
+		const { hasBackdrop, classNameBackdrop, tabIndex, styleBackdrop } = this.props;
 		const { isOpen } = this.state;
 		const styles = this.styles;
 		const stylesWrap = isOpen ? styles.backdropWrap.main : styles.backdropWrap.invisible;
@@ -309,7 +311,7 @@ class SpeedDial extends React.Component {
 		return (
 			<span
 				className={classNameBackdrop}
-				style={stylesWrap}
+				style={Object.assign({}, stylesWrap, styleBackdrop)}
 			>
 				<a
 					style={this.getStylesBackdrop()}
@@ -428,6 +430,9 @@ SpeedDial.propTypes = {
 	positionH: React.PropTypes.string,
 	positionV: React.PropTypes.string,
 	primaryText: React.PropTypes.string,
+	style: React.PropTypes.object,
+	styleBackdrop: React.PropTypes.object,
+	styleButtonWrap: React.PropTypes.object,
 	tabIndex: React.PropTypes.oneOfType([
 		React.PropTypes.string,
 		React.PropTypes.number,
@@ -441,6 +446,9 @@ SpeedDial.defaultProps = {
 	iconOpen: <IconClose />,
 	positionH: 'right',
 	positionV: 'bottom',
+	style: {},
+	styleBackdrop: {},
+	styleButtonWrap: {},
 	tabIndex: 1,
 	onClickPrimaryButton() {},
 };
