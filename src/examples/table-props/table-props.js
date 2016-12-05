@@ -64,6 +64,12 @@ const props = {
 			desc: 'This is the `Icon` element to be displayed as icon of the ' +
 			'`FloatingActionButton` while in open state.',
 		},
+		isInitiallyOpen: {
+			type: 'boolean',
+			defaultProp: 'false',
+			required: false,
+			desc: 'If true, the `SpeedDial` will be opened initially.',
+		},
 		positionV: {
 			type: 'string',
 			defaultProp: '"bottom"',
