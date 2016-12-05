@@ -83,6 +83,21 @@ const props = {
 			required: false,
 			desc: 'This is the text to be display beside the `FloatingActionButton`.',
 		},
+		style: {
+			type: 'object',
+			required: false,
+			desc: 'This style object defines the styles for the `root` element.',
+		},
+		styleBackdrop: {
+			type: 'object',
+			required: false,
+			desc: 'This style object defines the styles for the `backdrop` element.',
+		},
+		styleButtonWrap: {
+			type: 'object',
+			required: false,
+			desc: 'This style object defines the styles for the wrapper of the `button` element.',
+		},
 		tabIndex: {
 			type: 'number',
 			defaultProp: '1',
