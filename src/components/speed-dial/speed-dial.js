@@ -22,7 +22,7 @@ class SpeedDial extends React.Component {
 		super(props);
 
 		this.state = {
-			isOpen: false,
+			isOpen: props.isInitiallyOpen,
 			isInTransition: false,
 			isBackdropFocused: false,
 		};
@@ -427,6 +427,7 @@ SpeedDial.propTypes = {
 	hasBackdrop: React.PropTypes.bool,
 	icon: React.PropTypes.object,
 	iconOpen: React.PropTypes.object,
+	isInitiallyOpen: React.PropTypes.bool,
 	positionH: React.PropTypes.string,
 	positionV: React.PropTypes.string,
 	primaryText: React.PropTypes.string,
@@ -444,6 +445,7 @@ SpeedDial.defaultProps = {
 	hasBackdrop: true,
 	icon: <IconAdd />,
 	iconOpen: <IconClose />,
+	isInitiallyOpen: false,
 	positionH: 'right',
 	positionV: 'bottom',
 	style: {},
