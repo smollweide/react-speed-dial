@@ -35,6 +35,10 @@ const Home = () => {
 					exampleCode="direction"
 					title="Custom direction"
 				/>
+				<Example
+					exampleCode="list"
+					title="With `List` component"
+				/>
 
 				<h2>Properties</h2>
 				<TableProps componentName="SpeedDial" />

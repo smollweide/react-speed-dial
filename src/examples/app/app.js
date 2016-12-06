@@ -13,6 +13,7 @@ import ExampleInbox from '../example-inbox/example-inbox';
 import ExampleDirection from '../example-direction/example-direction';
 import ExampleBubbleListStandalone1 from '../example-bubble-list-standalone-1/example-bubble-list-standalone-1';
 import ExampleBubbleListStandalone2 from '../example-bubble-list-standalone-2/example-bubble-list-standalone-2';
+import ExampleList from '../example-list/example-list';
 
 injectTapEventPlugin();
 
@@ -31,6 +32,7 @@ const App = () => {
 					<Route component={ExampleDirection} path="/direction" />
 					<Route component={ExampleBubbleListStandalone1} path="/bubble-list-standalone-1" />
 					<Route component={ExampleBubbleListStandalone2} path="/bubble-list-standalone-2" />
+					<Route component={ExampleList} path="/list" />
 				</Router>
 			</div>
 		</MuiThemeProvider>
