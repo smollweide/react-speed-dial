@@ -7,6 +7,7 @@ import injectTapEventPlugin from 'react-tap-event-plugin';
 import Home from '../home/home';
 import ExampleBasic from '../example-basic/example-basic';
 import ExampleTopLeft from '../example-top-left/example-top-left';
+import ExampleInline from '../example-inline/example-inline';
 import ExampleNoBackdrop from '../example-no-backdrop/example-no-backdrop';
 import ExampleInbox from '../example-inbox/example-inbox';
 import ExampleDirection from '../example-direction/example-direction';
@@ -23,6 +24,7 @@ const App = () => {
 					<Route component={Home} path="/" />
 					<Route component={ExampleBasic} path="/basic" />
 					<Route component={ExampleTopLeft} path="/top-left" />
+					<Route component={ExampleInline} path="/inline" />
 					<Route component={ExampleNoBackdrop} path="/no-backdrop" />
 					<Route component={ExampleInbox} path="/inbox" />
 					<Route component={ExampleDirection} path="/direction" />

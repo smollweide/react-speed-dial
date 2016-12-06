@@ -75,7 +75,7 @@ const props = {
 			defaultProp: '"bottom"',
 			required: false,
 			desc: 'This string controls the vertical `FloatingActionButton` position. ' +
-			'The possible values are `top` and `bottom`.',
+			'The possible values are `top`, `bottom` and `inline`.',
 		},
 		positionH: {
 			type: 'string',
@@ -121,7 +121,7 @@ const props = {
 			type: 'string',
 			required: false,
 			desc: 'This string controls the `BubbleList` alignment. ' +
-			'The possible values are `up`, `down`, `left` and `right`. ' +
+			'The possible values are `up`, `down`, `left`, `right` and `middle`. ' +
 			'This prop will be set automatically by `SpeedDial` component but can be overwritten.',
 		},
 		className: {

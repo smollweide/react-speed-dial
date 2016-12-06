@@ -20,6 +20,10 @@ const Home = () => {
 					title="Position top left"
 				/>
 				<Example
+					exampleCode="inline"
+					title="Position inline"
+				/>
+				<Example
 					exampleCode="no-backdrop"
 					title="Without backdrop"
 				/>
