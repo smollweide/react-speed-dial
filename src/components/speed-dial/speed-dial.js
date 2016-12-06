@@ -278,7 +278,7 @@ class SpeedDial extends React.Component {
 	 */
 	renderChildren() {
 
-		const { children } = this.props;
+		const { children, positionV } = this.props;
 		const { isOpen, isInTransition } = this.state;
 
 		if (!children.type || children.type.displayName !== 'BubbleList') {
@@ -290,6 +290,7 @@ class SpeedDial extends React.Component {
 			isInTransition,
 			direction: this.getDirection(),
 			alignment: this.getAlignment(),
+			positionV,
 			ref: 'list',
 		});
 	}

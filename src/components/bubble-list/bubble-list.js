@@ -24,7 +24,7 @@ class BubbleList extends React.Component {
 	 * @returns {Object} styles for root element
 	 */
 	getStylesMain() {
-		const { isOpen, direction = 'up', alignment = 'right' } = this.props;
+		const { isOpen, direction = 'up', alignment = 'right', positionV = 'bottom' } = this.props;
 		const styles = this.styles;
 		const visibleStr = isOpen ? 'visible' : 'invisible';
 		return Object.assign(
@@ -32,6 +32,7 @@ class BubbleList extends React.Component {
 			styles.root.main,
 			styles.root[visibleStr].main,
 			styles.root.direction[direction],
+			styles.root.direction[`${direction}_${positionV}`],
 			styles.root.alignment[alignment]
 		);
 	}
@@ -106,6 +107,7 @@ BubbleList.propTypes = {
 	direction: React.PropTypes.string,
 	isInTransition: React.PropTypes.bool,
 	isOpen: React.PropTypes.bool,
+	positionV: React.PropTypes.string,
 };
 BubbleList.defaultProps = {
 	isOpen: false,
