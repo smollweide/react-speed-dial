@@ -28,6 +28,7 @@ class SpeedDial extends React.Component {
 		};
 
 		this.getStylesBackdrop = this.getStylesBackdrop.bind(this);
+		this.isChildrenBubbleList = this.isChildrenBubbleList.bind(this);
 		this.handleClickOpen = this.handleClickOpen.bind(this);
 		this.handleClickClose = this.handleClickClose.bind(this);
 		this.handleClickBackdrop = this.handleClickBackdrop.bind(this);
@@ -212,7 +213,17 @@ class SpeedDial extends React.Component {
 	getStylesContentWrap() {
 
 		const { positionV, positionH } = this.props;
+		const { isOpen } = this.state;
 		const styles = this.styles;
+		let stylesNotBubbleList = {};
+
+		if (!this.isChildrenBubbleList()) {
+			stylesNotBubbleList = Object.assign(
+				{},
+				styles.notBubbleList.main,
+				styles.notBubbleList[isOpen ? 'visible' : 'invisible']
+			);
+		}
 
 		return Object.assign(
 			{},
@@ -220,7 +231,8 @@ class SpeedDial extends React.Component {
 			styles.contentWrap[positionV],
 			styles.contentWrap[positionH],
 			styles.contentWrap.direction[this.getDirection()],
-			styles.contentWrap.alignment[this.getAlignment()]
+			styles.contentWrap.alignment[this.getAlignment()],
+			stylesNotBubbleList
 		);
 	}
 
@@ -251,6 +263,18 @@ class SpeedDial extends React.Component {
 		const stylesLinkFocused = isBackdropFocused ? styles.backdrop.focus : {};
 
 		return Object.assign({}, stylesLink, stylesLinkFocused);
+	}
+
+	/**
+	 * @returns {boolean} returns true if the children component is `BubbleList` component
+	 */
+	isChildrenBubbleList() {
+		const { children } = this.props;
+		try {
+			return Boolean(children.type.displayName === 'BubbleList');
+		} catch (err) {
+			return false;
+		}
 	}
 
 	/**
@@ -359,7 +383,6 @@ class SpeedDial extends React.Component {
 	 * @returns {XML} returns the component
 	 */
 	render() {
-
 		const {
 			floatingActionButtonProps,
 			className,

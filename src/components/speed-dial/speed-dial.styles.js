@@ -20,6 +20,18 @@ export default ({ baseTheme }) => {
 			},
 		},
 
+		notBubbleList: {
+			main: {
+				transition: transitions.easeOut(),
+			},
+			invisible: {
+				opacity: 0,
+			},
+			visible: {
+				opacity: 1,
+			},
+		},
+
 		contentWrap: {
 			main: {
 				position: 'absolute',
