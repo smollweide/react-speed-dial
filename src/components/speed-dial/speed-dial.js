@@ -1,9 +1,10 @@
 
 import React from 'react';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
-import IconAdd from 'material-ui/svg-icons/content/add';
-import IconClose from 'material-ui/svg-icons/navigation/close';
+
 import BubbleListItem from '../bubble-list-item/bubble-list-item.js';
+import propTypes from './speed-dial.prop-types';
+import defaultProps from './speed-dial.default-props';
 import getStyles from './speed-dial.styles';
 
 const animTime = 450;
@@ -19,16 +20,18 @@ class SpeedDial extends React.Component {
 	 * @returns {void}
 	 */
 	constructor(props, context) {
-		super(props);
+		super(props, context);
 
 		this.state = {
 			isOpen: props.isInitiallyOpen,
+			isHalfOpen: false,
 			isInTransition: false,
 			isBackdropFocused: false,
 		};
 
 		this.getStylesBackdrop = this.getStylesBackdrop.bind(this);
 		this.isChildrenBubbleList = this.isChildrenBubbleList.bind(this);
+		this.isToolbox = this.isToolbox.bind(this);
 		this.handleClickOpen = this.handleClickOpen.bind(this);
 		this.handleClickClose = this.handleClickClose.bind(this);
 		this.handleClickBackdrop = this.handleClickBackdrop.bind(this);
@@ -175,12 +178,46 @@ class SpeedDial extends React.Component {
 	}
 
 	/**
+	 * @returns {Object} the `ActionButton`
+	 */
+	getActionButton() {
+		try {
+			return this.refs.btn.refs.container;
+		} catch (err) {
+			return {};
+		}
+	}
+
+	/**
+	 * @returns {Object} the `ActionButton` style object
+	 */
+	getActionButtonStyles() {
+		try {
+			return Object.assign({}, this.getActionButton().refs.enhancedButton.style);
+		} catch (err) {
+			return {};
+		}
+	}
+
+	/**
 	 * @returns {Object} merged styles for the `FloatingActionButton`
 	 */
 	getStylesBtn() {
 
+		const { isOpen } = this.state;
 		const { positionV, positionH, styleButtonWrap } = this.props;
 		const styles = this.styles;
+
+		if (this.isToolbox() && isOpen) {
+			return Object.assign(
+				{},
+				styles.btnWrap.main,
+				styles.btnWrap[positionV],
+				styles.btnWrap[positionH],
+				styleButtonWrap,
+				styles.btnWrap.toolboxOpen
+			);
+		}
 
 		return Object.assign(
 			{},
@@ -266,6 +303,36 @@ class SpeedDial extends React.Component {
 	}
 
 	/**
+	 * @returns {Object} styles for toolbox element
+	 */
+	getStylesToolbox() {
+		const { isOpen } = this.state;
+		const { toolbox } = this.props;
+		const styles = this.styles;
+		const stylesButton = this.getActionButtonStyles();
+		const stylesMain = Object.assign({}, styles.toolbox.main, {
+			backgroundColor: stylesButton.backgroundColor || '',
+		});
+
+		if (!isOpen) {
+			return Object.assign(
+				{},
+				stylesMain
+			);
+		}
+
+		const stylesOpen = {
+			height: toolbox.height,
+		};
+
+		return Object.assign(
+			{},
+			stylesMain,
+			stylesOpen
+		);
+	}
+
+	/**
 	 * @returns {boolean} returns true if the children component is `BubbleList` component
 	 */
 	isChildrenBubbleList() {
@@ -275,6 +342,14 @@ class SpeedDial extends React.Component {
 		} catch (err) {
 			return false;
 		}
+	}
+
+	/**
+	 * @returns {boolean} returns true if toolbox object exist and the height is set
+	 */
+	isToolbox() {
+		const { toolbox } = this.props;
+		return Boolean(toolbox && typeof toolbox.height === 'number');
 	}
 
 	/**
@@ -298,12 +373,40 @@ class SpeedDial extends React.Component {
 	}
 
 	/**
+	 * @returns {XML} returns the children toolbox eg. `BottomNavigation` component
+	 */
+	renderToolbox() {
+
+		const { toolbox } = this.props;
+
+		if (!this.isToolbox()) {
+			return null;
+		}
+
+		return (
+			<div
+				className={toolbox.className}
+				style={this.getStylesToolbox()}
+			>
+
+			</div>
+		);
+	}
+
+	/**
 	 * @returns {XML} returns the children (list)
 	 */
 	renderChildren() {
 
 		const { children, positionV } = this.props;
 		const { isOpen, isInTransition } = this.state;
+
+		if (this.isToolbox()) {
+			return null;
+			// return React.cloneElement(toolbox, {
+			//	ref: 'toolbox',
+			// });
+		}
 
 		if (!children.type || children.type.displayName !== 'BubbleList') {
 			return children;
@@ -329,7 +432,7 @@ class SpeedDial extends React.Component {
 		const styles = this.styles;
 		const stylesWrap = isOpen ? styles.backdropWrap.main : styles.backdropWrap.invisible;
 
-		if (!hasBackdrop) {
+		if (!hasBackdrop || this.isToolbox()) {
 			return null;
 		}
 
@@ -409,6 +512,7 @@ class SpeedDial extends React.Component {
 
 		return (
 			<div className={classNames.join(' ')} style={this.getStylesMain()}>
+				{this.renderToolbox()}
 				{this.renderBackdrop()}
 				<div style={this.getStylesContentWrap()}>
 					{this.renderChildren()}
@@ -429,55 +533,8 @@ class SpeedDial extends React.Component {
 }
 
 SpeedDial.displayName = 'SpeedDial';
-SpeedDial.propTypes = {
-	children: React.PropTypes.any.isRequired,
-	className: React.PropTypes.string,
-	classNameBackdrop: React.PropTypes.string,
-	classNameButtonWrap: React.PropTypes.string,
-	classNameInTransition: React.PropTypes.string,
-	classNameOpen: React.PropTypes.string,
-	closeOnSecondClick: React.PropTypes.bool,
-	floatingActionButtonProps: React.PropTypes.shape({
-		backgroundColor: React.PropTypes.string,
-		className: React.PropTypes.string,
-		disabled: React.PropTypes.bool,
-		iconClassName: React.PropTypes.string,
-		iconStyle: React.PropTypes.object,
-		mini: React.PropTypes.bool,
-		secondary: React.PropTypes.bool,
-		style: React.PropTypes.object,
-		zDepth: React.PropTypes.number,
-	}),
-	hasBackdrop: React.PropTypes.bool,
-	icon: React.PropTypes.object,
-	iconOpen: React.PropTypes.object,
-	isInitiallyOpen: React.PropTypes.bool,
-	positionH: React.PropTypes.string,
-	positionV: React.PropTypes.string,
-	primaryText: React.PropTypes.string,
-	style: React.PropTypes.object,
-	styleBackdrop: React.PropTypes.object,
-	styleButtonWrap: React.PropTypes.object,
-	tabIndex: React.PropTypes.oneOfType([
-		React.PropTypes.string,
-		React.PropTypes.number,
-	]),
-	onClickPrimaryButton: React.PropTypes.func,
-};
-SpeedDial.defaultProps = {
-	closeOnSecondClick: true,
-	hasBackdrop: true,
-	icon: <IconAdd />,
-	iconOpen: <IconClose />,
-	isInitiallyOpen: false,
-	positionH: 'right',
-	positionV: 'bottom',
-	style: {},
-	styleBackdrop: {},
-	styleButtonWrap: {},
-	tabIndex: 1,
-	onClickPrimaryButton() {},
-};
+SpeedDial.propTypes = propTypes;
+SpeedDial.defaultProps = defaultProps;
 SpeedDial.contextTypes = {
 	muiTheme: React.PropTypes.object.isRequired,
 };

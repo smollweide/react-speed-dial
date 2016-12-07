@@ -20,6 +20,21 @@ export default ({ baseTheme }) => {
 			},
 		},
 
+		actionButton: {
+			invisible: {
+				opacity: 0,
+			},
+		},
+
+		toolbox: {
+			main: {
+				position: 'relative',
+				transition: transitions.easeOut(),
+				height: 0,
+				width: '100%',
+			},
+		},
+
 		notBubbleList: {
 			main: {
 				transition: transitions.easeOut(),
@@ -111,7 +126,9 @@ export default ({ baseTheme }) => {
 
 		btnWrap: {
 			main: {
+				transition: transitions.easeOut(),
 				position: 'absolute',
+				opacity: 1,
 			},
 			inline: {
 				top: -28,
@@ -127,6 +144,9 @@ export default ({ baseTheme }) => {
 			},
 			right: {
 				right: 16,
+			},
+			toolboxOpen: {
+				opacity: 0,
 			},
 		},
 
