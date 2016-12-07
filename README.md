@@ -61,6 +61,7 @@ export default App;
 - [Like inbox](https://smollweide.github.io/react-speed-dial/#/inbox)
 - [Custom direction](https://smollweide.github.io/react-speed-dial/#/direction)
 - [With `List` component](https://smollweide.github.io/react-speed-dial/#/list)
+- [Toolbox](https://smollweide.github.io/react-speed-dial/#/toolbox)
 
 ## Contributing
 

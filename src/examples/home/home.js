@@ -39,6 +39,10 @@ const Home = () => {
 					exampleCode="list"
 					title="With `List` component"
 				/>
+				<Example
+					exampleCode="toolbox"
+					title="Toolbox"
+				/>
 
 				<h2>Properties</h2>
 				<TableProps componentName="SpeedDial" />
