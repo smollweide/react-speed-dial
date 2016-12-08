@@ -1,5 +1,7 @@
 
 import React from 'react';
+import propTypes from './bubble-list-item.prop-types';
+import defaultProps from './bubble-list-item.default-props';
 import getStyles from './bubble-list-item.styles';
 
 /**
@@ -214,52 +216,8 @@ class BubbleListItem extends React.Component {
 }
 
 BubbleListItem.displayName = 'BubbleListItem';
-BubbleListItem.propTypes = {
-	alignment: React.PropTypes.string,
-	className: React.PropTypes.string,
-	direction: React.PropTypes.string,
-	href: React.PropTypes.string,
-	isInTransition: React.PropTypes.bool,
-	isOpen: React.PropTypes.bool,
-	leftAvatar: React.PropTypes.object,
-	positionV: React.PropTypes.string,
-	primaryText: React.PropTypes.string,
-	rightAvatar: React.PropTypes.object,
-	tabIndex: React.PropTypes.oneOfType([
-		React.PropTypes.string,
-		React.PropTypes.number,
-	]),
-	onBlur: React.PropTypes.func,
-	onClick: React.PropTypes.func,
-	onFocus: React.PropTypes.func,
-	onKeyboardFocus: React.PropTypes.func,
-	onKeyDown: React.PropTypes.func,
-	onKeyUp: React.PropTypes.func,
-	onMouseDown: React.PropTypes.func,
-	onMouseEnter: React.PropTypes.func,
-	onMouseLeave: React.PropTypes.func,
-	onMouseUp: React.PropTypes.func,
-	onTouchEnd: React.PropTypes.func,
-	onTouchStart: React.PropTypes.func,
-	onTouchTap: React.PropTypes.func,
-};
-BubbleListItem.defaultProps = {
-	isOpen: false,
-	isInTransition: false,
-	positionV: 'bottom',
-	tabIndex: 1,
-	onBlur() {},
-	onClick() {},
-	onFocus() {},
-	onKeyDown() {},
-	onKeyUp() {},
-	onMouseDown() {},
-	onMouseEnter() {},
-	onMouseLeave() {},
-	onMouseUp() {},
-	onTouchEnd() {},
-	onTouchStart() {},
-};
+BubbleListItem.propTypes = propTypes;
+BubbleListItem.defaultProps = defaultProps;
 BubbleListItem.contextTypes = {
 	muiTheme: React.PropTypes.object.isRequired,
 };
