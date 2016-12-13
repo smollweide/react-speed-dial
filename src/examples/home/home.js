@@ -20,6 +20,10 @@ const Home = () => {
 					title="Position top left"
 				/>
 				<Example
+					exampleCode="inline"
+					title="Position inline"
+				/>
+				<Example
 					exampleCode="no-backdrop"
 					title="Without backdrop"
 				/>
@@ -30,6 +34,10 @@ const Home = () => {
 				<Example
 					exampleCode="direction"
 					title="Custom direction"
+				/>
+				<Example
+					exampleCode="list"
+					title="With `List` component"
 				/>
 
 				<h2>Properties</h2>

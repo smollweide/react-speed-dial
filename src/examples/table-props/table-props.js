@@ -64,12 +64,18 @@ const props = {
 			desc: 'This is the `Icon` element to be displayed as icon of the ' +
 			'`FloatingActionButton` while in open state.',
 		},
+		isInitiallyOpen: {
+			type: 'boolean',
+			defaultProp: 'false',
+			required: false,
+			desc: 'If true, the `SpeedDial` will be opened initially.',
+		},
 		positionV: {
 			type: 'string',
 			defaultProp: '"bottom"',
 			required: false,
 			desc: 'This string controls the vertical `FloatingActionButton` position. ' +
-			'The possible values are `top` and `bottom`.',
+			'The possible values are `top`, `bottom` and `inline`.',
 		},
 		positionH: {
 			type: 'string',
@@ -82,6 +88,21 @@ const props = {
 			type: 'string',
 			required: false,
 			desc: 'This is the text to be display beside the `FloatingActionButton`.',
+		},
+		style: {
+			type: 'object',
+			required: false,
+			desc: 'This style object defines the styles for the `root` element.',
+		},
+		styleBackdrop: {
+			type: 'object',
+			required: false,
+			desc: 'This style object defines the styles for the `backdrop` element.',
+		},
+		styleButtonWrap: {
+			type: 'object',
+			required: false,
+			desc: 'This style object defines the styles for the wrapper of the `button` element.',
 		},
 		tabIndex: {
 			type: 'number',
@@ -100,7 +121,7 @@ const props = {
 			type: 'string',
 			required: false,
 			desc: 'This string controls the `BubbleList` alignment. ' +
-			'The possible values are `up`, `down`, `left` and `right`. ' +
+			'The possible values are `up`, `down`, `left`, `right` and `middle`. ' +
 			'This prop will be set automatically by `SpeedDial` component but can be overwritten.',
 		},
 		className: {

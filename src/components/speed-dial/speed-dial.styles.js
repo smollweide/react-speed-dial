@@ -8,11 +8,27 @@ export default ({ baseTheme }) => {
 				width: '100%',
 				left: 0,
 			},
+			inline: {
+				position: 'relative',
+				borderTop: '1px solid black',
+			},
 			top: {
 				top: 0,
 			},
 			bottom: {
 				bottom: 0,
+			},
+		},
+
+		notBubbleList: {
+			main: {
+				transition: transitions.easeOut(),
+			},
+			invisible: {
+				opacity: 0,
+			},
+			visible: {
+				opacity: 1,
 			},
 		},
 
@@ -27,10 +43,10 @@ export default ({ baseTheme }) => {
 				bottom: 88,
 			},
 			left: {
-				left: 25,
+				left: 23,
 			},
 			right: {
-				right: 25,
+				right: 23,
 			},
 
 			// BubbleList direction
@@ -48,10 +64,10 @@ export default ({ baseTheme }) => {
 			// BubbleList alignment
 			alignment: {
 				up: {
-					bottom: 25,
+					bottom: 23,
 				},
 				down: {
-					top: 25,
+					top: 23,
 				},
 				left: {},
 				right: {},
@@ -96,6 +112,9 @@ export default ({ baseTheme }) => {
 		btnWrap: {
 			main: {
 				position: 'absolute',
+			},
+			inline: {
+				top: -28,
 			},
 			bottom: {
 				bottom: 16,

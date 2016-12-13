@@ -26,6 +26,12 @@ export default () => {
 				left: {
 					right: 0,
 				},
+				down_inline: {
+					paddingTop: 40,
+				},
+				up_inline: {
+					paddingBottom: 40,
+				},
 			},
 
 			// prop alignment
@@ -43,6 +49,9 @@ export default () => {
 				left: {
 					left: 0,
 					textAlign: 'left',
+				},
+				middle: {
+					top: -22,
 				},
 			},
 

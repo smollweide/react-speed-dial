@@ -9,6 +9,21 @@ import getStyles from './speed-dial.styles';
 const animTime = 450;
 
 /**
+ * @param {Object} child - the child component or node
+ * @param {string} displayName - the displayName
+ * @returns {boolean} returns true if child is component with given displayName
+ */
+function isValidChild(child, displayName) {
+	return (
+		child !== null &&
+		typeof child === 'object' &&
+		!(child instanceof Array) &&
+		child.type &&
+		child.type.displayName === displayName
+	);
+}
+
+/**
  * Class SpeedDial
  */
 class SpeedDial extends React.Component {
@@ -22,12 +37,13 @@ class SpeedDial extends React.Component {
 		super(props);
 
 		this.state = {
-			isOpen: false,
+			isOpen: props.isInitiallyOpen,
 			isInTransition: false,
 			isBackdropFocused: false,
 		};
 
 		this.getStylesBackdrop = this.getStylesBackdrop.bind(this);
+		this.isChildrenBubbleList = this.isChildrenBubbleList.bind(this);
 		this.handleClickOpen = this.handleClickOpen.bind(this);
 		this.handleClickClose = this.handleClickClose.bind(this);
 		this.handleClickBackdrop = this.handleClickBackdrop.bind(this);
@@ -178,14 +194,15 @@ class SpeedDial extends React.Component {
 	 */
 	getStylesBtn() {
 
-		const { positionV, positionH } = this.props;
+		const { positionV, positionH, styleButtonWrap } = this.props;
 		const styles = this.styles;
 
 		return Object.assign(
 			{},
 			styles.btnWrap.main,
 			styles.btnWrap[positionV],
-			styles.btnWrap[positionH]
+			styles.btnWrap[positionH],
+			styleButtonWrap
 		);
 	}
 
@@ -194,13 +211,14 @@ class SpeedDial extends React.Component {
 	 */
 	getStylesMain() {
 
-		const { positionV } = this.props;
+		const { positionV, style } = this.props;
 		const styles = this.styles;
 
 		return Object.assign(
 			{},
 			styles.root.main,
-			styles.root[positionV]
+			styles.root[positionV],
+			style
 		);
 	}
 
@@ -210,7 +228,17 @@ class SpeedDial extends React.Component {
 	getStylesContentWrap() {
 
 		const { positionV, positionH } = this.props;
+		const { isOpen } = this.state;
 		const styles = this.styles;
+		let stylesNotBubbleList = {};
+
+		if (!this.isChildrenBubbleList()) {
+			stylesNotBubbleList = Object.assign(
+				{},
+				styles.notBubbleList.main,
+				styles.notBubbleList[isOpen ? 'visible' : 'invisible']
+			);
+		}
 
 		return Object.assign(
 			{},
@@ -218,7 +246,8 @@ class SpeedDial extends React.Component {
 			styles.contentWrap[positionV],
 			styles.contentWrap[positionH],
 			styles.contentWrap.direction[this.getDirection()],
-			styles.contentWrap.alignment[this.getAlignment()]
+			styles.contentWrap.alignment[this.getAlignment()],
+			stylesNotBubbleList
 		);
 	}
 
@@ -252,6 +281,14 @@ class SpeedDial extends React.Component {
 	}
 
 	/**
+	 * @returns {boolean} returns true if the children component is `BubbleList` component
+	 */
+	isChildrenBubbleList() {
+		const { children } = this.props;
+		return isValidChild(children, 'BubbleList');
+	}
+
+	/**
 	 * @returns {Array} returns the icon component's
 	 */
 	renderIcon() {
@@ -276,10 +313,10 @@ class SpeedDial extends React.Component {
 	 */
 	renderChildren() {
 
-		const { children } = this.props;
+		const { children, positionV } = this.props;
 		const { isOpen, isInTransition } = this.state;
 
-		if (!children.type || children.type.displayName !== 'BubbleList') {
+		if (!isValidChild(children, 'BubbleList')) {
 			return children;
 		}
 
@@ -288,6 +325,7 @@ class SpeedDial extends React.Component {
 			isInTransition,
 			direction: this.getDirection(),
 			alignment: this.getAlignment(),
+			positionV,
 			ref: 'list',
 		});
 	}
@@ -297,7 +335,7 @@ class SpeedDial extends React.Component {
 	 */
 	renderBackdrop() {
 
-		const { hasBackdrop, classNameBackdrop, tabIndex } = this.props;
+		const { hasBackdrop, classNameBackdrop, tabIndex, styleBackdrop } = this.props;
 		const { isOpen } = this.state;
 		const styles = this.styles;
 		const stylesWrap = isOpen ? styles.backdropWrap.main : styles.backdropWrap.invisible;
@@ -309,7 +347,7 @@ class SpeedDial extends React.Component {
 		return (
 			<span
 				className={classNameBackdrop}
-				style={stylesWrap}
+				style={Object.assign({}, stylesWrap, styleBackdrop)}
 			>
 				<a
 					style={this.getStylesBackdrop()}
@@ -356,7 +394,6 @@ class SpeedDial extends React.Component {
 	 * @returns {XML} returns the component
 	 */
 	render() {
-
 		const {
 			floatingActionButtonProps,
 			className,
@@ -425,9 +462,13 @@ SpeedDial.propTypes = {
 	hasBackdrop: React.PropTypes.bool,
 	icon: React.PropTypes.object,
 	iconOpen: React.PropTypes.object,
+	isInitiallyOpen: React.PropTypes.bool,
 	positionH: React.PropTypes.string,
 	positionV: React.PropTypes.string,
 	primaryText: React.PropTypes.string,
+	style: React.PropTypes.object,
+	styleBackdrop: React.PropTypes.object,
+	styleButtonWrap: React.PropTypes.object,
 	tabIndex: React.PropTypes.oneOfType([
 		React.PropTypes.string,
 		React.PropTypes.number,
@@ -439,8 +480,12 @@ SpeedDial.defaultProps = {
 	hasBackdrop: true,
 	icon: <IconAdd />,
 	iconOpen: <IconClose />,
+	isInitiallyOpen: false,
 	positionH: 'right',
 	positionV: 'bottom',
+	style: {},
+	styleBackdrop: {},
+	styleButtonWrap: {},
 	tabIndex: 1,
 	onClickPrimaryButton() {},
 };
