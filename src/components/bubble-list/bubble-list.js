@@ -89,11 +89,10 @@ class BubbleList extends React.Component {
 		}
 
 		if (!isValidChild(children, 'BubbleListItem')) {
+			if (children instanceof Array) {
+				return children.map(this.renderChild);
+			}
 			return children;
-		}
-
-		if (children instanceof Array) {
-			return children.map(this.renderChild);
 		}
 
 		return this.renderChild(children, 0);
