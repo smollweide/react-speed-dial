@@ -3,11 +3,28 @@ import React from 'react';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 
 import BubbleListItem from '../bubble-list-item/bubble-list-item.js';
+import createKeyframes from './create-keyframes';
 import propTypes from './speed-dial.prop-types';
 import defaultProps from './speed-dial.default-props';
 import getStyles from './speed-dial.styles';
 
 const animTime = 450;
+const keyFrameClassName = 'anim-btn-morph';
+const cssKeyFrames = createKeyframes(
+	{
+		className: keyFrameClassName,
+		iterationCount: 1,
+	},
+	{
+		'0%': {
+			translate: '0px,0px',
+		},
+		'100%': {
+			translate: '-200%,28px',
+			scaleX: 8,
+		},
+	}
+);
 
 /**
  * Class SpeedDial
@@ -24,7 +41,6 @@ class SpeedDial extends React.Component {
 
 		this.state = {
 			isOpen: props.isInitiallyOpen,
-			isHalfOpen: false,
 			isInTransition: false,
 			isBackdropFocused: false,
 		};
@@ -309,10 +325,7 @@ class SpeedDial extends React.Component {
 		const { isOpen } = this.state;
 		const { toolbox } = this.props;
 		const styles = this.styles;
-		const stylesButton = this.getActionButtonStyles();
-		const stylesMain = Object.assign({}, styles.toolbox.main, {
-			backgroundColor: stylesButton.backgroundColor || '',
-		});
+		const stylesMain = Object.assign({}, styles.toolbox.main);
 
 		if (!isOpen) {
 			return Object.assign(
@@ -328,6 +341,40 @@ class SpeedDial extends React.Component {
 		return Object.assign(
 			{},
 			stylesMain,
+			stylesOpen
+		);
+	}
+
+	/**
+	 * @returns {Object} styles for toolbox element
+	 */
+	getStylesMorphActionButton() {
+		const { isOpen, isInTransition } = this.state;
+		const { toolbox } = this.props;
+		const styles = this.styles;
+		const stylesWrap = this.getStylesBtn();
+		const stylesButton = this.getActionButtonStyles();
+		const stylesMain = Object.assign({}, styles.morphActionButton.main, {
+			backgroundColor: stylesButton.backgroundColor || 'red',
+			width: stylesButton.width || 56,
+			height: stylesButton.height || 56,
+		});
+		let stylesTransition = {};
+		let stylesOpen = {};
+
+		if (isOpen) {
+			stylesTransition = styles.morphActionButton.inTransition;
+		}
+
+		if (isOpen && !isInTransition) {
+			stylesOpen = styles.morphActionButton.visible;
+		}
+
+		return Object.assign(
+			{},
+			stylesWrap,
+			stylesMain,
+			stylesTransition,
 			stylesOpen
 		);
 	}
@@ -387,9 +434,7 @@ class SpeedDial extends React.Component {
 			<div
 				className={toolbox.className}
 				style={this.getStylesToolbox()}
-			>
-
-			</div>
+			/>
 		);
 	}
 
@@ -483,6 +528,22 @@ class SpeedDial extends React.Component {
 	}
 
 	/**
+	 * @returns {XML} returns the morphing ActionButton
+	 */
+	renderMorphActionButton() {
+
+		const { isInTransition } = this.state;
+
+		return (
+			<div
+				className={isInTransition ? keyFrameClassName : ''}
+				ref="morphBtn"
+				style={this.getStylesMorphActionButton()}
+			/>
+		);
+	}
+
+	/**
 	 * @returns {XML} returns the component
 	 */
 	render() {
@@ -512,11 +573,13 @@ class SpeedDial extends React.Component {
 
 		return (
 			<div className={classNames.join(' ')} style={this.getStylesMain()}>
+				<style>{cssKeyFrames}</style>
 				{this.renderToolbox()}
 				{this.renderBackdrop()}
 				<div style={this.getStylesContentWrap()}>
 					{this.renderChildren()}
 				</div>
+				{this.renderMorphActionButton()}
 				<div className={classNameButtonWrap} style={this.getStylesBtn()}>
 					{this.renderPrimaryText()}
 					<FloatingActionButton

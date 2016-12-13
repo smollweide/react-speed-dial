@@ -39,12 +39,17 @@ const ExampleToolbox = () => {
 					positionV="inline"
 					toolbox={{
 						className: 'toolbox',
-						height: 40,
+						height: 70,
 					}}
 				>
 					<Toolbox />
 				</SpeedDial>
 			</div>
+			<article>
+				<header>
+					<h1>Hallo</h1>
+				</header>
+			</article>
 		</section>
 	);
 };

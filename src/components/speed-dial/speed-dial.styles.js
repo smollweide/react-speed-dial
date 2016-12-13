@@ -29,9 +29,39 @@ export default ({ baseTheme }) => {
 		toolbox: {
 			main: {
 				position: 'relative',
-				transition: transitions.easeOut(),
 				height: 0,
 				width: '100%',
+			},
+		},
+
+		morphActionButton: {
+
+
+			main: {
+				display: 'inline-block',
+				transition: transitions.easeOut(),
+				height: 56,
+				width: 56,
+				background: 'red',
+				zIndex: 0,
+				opacity: 1,
+				borderRadius: '50%',
+			},
+
+			inTransition: {
+				borderRadius: '0%',
+			},
+
+			visible: {
+				position: 'absolute',
+				width: 'auto',
+				height: 'auto',
+				top: 0,
+				right: 0,
+				bottom: 0,
+				left: 0,
+				opacity: 1,
+				borderRadius: '0%',
 			},
 		},
 
