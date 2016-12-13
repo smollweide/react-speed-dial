@@ -10,6 +10,7 @@ import getStyles from './speed-dial.styles';
 
 const animTime = 450;
 const keyFrameClassName = 'anim-btn-morph';
+const keyFrameClosingClassName = 'anim-btn-morph-closing';
 const cssKeyFrames = createKeyframes(
 	{
 		className: keyFrameClassName,
@@ -22,6 +23,22 @@ const cssKeyFrames = createKeyframes(
 		'100%': {
 			translate: '-200%,28px',
 			scaleX: 8,
+		},
+	}
+);
+const cssKeyFramesClosing = createKeyframes(
+	{
+		className: keyFrameClosingClassName,
+		iterationCount: 1,
+	},
+	{
+		'0%': {
+			translate: '-200%,28px',
+			scaleX: 8,
+		},
+		'100%': {
+			translate: '0px,0px',
+			scaleX: 0,
 		},
 	}
 );
@@ -42,6 +59,7 @@ class SpeedDial extends React.Component {
 		this.state = {
 			isOpen: props.isInitiallyOpen,
 			isInTransition: false,
+			wasOpened: !props.isInitiallyOpen,
 			isBackdropFocused: false,
 		};
 
@@ -76,6 +94,7 @@ class SpeedDial extends React.Component {
 	handleClickOpen() {
 
 		this.setState({
+			wasOpened: false,
 			isOpen: true,
 			isInTransition: true,
 		});
@@ -83,6 +102,7 @@ class SpeedDial extends React.Component {
 		/* istanbul ignore next */
 		setTimeout(() => {
 			this.setState({
+				wasOpened: false,
 				isInTransition: false,
 			});
 			this.handleFocusFirstListItem();
@@ -98,6 +118,7 @@ class SpeedDial extends React.Component {
 
 		if (this.props.closeOnSecondClick) {
 			this.setState({
+				wasOpened: true,
 				isOpen: false,
 				isInTransition: true,
 			});
@@ -106,6 +127,7 @@ class SpeedDial extends React.Component {
 		/* istanbul ignore next */
 		setTimeout(() => {
 			this.setState({
+				wasOpened: false,
 				isInTransition: false,
 			});
 		}, animTime);
@@ -163,6 +185,23 @@ class SpeedDial extends React.Component {
 		}
 
 		this.handleClickBackdrop();
+	}
+
+	/**
+	 * @returns {string} transitionState (open|closed|opening|closing)
+	 */
+	getCurrentTransitionState() {
+		const { isOpen, isInTransition, wasOpened } = this.state;
+
+		if (!isInTransition) {
+			return isOpen ? 'open' : 'closed';
+		}
+
+		if (isOpen && !wasOpened) {
+			return 'opening';
+		}
+
+		return 'closing';
 	}
 
 	/**
@@ -349,8 +388,6 @@ class SpeedDial extends React.Component {
 	 * @returns {Object} styles for toolbox element
 	 */
 	getStylesMorphActionButton() {
-		const { isOpen, isInTransition } = this.state;
-		const { toolbox } = this.props;
 		const styles = this.styles;
 		const stylesWrap = this.getStylesBtn();
 		const stylesButton = this.getActionButtonStyles();
@@ -359,23 +396,19 @@ class SpeedDial extends React.Component {
 			width: stylesButton.width || 56,
 			height: stylesButton.height || 56,
 		});
-		let stylesTransition = {};
-		let stylesOpen = {};
 
-		if (isOpen) {
-			stylesTransition = styles.morphActionButton.inTransition;
-		}
-
-		if (isOpen && !isInTransition) {
-			stylesOpen = styles.morphActionButton.visible;
-		}
+		//console.log(`${this.getCurrentTransitionState()}: `, Object.assign(
+		//	{},
+		//	stylesWrap,
+		//	stylesMain,
+		//	styles.morphActionButton[this.getCurrentTransitionState()]
+		//));
 
 		return Object.assign(
 			{},
 			stylesWrap,
 			stylesMain,
-			stylesTransition,
-			stylesOpen
+			styles.morphActionButton[this.getCurrentTransitionState()]
 		);
 	}
 
@@ -532,11 +565,24 @@ class SpeedDial extends React.Component {
 	 */
 	renderMorphActionButton() {
 
-		const { isInTransition } = this.state;
+		const transitionState = this.getCurrentTransitionState();
+		let className = '';
+
+		//console.log('transitionState: ' + this.getCurrentTransitionState());
+
+		//if (transitionState === 'closing') {
+		//	className = keyFrameClosingClassName;
+		//}
+
+		if (transitionState === 'opening') {
+			className = keyFrameClassName;
+		}
+
+		//console.log(className);
 
 		return (
 			<div
-				className={isInTransition ? keyFrameClassName : ''}
+				className={className}
 				ref="morphBtn"
 				style={this.getStylesMorphActionButton()}
 			/>
@@ -573,7 +619,7 @@ class SpeedDial extends React.Component {
 
 		return (
 			<div className={classNames.join(' ')} style={this.getStylesMain()}>
-				<style>{cssKeyFrames}</style>
+				<style>{cssKeyFrames + cssKeyFramesClosing}</style>
 				{this.renderToolbox()}
 				{this.renderBackdrop()}
 				<div style={this.getStylesContentWrap()}>

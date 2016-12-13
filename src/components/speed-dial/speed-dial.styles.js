@@ -48,11 +48,21 @@ export default ({ baseTheme }) => {
 				borderRadius: '50%',
 			},
 
-			inTransition: {
+			closed: {
+				borderRadius: '50%',
+				transition: 'none',
+			},
+
+			closing: {
+				borderRadius: '0%',
+				transition: 'none',
+			},
+
+			opening: {
 				borderRadius: '0%',
 			},
 
-			visible: {
+			open: {
 				position: 'absolute',
 				width: 'auto',
 				height: 'auto',
