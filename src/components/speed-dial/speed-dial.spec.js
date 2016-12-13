@@ -92,6 +92,18 @@ describe('<SpeedDial />', () => {
 				</MuiThemeProvider>
 			), div);
 		});
+
+		it('with children null', () => {
+			const div = document.createElement('div');
+			ReactDOM.render((
+				<MuiThemeProvider>
+					<SpeedDial>
+						<ul><li><a /></li></ul>
+						{null}
+					</SpeedDial>
+				</MuiThemeProvider>
+			), div);
+		});
 	});
 
 	describe('prop positionV', () => {
