@@ -11,12 +11,19 @@ import getStyles from './speed-dial.styles';
 const animTime = 450;
 const keyFrameClassName = 'anim-btn-morph';
 const keyFrameClosingClassName = 'anim-btn-morph-closing';
-const getCssKeyFrames = ({ height, btnHeight }) => {
+const getCssKeyFrames = ({ height, btnHeight, positionH }, key) => {
 
 	const translate = {
 		closed: '0px,0px',
-		opened: `-200%,${Number(height / 2)}px`,
+		opened: '',
 	};
+
+	if (positionH === 'left') {
+		translate.opened = `200%,${Number(height / 2)}px`;
+	} else {
+		translate.opened = `-200%,${Number(height / 2)}px`;
+	}
+
 	const scaleX = {
 		closed: 1,
 		halfClosed: 3,
@@ -29,8 +36,8 @@ const getCssKeyFrames = ({ height, btnHeight }) => {
 
 	return createKeyframes(
 		{
-			className: keyFrameClassName,
-			name: keyFrameClassName,
+			className: keyFrameClassName + key,
+			name: keyFrameClassName + key,
 			iterationCount: 1,
 		},
 		{
@@ -52,12 +59,19 @@ const getCssKeyFrames = ({ height, btnHeight }) => {
 		}
 	);
 };
-const getCssKeyFramesClosing = ({ height, btnHeight }) => {
+const getCssKeyFramesClosing = ({ height, btnHeight, positionH }, key) => {
 
 	const translate = {
 		closed: '0px,0px',
-		opened: `-200%,${Number(height / 2)}px`,
+		opened: '',
 	};
+
+	if (positionH === 'left') {
+		translate.opened = `200%,${Number(height / 2)}px`;
+	} else {
+		translate.opened = `-200%,${Number(height / 2)}px`;
+	}
+
 	const scaleX = {
 		closed: 1,
 		halfClosed: 3,
@@ -70,8 +84,8 @@ const getCssKeyFramesClosing = ({ height, btnHeight }) => {
 
 	return createKeyframes(
 		{
-			className: keyFrameClosingClassName,
-			name: keyFrameClosingClassName,
+			className: keyFrameClosingClassName + key,
+			name: keyFrameClosingClassName + key,
 			iterationCount: 1,
 		},
 		{
@@ -113,6 +127,8 @@ class SpeedDial extends React.Component {
 			wasOpened: !props.isInitiallyOpen,
 			isBackdropFocused: false,
 		};
+
+		this.instanceKey = String(Math.random() * 10000).substring(0, 4);
 
 		this.getStylesBackdrop = this.getStylesBackdrop.bind(this);
 		this.isChildrenBubbleList = this.isChildrenBubbleList.bind(this);
@@ -651,11 +667,11 @@ class SpeedDial extends React.Component {
 		const classNames = ['morph'];
 
 		if (transitionState === 'closing') {
-			classNames.push(keyFrameClosingClassName);
+			classNames.push(keyFrameClosingClassName + this.instanceKey);
 		}
 
 		if (transitionState === 'opening') {
-			classNames.push(keyFrameClassName);
+			classNames.push(keyFrameClassName + this.instanceKey);
 		}
 
 		return (
@@ -671,10 +687,11 @@ class SpeedDial extends React.Component {
 	 * @returns {XML} returns a style tag
 	 */
 	renderCssKeyframes() {
-		const { toolbox } = this.props;
+		const { toolbox, positionH } = this.props;
 		const options = {
 			height: toolbox.height,
 			btnHeight: 56,
+			positionH,
 		};
 
 		if (!this.isToolbox()) {
@@ -683,8 +700,8 @@ class SpeedDial extends React.Component {
 
 		return (
 			<style>
-				{getCssKeyFrames(options)}
-				{getCssKeyFramesClosing(options)}
+				{getCssKeyFrames(options, this.instanceKey)}
+				{getCssKeyFramesClosing(options, this.instanceKey)}
 			</style>
 		);
 	}

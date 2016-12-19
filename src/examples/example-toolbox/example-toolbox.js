@@ -45,6 +45,17 @@ const ExampleToolbox = () => {
 		<section>
 			<div style={{ margin: '50px 0' }}>
 				<SpeedDial
+					positionV="inline"
+					toolbox={{
+						className: 'toolbox',
+						height: 56,
+					}}
+				>
+					<Toolbox />
+				</SpeedDial>
+			</div>
+			<div style={{ margin: '150px 0' }}>
+				<SpeedDial
 					positionH="left"
 					positionV="inline"
 					toolbox={{
