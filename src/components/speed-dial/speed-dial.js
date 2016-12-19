@@ -11,37 +11,88 @@ import getStyles from './speed-dial.styles';
 const animTime = 450;
 const keyFrameClassName = 'anim-btn-morph';
 const keyFrameClosingClassName = 'anim-btn-morph-closing';
-const cssKeyFrames = createKeyframes(
-	{
-		className: keyFrameClassName,
-		iterationCount: 1,
-	},
-	{
-		'0%': {
-			translate: '0px,0px',
+const getCssKeyFrames = ({ height, btnHeight }) => {
+
+	const translate = {
+		closed: '0px,0px',
+		opened: `-200%,${Number(height / 2)}px`,
+	};
+	const scaleX = {
+		closed: 1,
+		halfClosed: 3,
+		opened: 8,
+	};
+	const scaleY = {
+		closed: 1,
+		opened: Number(height / btnHeight),
+	};
+
+	return createKeyframes(
+		{
+			className: keyFrameClassName,
+			name: keyFrameClassName,
+			iterationCount: 1,
 		},
-		'100%': {
-			translate: '-200%,28px',
-			scaleX: 8,
+		{
+			'0%': {
+				translate: translate.closed,
+				scaleX: scaleX.closed,
+				scaleY: scaleY.closed,
+			},
+			'30%': {
+				translate: translate.opened,
+				scaleX: scaleX.halfClosed,
+				scaleY: scaleY.opened,
+			},
+			'100%': {
+				translate: translate.opened,
+				scaleX: scaleX.opened,
+				scaleY: scaleY.opened,
+			},
+		}
+	);
+};
+const getCssKeyFramesClosing = ({ height, btnHeight }) => {
+
+	const translate = {
+		closed: '0px,0px',
+		opened: `-200%,${Number(height / 2)}px`,
+	};
+	const scaleX = {
+		closed: 1,
+		halfClosed: 3,
+		opened: 8,
+	};
+	const scaleY = {
+		closed: 1,
+		opened: Number(height / btnHeight),
+	};
+
+	return createKeyframes(
+		{
+			className: keyFrameClosingClassName,
+			name: keyFrameClosingClassName,
+			iterationCount: 1,
 		},
-	}
-);
-const cssKeyFramesClosing = createKeyframes(
-	{
-		className: keyFrameClosingClassName,
-		iterationCount: 1,
-	},
-	{
-		'0%': {
-			translate: '-200%,28px',
-			scaleX: 8,
-		},
-		'100%': {
-			translate: '0px,0px',
-			scaleX: 0,
-		},
-	}
-);
+		{
+			'0%': {
+				translate: translate.opened,
+				scaleX: scaleX.opened,
+				scaleY: scaleY.opened,
+			},
+			'50%': {
+				translate: translate.opened,
+				scaleX: scaleX.halfClosed,
+				scaleY: scaleY.closed,
+			},
+			'100%': {
+				translate: translate.closed,
+				scaleX: scaleX.closed,
+				scaleY: scaleY.closed,
+			},
+		}
+	);
+};
 
 /**
  * Class SpeedDial
@@ -68,6 +119,7 @@ class SpeedDial extends React.Component {
 		this.isToolbox = this.isToolbox.bind(this);
 		this.handleClickOpen = this.handleClickOpen.bind(this);
 		this.handleClickClose = this.handleClickClose.bind(this);
+		this.handleClickCloseToolbox = this.handleClickCloseToolbox.bind(this);
 		this.handleClickBackdrop = this.handleClickBackdrop.bind(this);
 		this.handleFocusFirstListItem = this.handleFocusFirstListItem.bind(this);
 		this.handleFocusPrimaryText = this.handleFocusPrimaryText.bind(this);
@@ -123,6 +175,26 @@ class SpeedDial extends React.Component {
 				isInTransition: true,
 			});
 		}
+
+		/* istanbul ignore next */
+		setTimeout(() => {
+			this.setState({
+				wasOpened: false,
+				isInTransition: false,
+			});
+		}, animTime);
+	}
+
+	/**
+	 * @returns {void}
+	 */
+	handleClickCloseToolbox() {
+
+		this.setState({
+			wasOpened: true,
+			isOpen: false,
+			isInTransition: true,
+		});
 
 		/* istanbul ignore next */
 		setTimeout(() => {
@@ -259,18 +331,18 @@ class SpeedDial extends React.Component {
 	 */
 	getStylesBtn() {
 
-		const { isOpen } = this.state;
 		const { positionV, positionH, styleButtonWrap } = this.props;
+		const transitionState = this.getCurrentTransitionState();
 		const styles = this.styles;
 
-		if (this.isToolbox() && isOpen) {
+		if (this.isToolbox()) {
 			return Object.assign(
 				{},
 				styles.btnWrap.main,
 				styles.btnWrap[positionV],
 				styles.btnWrap[positionH],
 				styleButtonWrap,
-				styles.btnWrap.toolboxOpen
+				styles.btnWrap.toolbox[transitionState]
 			);
 		}
 
@@ -385,6 +457,17 @@ class SpeedDial extends React.Component {
 	}
 
 	/**
+	 * @returns {Object} styles for toolbox inner elements
+	 */
+	getStylesToolboxInner() {
+		return Object.assign(
+			{},
+			this.styles.toolboxInner.main,
+			this.styles.toolboxInner[this.getCurrentTransitionState()]
+		);
+	}
+
+	/**
 	 * @returns {Object} styles for toolbox element
 	 */
 	getStylesMorphActionButton() {
@@ -396,13 +479,6 @@ class SpeedDial extends React.Component {
 			width: stylesButton.width || 56,
 			height: stylesButton.height || 56,
 		});
-
-		//console.log(`${this.getCurrentTransitionState()}: `, Object.assign(
-		//	{},
-		//	stylesWrap,
-		//	stylesMain,
-		//	styles.morphActionButton[this.getCurrentTransitionState()]
-		//));
 
 		return Object.assign(
 			{},
@@ -457,7 +533,7 @@ class SpeedDial extends React.Component {
 	 */
 	renderToolbox() {
 
-		const { toolbox } = this.props;
+		const { toolbox, children } = this.props;
 
 		if (!this.isToolbox()) {
 			return null;
@@ -467,7 +543,16 @@ class SpeedDial extends React.Component {
 			<div
 				className={toolbox.className}
 				style={this.getStylesToolbox()}
-			/>
+			>
+				{this.renderMorphActionButton()}
+				<div style={this.getStylesToolboxInner()}>
+					{
+						React.cloneElement(children, {
+							onClickCloseToolbox: this.handleClickCloseToolbox,
+						})
+					}
+				</div>
+			</div>
 		);
 	}
 
@@ -481,9 +566,6 @@ class SpeedDial extends React.Component {
 
 		if (this.isToolbox()) {
 			return null;
-			// return React.cloneElement(toolbox, {
-			//	ref: 'toolbox',
-			// });
 		}
 
 		if (!children.type || children.type.displayName !== 'BubbleList') {
@@ -566,26 +648,44 @@ class SpeedDial extends React.Component {
 	renderMorphActionButton() {
 
 		const transitionState = this.getCurrentTransitionState();
-		let className = '';
+		const classNames = ['morph'];
 
-		//console.log('transitionState: ' + this.getCurrentTransitionState());
-
-		//if (transitionState === 'closing') {
-		//	className = keyFrameClosingClassName;
-		//}
-
-		if (transitionState === 'opening') {
-			className = keyFrameClassName;
+		if (transitionState === 'closing') {
+			classNames.push(keyFrameClosingClassName);
 		}
 
-		//console.log(className);
+		if (transitionState === 'opening') {
+			classNames.push(keyFrameClassName);
+		}
 
 		return (
 			<div
-				className={className}
+				className={classNames.join(' ')}
 				ref="morphBtn"
 				style={this.getStylesMorphActionButton()}
 			/>
+		);
+	}
+
+	/**
+	 * @returns {XML} returns a style tag
+	 */
+	renderCssKeyframes() {
+		const { toolbox } = this.props;
+		const options = {
+			height: toolbox.height,
+			btnHeight: 56,
+		};
+
+		if (!this.isToolbox()) {
+			return null;
+		}
+
+		return (
+			<style>
+				{getCssKeyFrames(options)}
+				{getCssKeyFramesClosing(options)}
+			</style>
 		);
 	}
 
@@ -601,7 +701,10 @@ class SpeedDial extends React.Component {
 			classNameButtonWrap,
 			tabIndex,
 		} = this.props;
-		const { isOpen, isInTransition } = this.state;
+		const {
+			isOpen,
+			isInTransition,
+		} = this.state;
 		const handleClick = isOpen ? this.handleClickClose : this.handleClickOpen;
 		const classNames = [className];
 
@@ -619,13 +722,12 @@ class SpeedDial extends React.Component {
 
 		return (
 			<div className={classNames.join(' ')} style={this.getStylesMain()}>
-				<style>{cssKeyFrames + cssKeyFramesClosing}</style>
+				{this.renderCssKeyframes()}
 				{this.renderToolbox()}
 				{this.renderBackdrop()}
 				<div style={this.getStylesContentWrap()}>
 					{this.renderChildren()}
 				</div>
-				{this.renderMorphActionButton()}
 				<div className={classNameButtonWrap} style={this.getStylesBtn()}>
 					{this.renderPrimaryText()}
 					<FloatingActionButton

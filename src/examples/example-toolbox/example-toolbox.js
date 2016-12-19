@@ -1,5 +1,5 @@
 import React from 'react';
-import { blue200 } from 'material-ui/styles/colors';
+import { cyan400 } from 'material-ui/styles/colors';
 import IconEdit from 'material-ui/svg-icons/image/edit';
 import { BottomNavigation, BottomNavigationItem } from 'material-ui/BottomNavigation';
 import { SpeedDial } from '../../speed-dial';
@@ -11,7 +11,7 @@ const list = {
 			icon: <IconEdit />,
 		},
 		{
-			label: 'Raquel Parrado',
+			label: 'Raquel',
 			icon: <IconEdit />,
 		},
 		{
@@ -21,25 +21,35 @@ const list = {
 	],
 };
 
-const Toolbox = () => (
+const Toolbox = ({ onClickCloseToolbox }) => (
 	<BottomNavigation
-		style={{ background: blue200 }}
+		style={{ background: cyan400 }}
 	>
 		{[].concat(list.items).reverse().map((item, index) => {
-			return (<BottomNavigationItem key={index} {...item} />);
+			return (
+				<BottomNavigationItem
+					key={index}
+					onTouchTap={onClickCloseToolbox}
+					{...item}
+				/>);
 		})}
 	</BottomNavigation>
 );
+Toolbox.propTypes = {
+	onClickCloseToolbox: React.PropTypes.func,
+};
+
 
 const ExampleToolbox = () => {
 	return (
 		<section>
 			<div style={{ margin: '50px 0' }}>
 				<SpeedDial
+					positionH="left"
 					positionV="inline"
 					toolbox={{
 						className: 'toolbox',
-						height: 70,
+						height: 56,
 					}}
 				>
 					<Toolbox />
