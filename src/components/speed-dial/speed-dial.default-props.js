@@ -15,4 +15,5 @@ export default {
 	styleButtonWrap: {},
 	tabIndex: 1,
 	onClickPrimaryButton() {},
+	onChangeState() {},
 };

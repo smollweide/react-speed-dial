@@ -1,4 +1,4 @@
-import { cyan400 } from 'material-ui/styles/colors';
+import { cyan500 } from 'material-ui/styles/colors';
 import transitions from 'material-ui/styles/transitions';
 
 export default ({ baseTheme }) => {
@@ -29,6 +29,7 @@ export default ({ baseTheme }) => {
 		toolbox: {
 			main: {
 				position: 'relative',
+				transition: transitions.easeOut(),
 				height: 0,
 				width: '100%',
 			},
@@ -52,6 +53,15 @@ export default ({ baseTheme }) => {
 			},
 		},
 
+		morphWrap: {
+			position: 'absolute',
+			width: '100%',
+			height: '100%',
+			left: 0,
+			top: 0,
+			overflow: 'hidden',
+		},
+
 		morphActionButton: {
 
 
@@ -60,24 +70,21 @@ export default ({ baseTheme }) => {
 				transition: transitions.easeOut(),
 				height: 56,
 				width: 56,
-				background: cyan400,
+				background: cyan500,
 				zIndex: 0,
 				opacity: 1,
 				borderRadius: '50%',
 			},
 
 			closed: {
-				borderRadius: '50%',
 				transition: 'none',
 			},
 
 			closing: {
-				borderRadius: '0%',
 				transition: 'none',
 			},
 
 			opening: {
-				borderRadius: '0%',
 			},
 
 			open: {

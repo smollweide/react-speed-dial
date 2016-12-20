@@ -39,4 +39,5 @@ export default {
 		className: PropTypes.string,
 	}),
 	onClickPrimaryButton: PropTypes.func,
+	onChangeState: PropTypes.func,
 };

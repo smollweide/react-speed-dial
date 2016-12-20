@@ -1,112 +1,17 @@
 
 import React from 'react';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
+import { cyan500 } from 'material-ui/styles/colors';
 
 import BubbleListItem from '../bubble-list-item/bubble-list-item.js';
-import createKeyframes from './create-keyframes';
 import propTypes from './speed-dial.prop-types';
 import defaultProps from './speed-dial.default-props';
 import getStyles from './speed-dial.styles';
+import { getCssKeyFrames, getCssKeyFramesClosing } from './speed-dial.keyframes';
 
 const animTime = 450;
 const keyFrameClassName = 'anim-btn-morph';
 const keyFrameClosingClassName = 'anim-btn-morph-closing';
-const getCssKeyFrames = ({ height, btnHeight, positionH }, key) => {
-
-	const translate = {
-		closed: '0px,0px',
-		opened: '',
-	};
-
-	if (positionH === 'left') {
-		translate.opened = `200%,${Number(height / 2)}px`;
-	} else {
-		translate.opened = `-200%,${Number(height / 2)}px`;
-	}
-
-	const scaleX = {
-		closed: 1,
-		halfClosed: 3,
-		opened: 8,
-	};
-	const scaleY = {
-		closed: 1,
-		opened: Number(height / btnHeight),
-	};
-
-	return createKeyframes(
-		{
-			className: keyFrameClassName + key,
-			name: keyFrameClassName + key,
-			iterationCount: 1,
-		},
-		{
-			'0%': {
-				translate: translate.closed,
-				scaleX: scaleX.closed,
-				scaleY: scaleY.closed,
-			},
-			'30%': {
-				translate: translate.opened,
-				scaleX: scaleX.halfClosed,
-				scaleY: scaleY.opened,
-			},
-			'100%': {
-				translate: translate.opened,
-				scaleX: scaleX.opened,
-				scaleY: scaleY.opened,
-			},
-		}
-	);
-};
-const getCssKeyFramesClosing = ({ height, btnHeight, positionH }, key) => {
-
-	const translate = {
-		closed: '0px,0px',
-		opened: '',
-	};
-
-	if (positionH === 'left') {
-		translate.opened = `200%,${Number(height / 2)}px`;
-	} else {
-		translate.opened = `-200%,${Number(height / 2)}px`;
-	}
-
-	const scaleX = {
-		closed: 1,
-		halfClosed: 3,
-		opened: 8,
-	};
-	const scaleY = {
-		closed: 1,
-		opened: Number(height / btnHeight),
-	};
-
-	return createKeyframes(
-		{
-			className: keyFrameClosingClassName + key,
-			name: keyFrameClosingClassName + key,
-			iterationCount: 1,
-		},
-		{
-			'0%': {
-				translate: translate.opened,
-				scaleX: scaleX.opened,
-				scaleY: scaleY.opened,
-			},
-			'50%': {
-				translate: translate.opened,
-				scaleX: scaleX.halfClosed,
-				scaleY: scaleY.closed,
-			},
-			'100%': {
-				translate: translate.closed,
-				scaleX: scaleX.closed,
-				scaleY: scaleY.closed,
-			},
-		}
-	);
-};
 
 /**
  * Class SpeedDial
@@ -161,7 +66,7 @@ class SpeedDial extends React.Component {
 	 */
 	handleClickOpen() {
 
-		this.setState({
+		this.updateState({
 			wasOpened: false,
 			isOpen: true,
 			isInTransition: true,
@@ -169,7 +74,7 @@ class SpeedDial extends React.Component {
 
 		/* istanbul ignore next */
 		setTimeout(() => {
-			this.setState({
+			this.updateState({
 				wasOpened: false,
 				isInTransition: false,
 			});
@@ -185,7 +90,7 @@ class SpeedDial extends React.Component {
 		this.props.onClickPrimaryButton();
 
 		if (this.props.closeOnSecondClick) {
-			this.setState({
+			this.updateState({
 				wasOpened: true,
 				isOpen: false,
 				isInTransition: true,
@@ -194,7 +99,7 @@ class SpeedDial extends React.Component {
 
 		/* istanbul ignore next */
 		setTimeout(() => {
-			this.setState({
+			this.updateState({
 				wasOpened: false,
 				isInTransition: false,
 			});
@@ -206,7 +111,7 @@ class SpeedDial extends React.Component {
 	 */
 	handleClickCloseToolbox() {
 
-		this.setState({
+		this.updateState({
 			wasOpened: true,
 			isOpen: false,
 			isInTransition: true,
@@ -214,7 +119,7 @@ class SpeedDial extends React.Component {
 
 		/* istanbul ignore next */
 		setTimeout(() => {
-			this.setState({
+			this.updateState({
 				wasOpened: false,
 				isInTransition: false,
 			});
@@ -226,13 +131,14 @@ class SpeedDial extends React.Component {
 	 */
 	handleClickBackdrop() {
 		/* istanbul ignore next */
-		this.setState({
+		this.updateState({
 			isOpen: false,
 			isInTransition: true,
 		});
+
 		/* istanbul ignore next */
 		setTimeout(() => {
-			this.setState({
+			this.updateState({
 				isInTransition: false,
 			});
 		}, animTime);
@@ -249,7 +155,7 @@ class SpeedDial extends React.Component {
 	 * @returns {void}
 	 */
 	handleFocusBackdrop() {
-		this.setState({
+		this.updateState({
 			isBackdropFocused: true,
 		});
 	}
@@ -258,7 +164,7 @@ class SpeedDial extends React.Component {
 	 * @returns {void}
 	 */
 	handleBlurBackdrop() {
-		this.setState({
+		this.updateState({
 			isBackdropFocused: false,
 		});
 	}
@@ -452,12 +358,11 @@ class SpeedDial extends React.Component {
 		const { isOpen } = this.state;
 		const { toolbox } = this.props;
 		const styles = this.styles;
-		const stylesMain = Object.assign({}, styles.toolbox.main);
 
 		if (!isOpen) {
 			return Object.assign(
 				{},
-				stylesMain
+				styles.toolbox.main
 			);
 		}
 
@@ -467,7 +372,7 @@ class SpeedDial extends React.Component {
 
 		return Object.assign(
 			{},
-			stylesMain,
+			styles.toolbox.main,
 			stylesOpen
 		);
 	}
@@ -491,7 +396,7 @@ class SpeedDial extends React.Component {
 		const stylesWrap = this.getStylesBtn();
 		const stylesButton = this.getActionButtonStyles();
 		const stylesMain = Object.assign({}, styles.morphActionButton.main, {
-			backgroundColor: stylesButton.backgroundColor || 'red',
+			backgroundColor: stylesButton.backgroundColor || cyan500,
 			width: stylesButton.width || 56,
 			height: stylesButton.height || 56,
 		});
@@ -502,6 +407,15 @@ class SpeedDial extends React.Component {
 			stylesMain,
 			styles.morphActionButton[this.getCurrentTransitionState()]
 		);
+	}
+
+	/**
+	 * @param {Object} newState - the new state
+	 * @returns {void}
+	 */
+	updateState(newState) {
+		this.setState(newState);
+		this.props.onChangeState(newState);
 	}
 
 	/**
@@ -560,7 +474,9 @@ class SpeedDial extends React.Component {
 				className={toolbox.className}
 				style={this.getStylesToolbox()}
 			>
-				{this.renderMorphActionButton()}
+				<div style={this.styles.morphWrap}>
+					{this.renderMorphActionButton()}
+				</div>
 				<div style={this.getStylesToolboxInner()}>
 					{
 						React.cloneElement(children, {
@@ -700,8 +616,8 @@ class SpeedDial extends React.Component {
 
 		return (
 			<style>
-				{getCssKeyFrames(options, this.instanceKey)}
-				{getCssKeyFramesClosing(options, this.instanceKey)}
+				{getCssKeyFrames(keyFrameClassName, this.instanceKey, options)}
+				{getCssKeyFramesClosing(keyFrameClosingClassName, this.instanceKey, options)}
 			</style>
 		);
 	}
