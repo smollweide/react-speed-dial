@@ -14,6 +14,13 @@ const keyFrameClassName = 'anim-btn-morph';
 const keyFrameClosingClassName = 'anim-btn-morph-closing';
 
 /**
+ * @returns {number} returns the scroll top distance
+ */
+function scrollTop() {
+	return document.body.scrollTop || document.documentElement.scrollTop;
+}
+
+/**
  * Class SpeedDial
  */
 class SpeedDial extends React.Component {
@@ -31,6 +38,7 @@ class SpeedDial extends React.Component {
 			isInTransition: false,
 			wasOpened: !props.isInitiallyOpen,
 			isBackdropFocused: false,
+			openedScrollPos: 0,
 		};
 
 		this.instanceKey = String(Math.random() * 10000).substring(0, 4);
@@ -47,7 +55,41 @@ class SpeedDial extends React.Component {
 		this.handleFocusBackdrop = this.handleFocusBackdrop.bind(this);
 		this.handleBlurBackdrop = this.handleBlurBackdrop.bind(this);
 		this.handleBackdropKeyUp = this.handleBackdropKeyUp.bind(this);
+		this.handleScroll = this.handleScroll.bind(this);
 		this.styles = getStyles(context.muiTheme);
+
+
+	}
+
+	/**
+	 * @returns {void}
+	 */
+	componentDidMount() {
+
+		const { closeOnScrollDown, closeOnScrollUp } = this.props;
+
+		if (closeOnScrollDown === true || closeOnScrollUp === true) {
+			window.addEventListener('scroll', this.handleScroll);
+		}
+	}
+
+	/**
+	 * @returns {void}
+	 */
+	handleScroll() {
+
+		const { closeOnScrollDown, closeOnScrollUp } = this.props;
+		const { isOpen, openedScrollPos } = this.state;
+
+		if (isOpen) {
+			const distance = scrollTop() - openedScrollPos;
+			if (closeOnScrollDown === true && distance >= 30) {
+				this.handleClickClose();
+			}
+			if (closeOnScrollUp === true && distance <= -30) {
+				this.handleClickClose();
+			}
+		}
 	}
 
 	/**
@@ -70,6 +112,7 @@ class SpeedDial extends React.Component {
 			wasOpened: false,
 			isOpen: true,
 			isInTransition: true,
+			openedScrollPos: scrollTop(),
 		});
 
 		/* istanbul ignore next */
