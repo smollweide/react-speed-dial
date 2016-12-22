@@ -1,12 +1,13 @@
 import React from 'react';
-import { cyan500, grey800, grey200, indigo500, teal300, cyan900 } from 'material-ui/styles/colors';
+import { grey800, grey200, teal300, cyan900 } from 'material-ui/styles/colors';
 import IconPlay from 'material-ui/svg-icons/av/play-arrow';
 import IconPause from 'material-ui/svg-icons/av/pause';
 import IconRewind from 'material-ui/svg-icons/av/fast-rewind';
 import IconForwards from 'material-ui/svg-icons/av/fast-forward';
 import { BottomNavigation, BottomNavigationItem } from 'material-ui/BottomNavigation';
-import { SpeedDial } from '../../speed-dial';
 import transitions from 'material-ui/styles/transitions';
+
+import { SpeedDial } from '../../speed-dial';
 
 const list = {
 	items: [
@@ -89,7 +90,6 @@ Toolbox.propTypes = {
 	onClickCloseToolbox: React.PropTypes.func,
 };
 
-// 132px height
 /**
  * Class ExampleToolbox
  */
