@@ -62,6 +62,7 @@ export default App;
 - [Custom direction](https://smollweide.github.io/react-speed-dial/#/direction)
 - [With `List` component](https://smollweide.github.io/react-speed-dial/#/list)
 - [Toolbox](https://smollweide.github.io/react-speed-dial/#/toolbox)
+- [Toolbox fixed](https://smollweide.github.io/react-speed-dial/#/toolbox-fixed)
 
 ## Contributing
 

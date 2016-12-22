@@ -76,6 +76,18 @@ class SpeedDial extends React.Component {
 	/**
 	 * @returns {void}
 	 */
+	componentWillUnmount() {
+
+		const { closeOnScrollDown, closeOnScrollUp } = this.props;
+
+		if (closeOnScrollDown === true || closeOnScrollUp === true) {
+			window.removeEventListener('scroll', this.handleScroll);
+		}
+	}
+
+	/**
+	 * @returns {void}
+	 */
 	handleScroll() {
 
 		const { closeOnScrollDown, closeOnScrollUp } = this.props;

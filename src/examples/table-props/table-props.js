@@ -3,114 +3,142 @@ import './table-props.css';
 
 const props = {
 	SpeedDial: {
-		children: {
+		'children': {
 			type: 'node',
 			required: true,
 			desc: 'Children passed to speed dial.',
 		},
-		className: {
+		'className': {
 			type: 'string',
 			required: false,
 			desc: 'Applied to the speed dial\'s root element.',
 		},
-		classNameBackdrop: {
+		'classNameBackdrop': {
 			type: 'string',
 			required: false,
 			desc: 'Applied to the speed dial\'s backdrop element.',
 		},
-		classNameButtonWrap: {
+		'classNameButtonWrap': {
 			type: 'string',
 			required: false,
 			desc: 'Applied to the div which is wrapping the `FloatingActionButton` component.',
 		},
-		classNameInTransition: {
+		'classNameInTransition': {
 			type: 'string',
 			required: false,
 			desc: 'Applied to the speed dial\'s main element while in transition.',
 		},
-		classNameOpen: {
+		'classNameOpen': {
 			type: 'string',
 			required: false,
 			desc: 'Applied to the speed dial\'s main element when opened.',
 		},
-		closeOnSecondClick: {
+		'closeOnScrollDown': {
+			type: 'boolean',
+			defaultProp: 'false',
+			required: false,
+			desc: 'If true, scrolling down will close the child component.',
+		},
+		'closeOnScrollUp': {
+			type: 'boolean',
+			defaultProp: 'false',
+			required: false,
+			desc: 'If true, scrolling up will close the child component.',
+		},
+		'closeOnSecondClick': {
 			type: 'boolean',
 			defaultProp: 'true',
 			required: false,
 			desc: 'If true, clicking or tapping the opened `FloatingActionButton` will close the speed dial.',
 		},
-		floatingActionButtonProps: {
+		'floatingActionButtonProps': {
 			type: 'object',
 			required: false,
 			desc: 'As defined in material-ui http://www.material-ui.com/#/components/floating-action-button',
 		},
-		hasBackdrop: {
+		'hasBackdrop': {
 			type: 'boolean',
 			defaultProp: 'true',
 			required: false,
 			desc: 'If true, the backdrop will be visible in open state.',
 		},
-		icon: {
+		'icon': {
 			type: 'object',
 			defaultProp: '<ContentAdd />',
 			required: false,
 			desc: 'This is the `Icon` element to be displayed as icon of the ' +
 			'`FloatingActionButton` while in close state.',
 		},
-		iconOpen: {
+		'iconOpen': {
 			type: 'object',
 			defaultProp: '<NavigationClose />',
 			required: false,
 			desc: 'This is the `Icon` element to be displayed as icon of the ' +
 			'`FloatingActionButton` while in open state.',
 		},
-		isInitiallyOpen: {
+		'isInitiallyOpen': {
 			type: 'boolean',
 			defaultProp: 'false',
 			required: false,
 			desc: 'If true, the `SpeedDial` will be opened initially.',
 		},
-		positionV: {
+		'positionV': {
 			type: 'string',
 			defaultProp: '"bottom"',
 			required: false,
 			desc: 'This string controls the vertical `FloatingActionButton` position. ' +
 			'The possible values are `top`, `bottom` and `inline`.',
 		},
-		positionH: {
+		'positionH': {
 			type: 'string',
 			defaultProp: '"right"',
 			required: false,
 			desc: 'This string controls the horizontal `FloatingActionButton` position. ' +
 			'The possible values are `left` and `right`.',
 		},
-		primaryText: {
+		'primaryText': {
 			type: 'string',
 			required: false,
 			desc: 'This is the text to be display beside the `FloatingActionButton`.',
 		},
-		style: {
+		'style': {
 			type: 'object',
 			required: false,
 			desc: 'This style object defines the styles for the `root` element.',
 		},
-		styleBackdrop: {
+		'styleBackdrop': {
 			type: 'object',
 			required: false,
 			desc: 'This style object defines the styles for the `backdrop` element.',
 		},
-		styleButtonWrap: {
+		'styleButtonWrap': {
 			type: 'object',
 			required: false,
 			desc: 'This style object defines the styles for the wrapper of the `button` element.',
 		},
-		tabIndex: {
+		'tabIndex': {
 			type: 'number',
 			defaultProp: '1',
 			required: false,
 			desc: 'This is the index to define the tabIndex for the `FloatingActionButton`. The backdrop has tabIndex + 1.',
 		},
-		onClickPrimaryButton: {
+		'toolbox': {
+			type: 'object',
+			required: false,
+			desc: 'This prop defines a toolbox is set as child component.',
+		},
+
+		'toolbox.className': {
+			type: 'string',
+			required: false,
+			desc: 'Applied to the speed dial\'s toolbox element.',
+		},
+		'toolbox.height': {
+			type: 'number',
+			required: true,
+			desc: 'Defines the height of the toolbox placeholder while transforming.',
+		},
+		'onClickPrimaryButton': {
 			type: 'function',
 			required: false,
 			desc: 'Callback function fired when the priamry button is clicked or touched.',
