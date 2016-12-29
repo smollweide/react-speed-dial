@@ -93,7 +93,6 @@ describe('<SpeedDial />', () => {
 			), div);
 		});
 
-<<<<<<< feature/toolbox
 		it('with toolbox right', () => {
 			const div = document.createElement('div');
 			ReactDOM.render((
@@ -111,7 +110,11 @@ describe('<SpeedDial />', () => {
 				<MuiThemeProvider>
 					<SpeedDial positionH="left" toolbox={{ className: 'toolbox', height: 56 }}>
 						<BubbleList />
-=======
+					</SpeedDial>
+				</MuiThemeProvider>
+			), div);
+		});
+
 		it('with children null', () => {
 			const div = document.createElement('div');
 			ReactDOM.render((
@@ -119,7 +122,6 @@ describe('<SpeedDial />', () => {
 					<SpeedDial>
 						<ul><li><a /></li></ul>
 						{null}
->>>>>>> develop
 					</SpeedDial>
 				</MuiThemeProvider>
 			), div);

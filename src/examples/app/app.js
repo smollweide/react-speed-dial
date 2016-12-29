@@ -36,7 +36,7 @@ const App = () => {
 					<Route component={ExampleBubbleListStandalone1} path="/bubble-list-standalone-1" />
 					<Route component={ExampleBubbleListStandalone2} path="/bubble-list-standalone-2" />
 					<Route component={ExampleList} path="/list" />
-        			<Route component={ExampleToolbox} path="/toolbox" />
+					<Route component={ExampleToolbox} path="/toolbox" />
 					<Route component={ExampleToolboxFixed} path="/toolbox-fixed" />
 					<Route component={ExampleBug6} path="/bug6" />
 				</Router>

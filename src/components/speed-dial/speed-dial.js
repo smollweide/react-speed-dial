@@ -563,15 +563,11 @@ class SpeedDial extends React.Component {
 		const { children, positionV } = this.props;
 		const { isOpen, isInTransition } = this.state;
 
-<<<<<<< feature/toolbox
 		if (this.isToolbox()) {
 			return null;
 		}
 
-		if (!children.type || children.type.displayName !== 'BubbleList') {
-=======
 		if (!isValidChild(children, 'BubbleList')) {
->>>>>>> develop
 			return children;
 		}
 
