@@ -39,6 +39,7 @@ export default {
 	toolbox: PropTypes.shape({
 		height: PropTypes.number.isRequired,
 		className: PropTypes.string,
+		classNameMorphButton: PropTypes.string,
 	}),
 	onClickPrimaryButton: PropTypes.func,
 	onChangeState: PropTypes.func,
