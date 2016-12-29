@@ -133,6 +133,11 @@ const props = {
 			required: false,
 			desc: 'Applied to the speed dial\'s toolbox element.',
 		},
+		'toolbox.classNameMorphButton': {
+			type: 'string',
+			required: false,
+			desc: 'Applied to the speed dial\'s morph button element.',
+		},
 		'toolbox.height': {
 			type: 'number',
 			required: true,

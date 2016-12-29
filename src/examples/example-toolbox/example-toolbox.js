@@ -138,6 +138,7 @@ class ExampleToolbox extends React.Component {
 						positionV="inline"
 						toolbox={{
 							className: 'toolbox',
+							classNameMorphButton: 'morph-btn',
 							height: 56,
 						}}
 						onChangeState={this.handleSpeedDialChangeState}
