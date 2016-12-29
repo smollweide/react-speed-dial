@@ -16,6 +16,7 @@ import ExampleBubbleListStandalone2 from '../example-bubble-list-standalone-2/ex
 import ExampleList from '../example-list/example-list';
 import ExampleToolbox from '../example-toolbox/example-toolbox';
 import ExampleToolboxFixed from '../example-toolbox-fixed/example-toolbox-fixed';
+import ExampleBug6 from '../example-bug6/example-bug6';
 
 injectTapEventPlugin();
 
@@ -35,8 +36,9 @@ const App = () => {
 					<Route component={ExampleBubbleListStandalone1} path="/bubble-list-standalone-1" />
 					<Route component={ExampleBubbleListStandalone2} path="/bubble-list-standalone-2" />
 					<Route component={ExampleList} path="/list" />
-					<Route component={ExampleToolbox} path="/toolbox" />
+        			<Route component={ExampleToolbox} path="/toolbox" />
 					<Route component={ExampleToolboxFixed} path="/toolbox-fixed" />
+					<Route component={ExampleBug6} path="/bug6" />
 				</Router>
 			</div>
 		</MuiThemeProvider>

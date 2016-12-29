@@ -21,6 +21,21 @@ function scrollTop() {
 }
 
 /**
+ * @param {Object} child - the child component or node
+ * @param {string} displayName - the displayName
+ * @returns {boolean} returns true if child is component with given displayName
+ */
+function isValidChild(child, displayName) {
+	return (
+		child !== null &&
+		typeof child === 'object' &&
+		!(child instanceof Array) &&
+		child.type &&
+		child.type.displayName === displayName
+	);
+}
+
+/**
  * Class SpeedDial
  */
 class SpeedDial extends React.Component {
@@ -479,11 +494,7 @@ class SpeedDial extends React.Component {
 	 */
 	isChildrenBubbleList() {
 		const { children } = this.props;
-		try {
-			return Boolean(children.type.displayName === 'BubbleList');
-		} catch (err) {
-			return false;
-		}
+		return isValidChild(children, 'BubbleList');
 	}
 
 	/**
@@ -552,11 +563,15 @@ class SpeedDial extends React.Component {
 		const { children, positionV } = this.props;
 		const { isOpen, isInTransition } = this.state;
 
+<<<<<<< feature/toolbox
 		if (this.isToolbox()) {
 			return null;
 		}
 
 		if (!children.type || children.type.displayName !== 'BubbleList') {
+=======
+		if (!isValidChild(children, 'BubbleList')) {
+>>>>>>> develop
 			return children;
 		}
 

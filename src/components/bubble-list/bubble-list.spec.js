@@ -154,4 +154,27 @@ describe('<BubbleList />', () => {
 		);
 		expect(wrapper.find('.m-bubble-list').length).toEqual(1);
 	});
+
+	it('renders without crashing with "null" children', () => {
+		const div = document.createElement('div');
+		ReactDOM.render((
+			<MuiThemeProvider>
+				<BubbleList>
+					<li><a /></li>
+					{null}
+				</BubbleList>
+			</MuiThemeProvider>
+		), div);
+	});
+
+	it('renders without crashing with "null" child', () => {
+		const div = document.createElement('div');
+		ReactDOM.render((
+			<MuiThemeProvider>
+				<BubbleList>
+					{null}
+				</BubbleList>
+			</MuiThemeProvider>
+		), div);
+	});
 });

@@ -3,6 +3,21 @@ import React from 'react';
 import getStyles from './bubble-list.styles';
 
 /**
+ * @param {Object} child - the child component or node
+ * @param {string} displayName - the displayName
+ * @returns {boolean} returns true if child is component with given displayName
+ */
+function isValidChild(child, displayName) {
+	return (
+		child !== null &&
+		typeof child === 'object' &&
+		!(child instanceof Array) &&
+		child.type &&
+		child.type.displayName === displayName
+	);
+}
+
+/**
  * Class BubbleList
  */
 class BubbleList extends React.Component {
@@ -48,7 +63,7 @@ class BubbleList extends React.Component {
 
 		const { isOpen, isInTransition, direction = 'up', alignment = 'right' } = this.props;
 
-		if (child.type && child.type.displayName !== 'BubbleListItem') {
+		if (!isValidChild(child, 'BubbleListItem')) {
 			return child;
 		}
 
@@ -73,12 +88,11 @@ class BubbleList extends React.Component {
 			return (<ul style={this.getStylesMain()} />);
 		}
 
-		if (children.type && children.type.displayName !== 'BubbleListItem') {
+		if (!isValidChild(children, 'BubbleListItem')) {
+			if (children instanceof Array) {
+				return children.map(this.renderChild);
+			}
 			return children;
-		}
-
-		if (children instanceof Array) {
-			return children.map(this.renderChild);
 		}
 
 		return this.renderChild(children, 0);
