@@ -94,7 +94,7 @@ class SpeedDial extends React.Component {
 		const { isOpen, openedScrollPos } = this.state;
 
 		if (isOpen) {
-			const distance = scrollTop() - openedScrollPos;
+			const distance = Number(scrollTop() || 0) - openedScrollPos;
 			if (closeOnScrollDown === true && distance >= 30) {
 				this.handleClickClose();
 			}
@@ -166,6 +166,7 @@ class SpeedDial extends React.Component {
 	 */
 	handleClickCloseToolbox() {
 
+		/* istanbul ignore next */
 		this.updateState({
 			wasOpened: true,
 			isOpen: false,
@@ -635,7 +636,12 @@ class SpeedDial extends React.Component {
 	renderMorphActionButton() {
 
 		const transitionState = this.getCurrentTransitionState();
-		const classNames = ['morph'];
+		const { toolbox } = this.props;
+		const classNames = [];
+
+		if (toolbox.classNameMorphButton) {
+			classNames.push(toolbox.classNameMorphButton);
+		}
 
 		if (transitionState === 'closing') {
 			classNames.push(keyFrameClosingClassName + this.instanceKey);
@@ -659,15 +665,16 @@ class SpeedDial extends React.Component {
 	 */
 	renderCssKeyframes() {
 		const { toolbox, positionH } = this.props;
+
+		if (!this.isToolbox()) {
+			return null;
+		}
+
 		const options = {
 			height: toolbox.height,
 			btnHeight: 56,
 			positionH,
 		};
-
-		if (!this.isToolbox()) {
-			return null;
-		}
 
 		return (
 			<style>
