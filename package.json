@@ -1,6 +1,6 @@
 {
 	"name": "react-speed-dial",
-	"version": "0.3.0",
+	"version": "0.4.0",
 	"description": "React Component that implements a speed dial using Material-UI.",
 	"email": "simon.mollweide@web.de",
 	"author": "Simon Mollweide <simon.mollweide@web.de>",
@@ -18,14 +18,17 @@
 	"license": "MIT",
 	"homepage": "http://smollweide.github.io/react-speed-dial/",
 	"scripts": {
+		"clean:node_modules": "rimraf node_modules",
 		"clean:build": "rimraf build",
 		"clean:publish": "rimraf publish",
 		"clean:coverage": "rimraf coverage",
 		"preinstall": "npm install -g pushstate-server",
-		"clear-install": "rm -rf node_modules && npm install",
+		"clear-install": "npm run clean:node_modules && npm install",
 		"start": "react-scripts start",
 		"prebuild": "npm run lint",
 		"build": "react-scripts build",
+		"predeploy": "npm run build",
+		"deploy": "gh-pages -d build",
 		"test": "react-scripts test --env=jsdom",
 		"pretest:coverage": "npm run clean:coverage",
 		"test:coverage": "npm test -- --coverage",
@@ -38,9 +41,7 @@
 		"publish": "npm run publish:copy-files && npm run publish:babel && npm run publish:index",
 		"publish:index": "BABEL_ENV=es babel ./src/speed-dial.js --out-file ./publish/index.js",
 		"publish:babel": "NODE_ENV=release babel ./src/components --out-dir ./publish/components --ignore spec.js",
-		"publish:copy-files": "babel-node ./scripts/copy-files.js",
-		"predeploy": "npm run build",
-		"deploy": "gh-pages -d build"
+		"publish:copy-files": "babel-node ./scripts/copy-files.js"
 	},
 	"keywords": [
 		"react",
@@ -73,6 +74,8 @@
 		"babel-preset-react": "^6.11.1",
 		"coveralls": "^2.11.15",
 		"enzyme": "^2.6.0",
+		"eslint": "^3.12.2",
+		"eslint-plugin-import": "^2.2.0",
 		"gh-pages": "^0.12.0",
 		"nms-core-utils": "^1.0.0",
 		"react-addons-test-utils": "^15.4.0",

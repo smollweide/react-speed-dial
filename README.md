@@ -7,7 +7,13 @@
 [![Dependencies](https://img.shields.io/david/smollweide/react-speed-dial/master.svg)](https://david-dm.org/smollweide/react-speed-dial)
 [![Codestyle](https://img.shields.io/badge/codestyle-namics-green.svg)](https://github.com/namics/eslint-config-namics)
 
-> React Component that implements a speed dial using [Material-UI](http://www.material-ui.com).
+React Component that implements a speed dial using [Material-UI](http://www.material-ui.com).
+
+like inbox | toolbox version
+------------ | -------------
+<img src="https://cloud.githubusercontent.com/assets/2912007/21943125/28c3e96a-d9d0-11e6-96f1-dc3fbf4dae8d.gif" alt="inbox" width="180" /> | <img src="https://cloud.githubusercontent.com/assets/2912007/21943136/32341bf0-d9d0-11e6-8a8f-919b68d19ee5.gif" alt="toolbox" width="180" />
+[open demo](https://smollweide.github.io/react-speed-dial/#/inbox) | [open demo](https://smollweide.github.io/react-speed-dial/#/toolbox)
+
 
 ## Installation
 
@@ -61,6 +67,8 @@ export default App;
 - [Like inbox](https://smollweide.github.io/react-speed-dial/#/inbox)
 - [Custom direction](https://smollweide.github.io/react-speed-dial/#/direction)
 - [With `List` component](https://smollweide.github.io/react-speed-dial/#/list)
+- [Toolbox](https://smollweide.github.io/react-speed-dial/#/toolbox)
+- [Toolbox fixed](https://smollweide.github.io/react-speed-dial/#/toolbox-fixed)
 
 ## Contributing
 

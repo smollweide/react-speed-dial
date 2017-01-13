@@ -1,3 +1,4 @@
+import { cyan500 } from 'material-ui/styles/colors';
 import transitions from 'material-ui/styles/transitions';
 
 export default ({ baseTheme }) => {
@@ -10,13 +11,93 @@ export default ({ baseTheme }) => {
 			},
 			inline: {
 				position: 'relative',
-				borderTop: '1px solid black',
 			},
 			top: {
 				top: 0,
 			},
 			bottom: {
 				bottom: 0,
+			},
+		},
+
+		actionButton: {
+			invisible: {
+				opacity: 0,
+			},
+		},
+
+		toolbox: {
+			main: {
+				position: 'relative',
+				transition: transitions.easeOut(),
+				height: 0,
+				width: '100%',
+			},
+		},
+
+		toolboxInner: {
+			main: {
+				transition: transitions.easeOut(),
+			},
+			closed: {
+				opacity: 0,
+			},
+			closing: {
+				opacity: 0,
+			},
+			open: {
+				opacity: 1,
+			},
+			opening: {
+				opacity: 0,
+			},
+		},
+
+		morphWrap: {
+			position: 'absolute',
+			width: '100%',
+			height: '100%',
+			left: 0,
+			top: 0,
+			overflow: 'hidden',
+		},
+
+		morphActionButton: {
+
+
+			main: {
+				display: 'inline-block',
+				transition: transitions.easeOut(),
+				height: 56,
+				width: 56,
+				background: cyan500,
+				zIndex: 0,
+				opacity: 1,
+				borderRadius: '50%',
+			},
+
+			closed: {
+				transition: 'none',
+			},
+
+			closing: {
+				transition: 'none',
+			},
+
+			opening: {
+			},
+
+			open: {
+				transition: 'none',
+				position: 'absolute',
+				width: 'auto',
+				height: 'auto',
+				top: 0,
+				right: 0,
+				bottom: 0,
+				left: 0,
+				opacity: 1,
+				borderRadius: '0%',
 			},
 		},
 
@@ -111,7 +192,9 @@ export default ({ baseTheme }) => {
 
 		btnWrap: {
 			main: {
+				transition: transitions.easeOut(),
 				position: 'absolute',
+				opacity: 1,
 			},
 			inline: {
 				top: -28,
@@ -127,6 +210,20 @@ export default ({ baseTheme }) => {
 			},
 			right: {
 				right: 16,
+			},
+			toolbox: {
+				open: {
+					opacity: 0,
+				},
+				closed: {
+					opacity: 1,
+				},
+				opening: {
+					opacity: 0,
+				},
+				closing: {
+					opacity: 0,
+				},
 			},
 		},
 

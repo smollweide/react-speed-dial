@@ -93,6 +93,28 @@ describe('<SpeedDial />', () => {
 			), div);
 		});
 
+		it('with toolbox right', () => {
+			const div = document.createElement('div');
+			ReactDOM.render((
+				<MuiThemeProvider>
+					<SpeedDial toolbox={{ className: 'toolbox', height: 56 }}>
+						<BubbleList />
+					</SpeedDial>
+				</MuiThemeProvider>
+			), div);
+		});
+
+		it('with toolbox left', () => {
+			const div = document.createElement('div');
+			ReactDOM.render((
+				<MuiThemeProvider>
+					<SpeedDial positionH="left" toolbox={{ className: 'toolbox', height: 56 }}>
+						<BubbleList />
+					</SpeedDial>
+				</MuiThemeProvider>
+			), div);
+		});
+
 		it('with children null', () => {
 			const div = document.createElement('div');
 			ReactDOM.render((
@@ -500,6 +522,151 @@ describe('<SpeedDial />', () => {
 			expect(
 				getStylesFromShallowNode(wrapper.find('.backdrop')).color
 			).toEqual('red');
+		});
+	});
+
+	describe('states', () => {
+		it('state closing', () => {
+			const props = {
+				children: [(<ul key="0"><li><a /></li></ul>)],
+				toolbox: {
+					className: 'toolbox',
+					classNameMorphButton: 'morph-btn',
+					height: 56,
+				},
+			};
+			const wrapper = shallow(
+				<SpeedDial {...props} />, { context }
+			);
+			wrapper.setState({ isInTransition: true, wasOpened: true });
+			const attrClass = getDomFromString(wrapper.find('.morph-btn').html()).getAttribute('class');
+			expect(attrClass.search('anim-btn-morph-closing') >= 0).toEqual(true);
+		});
+
+		it('state opening', () => {
+			const props = {
+				children: [(<ul key="0"><li><a /></li></ul>)],
+				toolbox: {
+					className: 'toolbox',
+					classNameMorphButton: 'morph-btn',
+					height: 56,
+				},
+			};
+			const wrapper = shallow(
+				<SpeedDial {...props} />, { context }
+			);
+			wrapper.setState({ isInTransition: true, isOpen: true, wasOpened: false });
+			const attrClass = getDomFromString(wrapper.find('.morph-btn').html()).getAttribute('class');
+			expect(attrClass.search('anim-btn-morph') >= 0).toEqual(true);
+		});
+
+	});
+
+	describe('methods', () => {
+
+		it('componentWillUnmount', () => {
+			const props = {
+				primaryText: 'Hallo',
+				closeOnScrollDown: false,
+				closeOnScrollUp: false,
+				children: [(<ul key="0"><li><a /></li></ul>)],
+			};
+			const instance = new SpeedDial(props, context);
+			instance.componentWillUnmount();
+		});
+
+		it('componentWillUnmount remove scroll eventListener', () => {
+			const props = {
+				primaryText: 'Hallo',
+				closeOnScrollDown: true,
+				closeOnScrollUp: true,
+				children: [(<ul key="0"><li><a /></li></ul>)],
+			};
+			const instance = new SpeedDial(props, context);
+			instance.componentWillUnmount();
+		});
+
+		it('componentWillUnmount remove scroll eventListener (closeOnScrollUp = false)', () => {
+			const props = {
+				primaryText: 'Hallo',
+				closeOnScrollDown: false,
+				closeOnScrollUp: true,
+				children: [(<ul key="0"><li><a /></li></ul>)],
+			};
+			const instance = new SpeedDial(props, context);
+			instance.componentWillUnmount();
+		});
+
+		it('componentDidMount add scroll eventListener', () => {
+			const props = {
+				primaryText: 'Hallo',
+				closeOnScrollDown: true,
+				closeOnScrollUp: true,
+				children: [(<ul key="0"><li><a /></li></ul>)],
+			};
+			const instance = new SpeedDial(props, context);
+			instance.componentDidMount();
+		});
+
+		it('handleScroll closed', () => {
+			const props = {
+				primaryText: 'Hallo',
+				closeOnScrollDown: true,
+				closeOnScrollUp: true,
+				children: [(<ul key="0"><li><a /></li></ul>)],
+				onClickPrimaryButton() {},
+			};
+			document.body.scrollTop = 40;
+			const instance = new SpeedDial(props, context);
+			instance.state.isOpen = false;
+			instance.state.openedScrollPos = 0;
+			instance.handleScroll();
+		});
+
+		it('handleScroll close scroll down', () => {
+			const props = {
+				primaryText: 'Hallo',
+				closeOnScrollDown: true,
+				closeOnScrollUp: true,
+				children: [(<ul key="0"><li><a /></li></ul>)],
+				onClickPrimaryButton() {},
+			};
+			document.body.scrollTop = 40;
+			const instance = new SpeedDial(props, context);
+			instance.state.isOpen = true;
+			instance.state.openedScrollPos = 0;
+			instance.handleScroll();
+		});
+
+		it('handleScroll close scroll up', () => {
+			const props = {
+				primaryText: 'Hallo',
+				closeOnScrollDown: true,
+				closeOnScrollUp: true,
+				children: [(<ul key="0"><li><a /></li></ul>)],
+				onClickPrimaryButton() {},
+			};
+			document.body.scrollTop = 0;
+			const instance = new SpeedDial(props, context);
+			instance.state.isOpen = true;
+			instance.state.openedScrollPos = 100;
+			instance.handleScroll();
+		});
+
+		it('handleClickCloseToolbox', () => {
+			const props = {
+				primaryText: 'Hallo',
+				children: [(<ul key="0"><li><a /></li></ul>)],
+				onClickPrimaryButton() {},
+				onChangeState() {},
+				toolbox: {
+					height: 56,
+				},
+			};
+			document.body.scrollTop = 0;
+			const instance = new SpeedDial(props, context);
+			instance.setState = () => {};
+			instance.handleClickCloseToolbox();
 		});
 	});
 
