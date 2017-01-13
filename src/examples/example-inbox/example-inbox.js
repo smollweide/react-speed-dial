@@ -6,6 +6,7 @@ import { blue500, red600 } from 'material-ui/styles/colors';
 import IconEdit from 'material-ui/svg-icons/image/edit';
 import IconRemember from 'material-ui/svg-icons/action/touch-app';
 import { SpeedDial, BubbleList, BubbleListItem } from '../../speed-dial';
+import ExampleContent from '../example-content/example-content';
 
 const avatarImgUrl = 'http://lorempixel.com/80/80/people';
 const list = {
@@ -40,19 +41,22 @@ const ExampleInbox = () => {
 	};
 
 	return (
-		<SpeedDial
-			closeOnSecondClick={false}
-			floatingActionButtonProps={floatingActionButtonProps}
-			iconOpen={<IconEdit />}
-			primaryText="Write"
-			onClickPrimaryButton={() => { console.log('clicked write button'); }}
-		>
-			<BubbleList>
-				{list.items.map((item, index) => {
-					return (<BubbleListItem key={index} {...item} />);
-				})}
-			</BubbleList>
-		</SpeedDial>
+		<div>
+			<ExampleContent />
+			<SpeedDial
+				closeOnSecondClick={false}
+				floatingActionButtonProps={floatingActionButtonProps}
+				iconOpen={<IconEdit />}
+				primaryText="Write"
+				onClickPrimaryButton={() => { console.log('clicked write button'); }}
+			>
+				<BubbleList>
+					{list.items.map((item, index) => {
+						return (<BubbleListItem key={index} {...item} />);
+					})}
+				</BubbleList>
+			</SpeedDial>
+		</div>
 	);
 };
 
