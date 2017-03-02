@@ -8,6 +8,7 @@ export default ({ baseTheme }) => {
 				position: 'fixed',
 				width: '100%',
 				left: 0,
+				zIndex: 9999,
 			},
 			inline: {
 				position: 'relative',
