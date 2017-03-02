@@ -41,6 +41,7 @@ export default ({ paper, baseTheme }) => {
 			visible: {
 				main: {
 					opacity: 1,
+					visibility: 'visible',
 				},
 
 				// prop direction
@@ -56,6 +57,7 @@ export default ({ paper, baseTheme }) => {
 			invisible: {
 				main: {
 					opacity: 0,
+					visibility: 'hidden',
 				},
 
 				// prop direction
