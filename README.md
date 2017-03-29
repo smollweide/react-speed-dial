@@ -69,6 +69,7 @@ export default App;
 - [With `List` component](https://smollweide.github.io/react-speed-dial/#/list)
 - [Toolbox](https://smollweide.github.io/react-speed-dial/#/toolbox)
 - [Toolbox fixed](https://smollweide.github.io/react-speed-dial/#/toolbox-fixed)
+- [Controlled SpeedDial](https://smollweide.github.io/react-speed-dial/#/bug11)
 
 ## Contributing
 
@@ -83,13 +84,13 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 5. Visit github and make your pull request.
 
 ### Scripts
-- Install `npm install`
-- Start developing `npm start`
-- Lint `npm run lint`
-- Test `npm test`
-- Build `npm run build`
-- Publish `npm run publish`
-- Static server `npm run static-server`
+- Install `npm install` or `yarn install`
+- Start developing `npm start` or `yarn start`
+- Lint `npm run lint` or `yarn lint`
+- Test `npm test` or `yarn test`
+- Build `npm run build` or `yarn build`
+- Publish `npm run publish` or `yarn publish`
+- Static server `npm run static-server` or `yarn static-server`
 
 ### Coding style
 Please follow the coding style of the current code base.

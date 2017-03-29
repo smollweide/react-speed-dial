@@ -26,6 +26,7 @@ export default {
 	icon: PropTypes.object,
 	iconOpen: PropTypes.object,
 	isInitiallyOpen: PropTypes.bool,
+	isOpen: PropTypes.bool,
 	positionH: PropTypes.string,
 	positionV: PropTypes.string,
 	primaryText: PropTypes.string,
@@ -42,5 +43,6 @@ export default {
 		classNameMorphButton: PropTypes.string,
 	}),
 	onClickPrimaryButton: PropTypes.func,
+	onChange: PropTypes.func,
 	onChangeState: PropTypes.func,
 };

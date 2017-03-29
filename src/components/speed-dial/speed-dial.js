@@ -49,7 +49,7 @@ class SpeedDial extends React.Component {
 		super(props, context);
 
 		this.state = {
-			isOpen: props.isInitiallyOpen,
+			isOpen: props.isOpen || props.isInitiallyOpen,
 			isInTransition: false,
 			wasOpened: !props.isInitiallyOpen,
 			isBackdropFocused: false,
@@ -57,7 +57,7 @@ class SpeedDial extends React.Component {
 		};
 
 		this.instanceKey = String(Math.random() * 10000).substring(0, 4);
-
+		this.isControlled = Boolean(typeof props.isOpen === 'boolean');
 		this.getStylesBackdrop = this.getStylesBackdrop.bind(this);
 		this.isChildrenBubbleList = this.isChildrenBubbleList.bind(this);
 		this.isToolbox = this.isToolbox.bind(this);
@@ -73,6 +73,11 @@ class SpeedDial extends React.Component {
 		this.handleScroll = this.handleScroll.bind(this);
 		this.styles = getStyles(context.muiTheme);
 
+		/* istanbul ignore next */
+		if (this.isControlled && typeof props.onChange !== 'function') {
+			// eslint-disable-next-line
+			console.error('Warning: Failed speed-dial propType: You provided a `isOpen` prop to a speed-dial without an `onChange` handler');
+		}
 
 	}
 
@@ -86,6 +91,17 @@ class SpeedDial extends React.Component {
 		if (closeOnScrollDown === true || closeOnScrollUp === true) {
 			window.addEventListener('scroll', this.handleScroll);
 		}
+	}
+
+	/**
+	 * @param {Object} nextProps - the next props Object
+	 * @param {Function} setState - the setState method
+	 * @returns {void}
+	 */
+	componentWillReceiveProps(nextProps, setState = this.setState) {
+		setState({
+			isOpen: nextProps.isOpen,
+		});
 	}
 
 	/**
@@ -487,6 +503,11 @@ class SpeedDial extends React.Component {
 	updateState(newState) {
 		this.setState(newState);
 		this.props.onChangeState(newState);
+		if (this.isControlled && typeof newState.isOpen === 'boolean') {
+			this.props.onChange({
+				isOpen: newState.isOpen,
+			});
+		}
 	}
 
 	/**

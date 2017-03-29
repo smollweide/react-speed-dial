@@ -82,6 +82,12 @@ const props = {
 			required: false,
 			desc: 'If true, the `SpeedDial` will be opened initially.',
 		},
+		'isOpen': {
+			type: 'boolean',
+			defaultProp: 'false',
+			required: false,
+			desc: 'If true, the `SpeedDial` will be opened.',
+		},
 		'positionV': {
 			type: 'string',
 			defaultProp: '"bottom"',
@@ -127,7 +133,6 @@ const props = {
 			required: false,
 			desc: 'This prop defines a toolbox is set as child component.',
 		},
-
 		'toolbox.className': {
 			type: 'string',
 			required: false,
@@ -147,6 +152,16 @@ const props = {
 			type: 'function',
 			required: false,
 			desc: 'Callback function fired when the priamry button is clicked or touched.',
+		},
+		'onChange': {
+			type: 'function',
+			required: false,
+			desc: 'Callback function fired when the open state has changed.',
+		},
+		'onChangeState': {
+			type: 'function',
+			required: false,
+			desc: 'Callback function fired when state has changed.',
 		},
 	},
 	BubbleList: {

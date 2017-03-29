@@ -575,6 +575,22 @@ describe('<SpeedDial />', () => {
 			instance.componentWillUnmount();
 		});
 
+		it('componentWillReceiveProps', (done) => {
+			const props = {
+				isOpen: false,
+				primaryText: 'Hallo',
+				closeOnScrollDown: false,
+				closeOnScrollUp: false,
+				onChange() {},
+				children: [(<ul key="0"><li><a /></li></ul>)],
+			};
+			const instance = new SpeedDial(props, context);
+			instance.setState = done;
+			instance.componentWillReceiveProps({
+				isOpen: true,
+			});
+		});
+
 		it('componentWillUnmount remove scroll eventListener', () => {
 			const props = {
 				primaryText: 'Hallo',
@@ -668,7 +684,27 @@ describe('<SpeedDial />', () => {
 			instance.setState = () => {};
 			instance.handleClickCloseToolbox();
 		});
+
+		it('updateState', (done) => {
+			const props = {
+				primaryText: 'Hallo',
+				isOpen: true,
+				children: [(<ul key="0"><li><a /></li></ul>)],
+				onClickPrimaryButton() {},
+				onChangeState() {},
+				onChange({ isOpen }) {
+					expect(isOpen).toEqual(false);
+					done();
+				},
+				toolbox: {
+					height: 56,
+				},
+			};
+			document.body.scrollTop = 0;
+			const instance = new SpeedDial(props, context);
+			instance.setState = () => {};
+			instance.updateState({ isOpen: false });
+		});
 	});
 
 });
-
