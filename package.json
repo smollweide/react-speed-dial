@@ -48,8 +48,7 @@
 		"react-component",
 		"material design",
 		"material-ui",
-		"speed-dial",
-		"speed dial"
+		"speed-dial"
 	],
 	"peerDependencies": {
 		"material-ui": "^0.17.0",
