@@ -145,17 +145,14 @@ class BubbleListItem extends React.Component {
 	 */
 	renderContent() {
 
-		const { primaryText, direction } = this.props;
-		let content = (<span style={this.getStylesText()}>{primaryText}</span>);
-
-		if (['left', 'right'].indexOf(direction) >= 0) {
-			content = (<span style={this.getStylesText()}>{primaryText}</span>);
-		}
+		const { primaryText } = this.props;
 
 		return (
 			<span>
 				{this.renderAvatar('leftAvatar')}
-				{content}
+				<span style={this.getStylesText()}>
+					{primaryText}
+				</span>
 				{this.renderAvatar('rightAvatar')}
 			</span>
 		);
