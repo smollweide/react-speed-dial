@@ -98,9 +98,11 @@ class SpeedDial extends React.Component {
 	 * @returns {void}
 	 */
 	componentWillReceiveProps(nextProps) {
-		this.setState({
-			isOpen: nextProps.isOpen,
-		});
+		if (this.isControlled) {
+			this.setState({
+				isOpen: nextProps.isOpen,
+			});
+		}
 	}
 
 	/**
