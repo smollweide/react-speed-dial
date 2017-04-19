@@ -85,6 +85,9 @@ class ExampleBasic extends React.Component {
 							return (
 								<BubbleListItem
 									key={item.primaryText}
+									styleText={{
+										backgroundColor: '#ccc',
+									}}
 									onClick={this.handleToogleSpeedDialOpen}
 									{...item}
 								/>

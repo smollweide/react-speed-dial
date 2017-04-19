@@ -77,7 +77,7 @@ class BubbleListItem extends React.Component {
 	 * @returns {Object} styles for root element
 	 */
 	getStylesMain() {
-		const { isOpen, direction, alignment } = this.props;
+		const { isOpen, direction, alignment, style } = this.props;
 		const styles = this.styles;
 		const visibleStr = isOpen ? 'visible' : 'invisible';
 		return Object.assign(
@@ -86,7 +86,8 @@ class BubbleListItem extends React.Component {
 			styles.root[visibleStr].main,
 			styles.root.direction[direction],
 			styles.root[visibleStr].direction[direction],
-			styles.root.alignment[alignment]
+			styles.root.alignment[alignment],
+			style
 		);
 	}
 
@@ -109,14 +110,15 @@ class BubbleListItem extends React.Component {
 	 */
 	getStylesText() {
 
-		const { alignment } = this.props;
+		const { alignment, styleText } = this.props;
 		const styles = this.styles;
 
 		return Object.assign(
 			{},
 			styles.text.main,
 			styles.text.alignment[alignment],
-			this.getStylesFocus('text')
+			this.getStylesFocus('text'),
+			styleText
 		);
 	}
 
