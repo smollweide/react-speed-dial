@@ -12,12 +12,15 @@ import { SpeedDial } from '../../speed-dial';
 const list = {
 	items: [
 		{
+			id: '0',
 			icon: <IconForwards color={cyan900} />,
 		},
 		{
+			id: '1',
 			icon: <IconPause color={cyan900} />,
 		},
 		{
+			id: '2',
 			icon: <IconRewind color={cyan900} />,
 		},
 	],
@@ -75,10 +78,10 @@ const Toolbox = ({ onClickCloseToolbox }) => (
 		<BottomNavigation
 			style={{ background: teal300 }}
 		>
-			{[].concat(list.items).reverse().map((item, index) => {
+			{[].concat(list.items).reverse().map((item) => {
 				return (
 					<BottomNavigationItem
-						key={index}
+						key={item.id}
 						onTouchTap={onClickCloseToolbox}
 						{...item}
 					/>);
