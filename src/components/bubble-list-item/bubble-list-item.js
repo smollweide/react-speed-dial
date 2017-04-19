@@ -149,7 +149,7 @@ class BubbleListItem extends React.Component {
 		let content = (<span style={this.getStylesText()}>{primaryText}</span>);
 
 		if (['left', 'right'].indexOf(direction) >= 0) {
-			content = null;
+			content = (<span style={this.getStylesText()}>{primaryText}</span>);
 		}
 
 		return (
