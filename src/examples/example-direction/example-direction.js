@@ -8,14 +8,17 @@ const avatarImgUrl = 'http://lorempixel.com/80/80/people';
 const list = {
 	items: [
 		{
+			id: 0,
 			primaryText: 'Kerem Suer',
 			rightAvatar: <Avatar src={`${avatarImgUrl}/6`} />,
 		},
 		{
+			id: 1,
 			primaryText: 'Raquel Parrado',
 			rightAvatar: <Avatar src={`${avatarImgUrl}/7`} />,
 		},
 		{
+			id: 2,
 			primaryText: 'Write',
 			rightAvatar: <Avatar backgroundColor={blue500} icon={<IconEdit />} />,
 		},
@@ -33,8 +36,8 @@ const ExampleDirection = () => {
 					alignment="up"
 					direction="left"
 				>
-					{list.items.reverse().map((item, index) => {
-						return (<BubbleListItem key={index} {...item} />);
+					{list.items.reverse().map((item) => {
+						return (<BubbleListItem key={item.id} {...item} />);
 					})}
 				</BubbleList>
 			</SpeedDial>

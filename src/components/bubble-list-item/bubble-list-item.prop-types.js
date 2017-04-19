@@ -12,6 +12,8 @@ export default {
 	positionV: PropTypes.string,
 	primaryText: PropTypes.string,
 	rightAvatar: PropTypes.object,
+	style: PropTypes.object,
+	styleText: PropTypes.object,
 	tabIndex: PropTypes.oneOfType([
 		PropTypes.string,
 		PropTypes.number,

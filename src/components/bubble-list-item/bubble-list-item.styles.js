@@ -107,6 +107,12 @@ export default ({ paper, baseTheme }) => {
 				right: {
 					marginRight: 24,
 				},
+				up: {
+					display: 'none',
+				},
+				down: {
+					display: 'none',
+				}
 			},
 		},
 

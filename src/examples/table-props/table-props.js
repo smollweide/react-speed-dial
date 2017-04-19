@@ -223,6 +223,16 @@ const props = {
 			required: false,
 			desc: 'This is the index to define the tabIndex for the link.',
 		},
+		style: {
+			type: 'object',
+			required: false,
+			desc: 'This style object defines the styles for the `root` element.',
+		},
+		styleText: {
+			type: 'object',
+			required: false,
+			desc: 'This style object defines the styles for the `text` element.',
+		},
 		onClick: {
 			type: 'function',
 			required: false,

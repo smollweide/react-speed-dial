@@ -217,15 +217,14 @@ describe('<BubbleListItem />', () => {
 		expect(getDomFromString(wrapper.find('a').html()).getAttribute('tabindex')).toEqual('1');
 	});
 
-	it('renderContent returns null if direction is left or right', () => {
+	it('renderContent returns something if direction is left or right', () => {
 		const props = {
 			isOpen: true,
 			primaryText: 'Hallo',
 			direction: 'left',
 		};
 		const instance = new BubbleListItem(props, context);
-		expect(instance.renderContent().props.children[1]).toEqual(null);
+		expect(typeof instance.renderContent().props.children[1]).toEqual('object');
 	});
 
 });
-
