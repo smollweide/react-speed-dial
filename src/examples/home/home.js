@@ -47,6 +47,10 @@ const Home = () => {
 					exampleCode="toolbox-fixed"
 					title="Toolbox fixed"
 				/>
+				<Example
+					exampleCode="rtl"
+					title="RTL"
+				/>
 
 				<h2>Properties</h2>
 				<TableProps componentName="SpeedDial" />

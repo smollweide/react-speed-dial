@@ -18,6 +18,7 @@ import ExampleToolbox from '../example-toolbox/example-toolbox';
 import ExampleToolboxFixed from '../example-toolbox-fixed/example-toolbox-fixed';
 import ExampleBug6 from '../example-bug6/example-bug6';
 import ExampleBug11 from '../example-bug11/example-bug11';
+import ExampleRtl from '../example-rtl/example-rtl';
 
 injectTapEventPlugin();
 
@@ -41,6 +42,7 @@ const App = () => {
 					<Route component={ExampleToolboxFixed} path="/toolbox-fixed" />
 					<Route component={ExampleBug6} path="/bug6" />
 					<Route component={ExampleBug11} path="/bug11" />
+					<Route component={ExampleRtl} path="/rtl" />
 				</Router>
 			</div>
 		</MuiThemeProvider>
