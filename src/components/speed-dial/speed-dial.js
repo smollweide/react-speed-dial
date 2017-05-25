@@ -1,5 +1,6 @@
 
 import React from 'react';
+import PropTypes from 'prop-types';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 import { cyan500 } from 'material-ui/styles/colors';
 
@@ -775,7 +776,7 @@ SpeedDial.displayName = 'SpeedDial';
 SpeedDial.propTypes = propTypes;
 SpeedDial.defaultProps = defaultProps;
 SpeedDial.contextTypes = {
-	muiTheme: React.PropTypes.object.isRequired,
+	muiTheme: PropTypes.object.isRequired,
 };
 
 export default SpeedDial;

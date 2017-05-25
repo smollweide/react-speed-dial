@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { grey800, grey200, teal300, cyan900 } from 'material-ui/styles/colors';
 import IconPlay from 'material-ui/svg-icons/av/play-arrow';
 import IconPause from 'material-ui/svg-icons/av/pause';
@@ -90,7 +91,7 @@ const Toolbox = ({ onClickCloseToolbox }) => (
 	</div>
 );
 Toolbox.propTypes = {
-	onClickCloseToolbox: React.PropTypes.func,
+	onClickCloseToolbox: PropTypes.func,
 };
 
 /**
