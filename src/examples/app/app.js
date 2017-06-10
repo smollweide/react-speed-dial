@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Router, Route, hashHistory } from 'react-router';
+import { HashRouter, Route } from 'react-router-dom';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 
@@ -25,9 +25,13 @@ injectTapEventPlugin();
 const App = () => {
 	return (
 		<MuiThemeProvider>
-			<div className="app">
-				<Router history={hashHistory}>
-					<Route component={Home} path="/" />
+			<HashRouter>
+				<div className="app">
+					<Route
+						exact
+						component={Home}
+						path="/"
+					/>
 					<Route component={ExampleBasic} path="/basic" />
 					<Route component={ExampleTopLeft} path="/top-left" />
 					<Route component={ExampleInline} path="/inline" />
@@ -43,11 +47,12 @@ const App = () => {
 					<Route component={ExampleBug6} path="/bug6" />
 					<Route component={ExampleBug11} path="/bug11" />
 					<Route component={ExampleRtl} path="/rtl" />
-				</Router>
-			</div>
+				</div>
+			</HashRouter>
 		</MuiThemeProvider>
 	);
 };
+
 
 App.displayName = 'App';
 App.propTypes = {};
