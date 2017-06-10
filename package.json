@@ -1,6 +1,6 @@
 {
 	"name": "react-speed-dial",
-	"version": "0.4.4",
+	"version": "0.4.5",
 	"description": "React Component that implements a speed dial using Material-UI.",
 	"email": "simon.mollweide@web.de",
 	"author": "Simon Mollweide <simon.mollweide@web.de>",
@@ -34,7 +34,7 @@
 		"test:coverage": "npm test -- --coverage",
 		"eject": "react-scripts eject",
 		"lint": "npm run lint:js",
-		"lint:js": "node_modules/.bin/eslint src/**/*.jsx src/**/*.js",
+		"lint:js": "node_modules/.bin/eslint .",
 		"prestatic-server": "open http://localhost:9000",
 		"static-server": "pushstate-server build",
 		"prepublish": "npm run clean:publish",
@@ -51,7 +51,7 @@
 		"speed-dial"
 	],
 	"peerDependencies": {
-		"material-ui": "^0.17.0",
+		"material-ui": "^0.17.0 || ^0.18.0",
 		"react": "^15.0.0",
 		"react-dom": "^15.0.0",
 		"react-tap-event-plugin": "^1.0.0 || ^2.0.0"
@@ -85,7 +85,7 @@
 	},
 	"dependencies": {
 		"babel-runtime": "^6.23.0",
-		"material-ui": "^0.17.0",
+		"material-ui": "^0.18.3",
 		"prop-types": "^15.5.10",
 		"react": "^15.4.2",
 		"react-dom": "^15.4.2",
