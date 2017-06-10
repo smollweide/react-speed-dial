@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import './table-props.css';
 
 const props = {
@@ -300,7 +301,7 @@ const TableProps = ({ componentName }) => {
 
 TableProps.displayName = 'TableProps';
 TableProps.propTypes = {
-	componentName: React.PropTypes.string,
+	componentName: PropTypes.string,
 };
 TableProps.defaultProps = {
 	componentName: 'SpeedDial',

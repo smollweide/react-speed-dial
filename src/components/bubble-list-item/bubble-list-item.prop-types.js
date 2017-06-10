@@ -1,5 +1,5 @@
 
-import { PropTypes } from 'react';
+import { PropTypes } from 'prop-types';
 
 export default {
 	alignment: PropTypes.string,
