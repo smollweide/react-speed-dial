@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Router, Route, hashHistory } from 'react-router';
+import { HashRouter, Route } from 'react-router-dom';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 
@@ -18,15 +18,20 @@ import ExampleToolbox from '../example-toolbox/example-toolbox';
 import ExampleToolboxFixed from '../example-toolbox-fixed/example-toolbox-fixed';
 import ExampleBug6 from '../example-bug6/example-bug6';
 import ExampleBug11 from '../example-bug11/example-bug11';
+import ExampleRtl from '../example-rtl/example-rtl';
 
 injectTapEventPlugin();
 
 const App = () => {
 	return (
 		<MuiThemeProvider>
-			<div className="app">
-				<Router history={hashHistory}>
-					<Route component={Home} path="/" />
+			<HashRouter>
+				<div className="app">
+					<Route
+						exact
+						component={Home}
+						path="/"
+					/>
 					<Route component={ExampleBasic} path="/basic" />
 					<Route component={ExampleTopLeft} path="/top-left" />
 					<Route component={ExampleInline} path="/inline" />
@@ -41,11 +46,13 @@ const App = () => {
 					<Route component={ExampleToolboxFixed} path="/toolbox-fixed" />
 					<Route component={ExampleBug6} path="/bug6" />
 					<Route component={ExampleBug11} path="/bug11" />
-				</Router>
-			</div>
+					<Route component={ExampleRtl} path="/rtl" />
+				</div>
+			</HashRouter>
 		</MuiThemeProvider>
 	);
 };
+
 
 App.displayName = 'App';
 App.propTypes = {};

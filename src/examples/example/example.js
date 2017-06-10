@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Card, CardHeader, CardText } from 'material-ui/Card';
 
 import './example.css';
@@ -34,9 +35,9 @@ const Example = ({ exampleCode, title, subtitle }) => {
 
 Example.displayName = 'Example';
 Example.propTypes = {
-	exampleCode: React.PropTypes.string.isRequired,
-	title: React.PropTypes.string.isRequired,
-	subtitle: React.PropTypes.string,
+	exampleCode: PropTypes.string.isRequired,
+	title: PropTypes.string.isRequired,
+	subtitle: PropTypes.string,
 };
 Example.defaultProps = {};
 

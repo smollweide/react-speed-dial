@@ -3,12 +3,12 @@ export default {
 		zDepthShadows: [
 			'',
 			'',
-		]
+		],
 	},
 	baseTheme: {
 		palette: {
 			secondaryTextColor: '#fff',
 			canvasColor: '#fff',
-		}
-	}
+		},
+	},
 };

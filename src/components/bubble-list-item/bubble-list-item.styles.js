@@ -112,7 +112,7 @@ export default ({ paper, baseTheme }) => {
 				},
 				down: {
 					display: 'none',
-				}
+				},
 			},
 		},
 

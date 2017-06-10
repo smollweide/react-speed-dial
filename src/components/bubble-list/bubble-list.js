@@ -1,5 +1,6 @@
 
 import React from 'react';
+import PropTypes from 'prop-types';
 import getStyles from './bubble-list.styles';
 
 /**
@@ -115,20 +116,20 @@ class BubbleList extends React.Component {
 
 BubbleList.displayName = 'BubbleList';
 BubbleList.propTypes = {
-	alignment: React.PropTypes.string,
-	children: React.PropTypes.any,
-	className: React.PropTypes.string,
-	direction: React.PropTypes.string,
-	isInTransition: React.PropTypes.bool,
-	isOpen: React.PropTypes.bool,
-	positionV: React.PropTypes.string,
+	alignment: PropTypes.string,
+	children: PropTypes.any,
+	className: PropTypes.string,
+	direction: PropTypes.string,
+	isInTransition: PropTypes.bool,
+	isOpen: PropTypes.bool,
+	positionV: PropTypes.string,
 };
 BubbleList.defaultProps = {
 	isOpen: false,
 	isInTransition: false,
 };
 BubbleList.contextTypes = {
-	muiTheme: React.PropTypes.object.isRequired,
+	muiTheme: PropTypes.object.isRequired,
 };
 
 export default BubbleList;

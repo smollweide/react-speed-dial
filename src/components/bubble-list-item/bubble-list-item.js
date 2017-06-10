@@ -1,5 +1,6 @@
 
 import React from 'react';
+import PropTypes from 'prop-types';
 import propTypes from './bubble-list-item.prop-types';
 import defaultProps from './bubble-list-item.default-props';
 import getStyles from './bubble-list-item.styles';
@@ -218,6 +219,6 @@ BubbleListItem.displayName = 'BubbleListItem';
 BubbleListItem.propTypes = propTypes;
 BubbleListItem.defaultProps = defaultProps;
 BubbleListItem.contextTypes = {
-	muiTheme: React.PropTypes.object.isRequired,
+	muiTheme: PropTypes.object.isRequired,
 };
 export default BubbleListItem;

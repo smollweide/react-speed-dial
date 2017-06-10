@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { blue500, white } from 'material-ui/styles/colors';
 import IconShare from 'material-ui/svg-icons/social/share';
 import IconMail from 'material-ui/svg-icons/communication/email';
@@ -44,7 +45,7 @@ const Toolbox = ({ onClickCloseToolbox }) => (
 	</div>
 );
 Toolbox.propTypes = {
-	onClickCloseToolbox: React.PropTypes.func,
+	onClickCloseToolbox: PropTypes.func,
 };
 
 const ExampleToolbox = () => {
