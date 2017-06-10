@@ -1,6 +1,3 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import { shallow } from 'enzyme';
 
 import getDomFromString from './get-dom-from-string';
 import getStylesFromDomNode from './get-styles-from-dom-node';
@@ -19,4 +16,3 @@ it('getStylesFromDomNode returns empty object when not style attr is set', () =>
 	const wrapper = document.createElement('div');
 	expect(Object.keys(getStylesFromDomNode(wrapper)).length).toEqual(0);
 });
-
