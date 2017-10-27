@@ -230,6 +230,7 @@ export default ({ baseTheme }) => {
 				position: 'absolute',
 				transform: 'rotate(0deg)',
 				opacity: 1,
+				left: 16,
 			},
 			invisible: {
 				position: 'absolute',
