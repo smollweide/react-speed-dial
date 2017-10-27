@@ -47,7 +47,8 @@
     "build": "npm-run-all build:*",
     "build:babel": "NODE_ENV=release babel ./src/components --out-dir ./dist/components --ignore spec.js",
     "build:index": "BABEL_ENV=es babel ./src/speed-dial.js --out-file ./dist/index.js",
-    "prettier": "node_modules/.bin/prettier --write 'src/**/*.js' 'bin/**/*.js' --config package.json"
+    "prettier": "node_modules/.bin/prettier --write 'src/**/*.js' 'bin/**/*.js' --config package.json",
+    "semantic-release": "semantic-release pre && npm publish && semantic-release post"
   },
   "keywords": [
     "react",
