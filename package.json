@@ -54,9 +54,16 @@
 		"material-ui": "^0.17.0 || ^0.18.0",
 		"react": "^15.0.0",
 		"react-dom": "^15.0.0",
-		"react-tap-event-plugin": "^1.0.0 || ^2.0.0"
+		"react-tap-event-plugin": "^1.0.0 || ^2.0.0",
+		"prop-types": "^15.5.10"
 	},
 	"devDependencies": {
+		"material-ui": "^0.18.3",
+		"react-router-dom": "^4.1.1",
+		"react-tap-event-plugin": "^2.0.1",
+		"babel-runtime": "^6.23.0",
+		"react": "^15.0.0",
+		"react-dom": "^15.0.0",
 		"@namics/eslint-config": "^2.0.0",
 		"babel-cli": "^6.18.0",
 		"babel-core": "^6.18.2",
@@ -83,15 +90,5 @@
 		"rimraf": "^2.5.4",
 		"sinon": "^1.17.6",
 		"webpack": "^1.13.3"
-	},
-	"dependencies": {
-		"babel-runtime": "^6.23.0",
-		"material-ui": "^0.18.3",
-		"prop-types": "^15.5.10",
-		"react": "^15.5.4",
-		"react-dom": "^15.5.4",
-		"react-router-dom": "^4.1.1",
-		"react-tap-event-plugin": "^2.0.1",
-		"simple-assign": "^0.1.0"
 	}
 }
