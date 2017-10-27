@@ -1,13 +1,7 @@
 
-# react-speed-dial
+# react-speed-dial [![Build Status](https://img.shields.io/travis/smollweide/react-speed-dial/master.svg)](https://travis-ci.org/smollweide/react-speed-dial)
 
-[![npm version](https://badge.fury.io/js/react-speed-dial.svg)](https://badge.fury.io/js/react-speed-dial)
-[![Build Status](https://img.shields.io/travis/smollweide/react-speed-dial/master.svg)](https://travis-ci.org/smollweide/react-speed-dial)
-[![Coverage Status](https://coveralls.io/repos/github/smollweide/react-speed-dial/badge.svg?branch=master)](https://coveralls.io/github/smollweide/react-speed-dial?branch=master)
-[![Dependencies](https://img.shields.io/david/smollweide/react-speed-dial/master.svg)](https://david-dm.org/smollweide/react-speed-dial)
-[![Codestyle](https://img.shields.io/badge/codestyle-namics-green.svg)](https://github.com/namics/eslint-config-namics)
-
-React Component that implements a speed dial using [Material-UI](http://www.material-ui.com).
+> React Component that implements a speed dial using [Material-UI](http://www.material-ui.com).
 
 like inbox | toolbox version
 ------------ | -------------
@@ -67,6 +61,16 @@ export default App;
 - [Toolbox](https://smollweide.github.io/react-speed-dial/#/toolbox)
 - [Toolbox fixed](https://smollweide.github.io/react-speed-dial/#/toolbox-fixed)
 - [Controlled SpeedDial](https://smollweide.github.io/react-speed-dial/#/bug11)
+
+## Shields
+[![coverage status](https://coveralls.io/repos/github/smollweide/react-speed-dial/badge.svg?branch=master)](https://coveralls.io/github/smollweide/react-speed-dial?branch=master)
+[![npm](https://img.shields.io/npm/v/react-speed-dial.svg)](http://npm.im/react-speed-dial)
+[![downloads](https://img.shields.io/npm/dm/react-speed-dial.svg)](https://npm-stat.com/charts.html?package=react-speed-dial)
+[![MIT License](https://img.shields.io/npm/l/react-speed-dial.svg)](http://opensource.org/licenses/MIT)
+[![Codestyle](https://img.shields.io/badge/codestyle-namics-green.svg)](https://github.com/namics/eslint-config-namics)
+[![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
+[![styled with prettier](https://img.shields.io/badge/styled_with-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
+[![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release)
 
 ## Contributing
 
