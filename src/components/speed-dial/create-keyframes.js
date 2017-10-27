@@ -1,4 +1,3 @@
-
 const defaults = {
 	className: 'animation',
 	name: 'animationFrame',
@@ -33,19 +32,15 @@ const defaults = {
  * @returns {string} the keyframe css string
  */
 function createKeyframes(options, transformations) {
-
 	const out = [];
 	const { className, name, type, duration, iterationCount } = Object.assign({}, defaults, options);
-	const animations = [
-		`animation:${name} ${type} ${duration};`,
-		`animation-iteration-count:${iterationCount};`,
-	];
+	const animations = [`animation:${name} ${type} ${duration};`, `animation-iteration-count:${iterationCount};`];
 	out.push(`.${className}{${animations.join('')}}`);
 	out.push(`@keyframes ${name}{`);
-	Object.keys(transformations).forEach((step) => {
+	Object.keys(transformations).forEach(step => {
 		const transform = [];
 		const transformObj = transformations[step];
-		Object.keys(transformObj).forEach((transName) => {
+		Object.keys(transformObj).forEach(transName => {
 			transform.push(`${transName}(${transformObj[transName]})`);
 		});
 		out.push(`${step}{transform:${transform.join(' ')}}`);

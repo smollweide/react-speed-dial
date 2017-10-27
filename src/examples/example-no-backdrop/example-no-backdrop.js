@@ -18,7 +18,7 @@ const ExampleNoBackdrop = () => {
 		<SpeedDial hasBackdrop={false}>
 			<BubbleList>
 				{list.items.map((item, index) => {
-					return (<BubbleListItem key={index} {...item} />);
+					return <BubbleListItem key={index} {...item} />;
 				})}
 			</BubbleList>
 		</SpeedDial>

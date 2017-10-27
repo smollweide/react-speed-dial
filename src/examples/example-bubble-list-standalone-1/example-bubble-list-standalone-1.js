@@ -27,52 +27,36 @@ const ExampleBubbleListStandalone1 = () => {
 	return (
 		<div>
 			<div style={{ position: 'absolute', top: 20, left: 20, border: '1px solid black' }}>
-				<BubbleList
-					isOpen
-					alignment="left"
-					direction="down"
-				>
+				<BubbleList isOpen alignment="left" direction="down">
 					{listReverse.map((item, index) => {
 						const itemCp = Object.assign({}, item);
 						itemCp.leftAvatar = Object.assign({}, itemCp.rightAvatar);
 						delete itemCp.rightAvatar;
-						return (<BubbleListItem key={index} {...itemCp} />);
+						return <BubbleListItem key={index} {...itemCp} />;
 					})}
 				</BubbleList>
 			</div>
 			<div style={{ position: 'absolute', top: 20, right: 20, border: '1px solid black' }}>
-				<BubbleList
-					isOpen
-					alignment="right"
-					direction="down"
-				>
+				<BubbleList isOpen alignment="right" direction="down">
 					{listReverse.map((item, index) => {
-						return (<BubbleListItem key={index} {...item} />);
+						return <BubbleListItem key={index} {...item} />;
 					})}
 				</BubbleList>
 			</div>
 			<div style={{ position: 'absolute', bottom: 20, right: 20, border: '1px solid black' }}>
-				<BubbleList
-					isOpen
-					alignment="right"
-					direction="up"
-				>
+				<BubbleList isOpen alignment="right" direction="up">
 					{list.items.map((item, index) => {
-						return (<BubbleListItem key={index} {...item} />);
+						return <BubbleListItem key={index} {...item} />;
 					})}
 				</BubbleList>
 			</div>
 			<div style={{ position: 'absolute', bottom: 20, left: 20, border: '1px solid black' }}>
-				<BubbleList
-					isOpen
-					alignment="left"
-					direction="up"
-				>
+				<BubbleList isOpen alignment="left" direction="up">
 					{list.items.map((item, index) => {
 						const itemCp = Object.assign({}, item);
 						itemCp.leftAvatar = Object.assign({}, itemCp.rightAvatar);
 						delete itemCp.rightAvatar;
-						return (<BubbleListItem key={index} {...itemCp} />);
+						return <BubbleListItem key={index} {...itemCp} />;
 					})}
 				</BubbleList>
 			</div>

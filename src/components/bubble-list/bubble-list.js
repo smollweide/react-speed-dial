@@ -1,4 +1,3 @@
-
 import React from 'react';
 import PropTypes from 'prop-types';
 import getStyles from './bubble-list.styles';
@@ -22,7 +21,6 @@ function isValidChild(child, displayName) {
  * Class BubbleList
  */
 class BubbleList extends React.Component {
-
 	/**
 	 * @param {Object} props - component props
 	 * @param {Object} muiTheme - the muiTheme in context
@@ -61,7 +59,6 @@ class BubbleList extends React.Component {
 	 * @returns {XML} returns the cloned child component
 	 */
 	renderChild(child, index) {
-
 		const { isOpen, isInTransition, direction = 'up', alignment = 'right' } = this.props;
 
 		if (!isValidChild(child, 'BubbleListItem')) {
@@ -82,11 +79,10 @@ class BubbleList extends React.Component {
 	 * @returns {XML|Array} returns the children component's
 	 */
 	renderChildren() {
-
 		const { children } = this.props;
 
 		if (!children) {
-			return (<ul style={this.getStylesMain()} />);
+			return <ul style={this.getStylesMain()} />;
 		}
 
 		if (!isValidChild(children, 'BubbleListItem')) {
@@ -103,11 +99,10 @@ class BubbleList extends React.Component {
 	 * @returns {XML} returns the component
 	 */
 	render() {
-
 		const { className } = this.props;
 
 		return (
-			<ul className={className} style={this.getStylesMain()} >
+			<ul className={className} style={this.getStylesMain()}>
 				{this.renderChildren()}
 			</ul>
 		);

@@ -32,13 +32,10 @@ const list = {
 
 const ExampleTopLeft = () => {
 	return (
-		<SpeedDial
-			positionH="left"
-			positionV="top"
-		>
+		<SpeedDial positionH="left" positionV="top">
 			<BubbleList>
 				{list.items.map((item, index) => {
-					return (<BubbleListItem key={index} {...item} />);
+					return <BubbleListItem key={index} {...item} />;
 				})}
 			</BubbleList>
 		</SpeedDial>

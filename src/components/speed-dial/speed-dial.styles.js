@@ -64,8 +64,6 @@ export default ({ baseTheme }) => {
 		},
 
 		morphActionButton: {
-
-
 			main: {
 				display: 'inline-block',
 				transition: transitions.easeOut(),
@@ -85,8 +83,7 @@ export default ({ baseTheme }) => {
 				transition: 'none',
 			},
 
-			opening: {
-			},
+			opening: {},
 
 			open: {
 				transition: 'none',

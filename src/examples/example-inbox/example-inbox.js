@@ -14,7 +14,9 @@ const list = {
 		{
 			primaryText: 'Eric Hoffman',
 			rightAvatar: <Avatar src={`${avatarImgUrl}/1`} />,
-			onClick() { console.log('click on "Eric Hoffman"'); },
+			onClick() {
+				console.log('click on "Eric Hoffman"');
+			},
 		},
 		{
 			primaryText: 'Grace Ng',
@@ -24,18 +26,21 @@ const list = {
 		{
 			primaryText: 'Raquel Parrado',
 			rightAvatar: <Avatar src={`${avatarImgUrl}/7`} />,
-			onTouchTap() { console.log('touchTap on "Raquel Parrado"'); },
+			onClick() {
+				console.log('click on "Raquel Parrado"');
+			},
 		},
 		{
 			primaryText: 'Remember',
 			rightAvatar: <Avatar backgroundColor={blue500} icon={<IconRemember />} />,
-			onTouchTap() { console.log('touchTap on "Remember"'); },
+			onClick() {
+				console.log('click on "Remember"');
+			},
 		},
 	],
 };
 
 const ExampleInbox = () => {
-
 	const floatingActionButtonProps = {
 		backgroundColor: red600,
 	};
@@ -48,11 +53,13 @@ const ExampleInbox = () => {
 				floatingActionButtonProps={floatingActionButtonProps}
 				iconOpen={<IconEdit />}
 				primaryText="Write"
-				onClickPrimaryButton={() => { console.log('clicked write button'); }}
+				onClickPrimaryButton={() => {
+					console.log('clicked write button');
+				}}
 			>
 				<BubbleList>
 					{list.items.map((item, index) => {
-						return (<BubbleListItem key={index} {...item} />);
+						return <BubbleListItem key={index} {...item} />;
 					})}
 				</BubbleList>
 			</SpeedDial>

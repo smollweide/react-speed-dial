@@ -76,17 +76,13 @@ const Toolbox = ({ onClickCloseToolbox }) => (
 		<div style={styles.progress}>
 			<div style={styles.progressBar} />
 		</div>
-		<BottomNavigation
-			style={{ background: teal300 }}
-		>
-			{[].concat(list.items).reverse().map((item) => {
-				return (
-					<BottomNavigationItem
-						key={item.id}
-						onTouchTap={onClickCloseToolbox}
-						{...item}
-					/>);
-			})}
+		<BottomNavigation style={{ background: teal300 }}>
+			{[]
+				.concat(list.items)
+				.reverse()
+				.map(item => {
+					return <BottomNavigationItem key={item.id} onClick={onClickCloseToolbox} {...item} />;
+				})}
 		</BottomNavigation>
 	</div>
 );
@@ -98,7 +94,6 @@ Toolbox.propTypes = {
  * Class ExampleToolbox
  */
 class ExampleToolbox extends React.Component {
-
 	/**
 	 * @param {Object} props - component props
 	 * @returns {void}
@@ -149,9 +144,7 @@ class ExampleToolbox extends React.Component {
 					>
 						<Toolbox />
 					</SpeedDial>
-					<div style={this.state.isOpen ? styles.titleOpen : styles.title}>
-						Kodaline / In A Perfect World
-					</div>
+					<div style={this.state.isOpen ? styles.titleOpen : styles.title}>Kodaline / In A Perfect World</div>
 				</div>
 			</section>
 		);

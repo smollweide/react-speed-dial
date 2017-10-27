@@ -30,17 +30,13 @@ const list = {
 
 const Toolbox = ({ onClickCloseToolbox }) => (
 	<div style={{ position: 'relative' }}>
-		<BottomNavigation
-			style={{ background: blue500 }}
-		>
-			{[].concat(list.items).reverse().map((item, index) => {
-				return (
-					<BottomNavigationItem
-						key={index}
-						onTouchTap={onClickCloseToolbox}
-						{...item}
-					/>);
-			})}
+		<BottomNavigation style={{ background: blue500 }}>
+			{[]
+				.concat(list.items)
+				.reverse()
+				.map((item, index) => {
+					return <BottomNavigationItem key={index} onClick={onClickCloseToolbox} {...item} />;
+				})}
 		</BottomNavigation>
 	</div>
 );

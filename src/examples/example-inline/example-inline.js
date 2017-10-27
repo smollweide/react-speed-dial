@@ -42,58 +42,46 @@ const ExampleInline = () => {
 	return (
 		<section>
 			<div style={{ margin: '50px 0' }}>
-				<SpeedDial
-					positionH="left"
-					positionV="inline"
-				>
-					<BubbleList
-						alignment="middle"
-						direction="right"
-					>
-						{[].concat(list.items).reverse().map((item, index) => {
-							return (<BubbleListItem key={index} {...item} />);
-						})}
+				<SpeedDial positionH="left" positionV="inline">
+					<BubbleList alignment="middle" direction="right">
+						{[]
+							.concat(list.items)
+							.reverse()
+							.map((item, index) => {
+								return <BubbleListItem key={index} {...item} />;
+							})}
 					</BubbleList>
 				</SpeedDial>
 			</div>
 			<div style={{ margin: '100px 0' }}>
-				<SpeedDial
-					positionV="inline"
-				>
-					<BubbleList
-						alignment="middle"
-						direction="left"
-					>
-						{[].concat(list.items).reverse().map((item, index) => {
-							return (<BubbleListItem key={index} {...item} />);
-						})}
+				<SpeedDial positionV="inline">
+					<BubbleList alignment="middle" direction="left">
+						{[]
+							.concat(list.items)
+							.reverse()
+							.map((item, index) => {
+								return <BubbleListItem key={index} {...item} />;
+							})}
 					</BubbleList>
 				</SpeedDial>
 			</div>
 			<div style={{ margin: '100px 0' }}>
-				<SpeedDial
-					positionH="left"
-					positionV="inline"
-				>
-					<BubbleList
-						direction="down"
-					>
-						{[].concat(listLeft.items).reverse().map((item, index) => {
-							return (<BubbleListItem key={index} {...item} />);
-						})}
+				<SpeedDial positionH="left" positionV="inline">
+					<BubbleList direction="down">
+						{[]
+							.concat(listLeft.items)
+							.reverse()
+							.map((item, index) => {
+								return <BubbleListItem key={index} {...item} />;
+							})}
 					</BubbleList>
 				</SpeedDial>
 			</div>
 			<div style={{ margin: '100px 0' }}>
-				<SpeedDial
-					positionH="right"
-					positionV="inline"
-				>
-					<BubbleList
-						direction="up"
-					>
+				<SpeedDial positionH="right" positionV="inline">
+					<BubbleList direction="up">
 						{list.items.map((item, index) => {
-							return (<BubbleListItem key={index} {...item} />);
+							return <BubbleListItem key={index} {...item} />;
 						})}
 					</BubbleList>
 				</SpeedDial>

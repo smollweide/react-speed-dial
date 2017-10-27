@@ -39,7 +39,7 @@ const ExampleList = () => {
 				<CardText>
 					<List>
 						{list.items.map((item, index) => {
-							return (<ListItem key={index} {...item} />);
+							return <ListItem key={index} {...item} />;
 						})}
 					</List>
 				</CardText>

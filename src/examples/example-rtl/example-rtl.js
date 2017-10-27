@@ -27,7 +27,6 @@ const list = {
  * Class SpeedDial
  */
 class ExampleRtl extends React.Component {
-
 	/**
 	 * @param {Object} props - component props
 	 * @returns {void}
@@ -55,27 +54,17 @@ class ExampleRtl extends React.Component {
 	 * @returns {XML} returns the component
 	 */
 	render() {
-
 		const { rtl } = this.state;
 
 		return (
 			<div>
-				<h1 style={{ textAlign: 'center' }}>
-					{rtl ? 'RTL' : 'LTR'}
-				</h1>
+				<h1 style={{ textAlign: 'center' }}>{rtl ? 'RTL' : 'LTR'}</h1>
 				<div style={{ textAlign: 'center' }}>
-					<RaisedButton
-						label="Toggle"
-						style={{ margin: 40 }}
-						onClick={this.handleToogle}
-					/>
+					<RaisedButton label="Toggle" style={{ margin: 40 }} onClick={this.handleToogle} />
 				</div>
-				<SpeedDial
-					positionH={rtl ? 'left' : 'right'}
-				>
+				<SpeedDial positionH={rtl ? 'left' : 'right'}>
 					<BubbleList>
 						{list.items.map(({ primaryText, rightAvatar }) => {
-
 							const item = {
 								primaryText,
 							};
@@ -86,12 +75,7 @@ class ExampleRtl extends React.Component {
 								item.rightAvatar = rightAvatar;
 							}
 
-							return (
-								<BubbleListItem
-									key={primaryText}
-									{...item}
-								/>
-							);
+							return <BubbleListItem key={primaryText} {...item} />;
 						})}
 					</BubbleList>
 				</SpeedDial>

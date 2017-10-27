@@ -2,7 +2,6 @@ import transitions from 'material-ui/styles/transitions';
 
 export default ({ paper, baseTheme }) => {
 	return {
-
 		root: {
 			main: {
 				backgroundColor: 'transparent',

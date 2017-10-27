@@ -27,46 +27,30 @@ const ExampleBubbleListStandalone2 = () => {
 	return (
 		<div>
 			<div style={{ position: 'absolute', top: 20, left: 20, border: '1px solid black' }}>
-				<BubbleList
-					isOpen
-					alignment="down"
-					direction="right"
-				>
+				<BubbleList isOpen alignment="down" direction="right">
 					{listReverse.map((item, index) => {
-						return (<BubbleListItem key={index} {...item} />);
+						return <BubbleListItem key={index} {...item} />;
 					})}
 				</BubbleList>
 			</div>
 			<div style={{ position: 'absolute', top: 20, right: 20, border: '1px solid black' }}>
-				<BubbleList
-					isOpen
-					alignment="down"
-					direction="left"
-				>
+				<BubbleList isOpen alignment="down" direction="left">
 					{listReverse.map((item, index) => {
-						return (<BubbleListItem key={index} {...item} />);
+						return <BubbleListItem key={index} {...item} />;
 					})}
 				</BubbleList>
 			</div>
 			<div style={{ position: 'absolute', bottom: 20, right: 20, border: '1px solid black' }}>
-				<BubbleList
-					isOpen
-					alignment="up"
-					direction="left"
-				>
+				<BubbleList isOpen alignment="up" direction="left">
 					{listReverse.map((item, index) => {
-						return (<BubbleListItem key={index} {...item} />);
+						return <BubbleListItem key={index} {...item} />;
 					})}
 				</BubbleList>
 			</div>
 			<div style={{ position: 'absolute', bottom: 20, left: 20, border: '1px solid black' }}>
-				<BubbleList
-					isOpen
-					alignment="up"
-					direction="right"
-				>
+				<BubbleList isOpen alignment="up" direction="right">
 					{listReverse.map((item, index) => {
-						return (<BubbleListItem key={index} {...item} />);
+						return <BubbleListItem key={index} {...item} />;
 					})}
 				</BubbleList>
 			</div>

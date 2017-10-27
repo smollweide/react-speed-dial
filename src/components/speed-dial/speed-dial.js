@@ -1,4 +1,3 @@
-
 import React from 'react';
 import PropTypes from 'prop-types';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
@@ -40,7 +39,6 @@ function isValidChild(child, displayName) {
  * Class SpeedDial
  */
 class SpeedDial extends React.Component {
-
 	/**
 	 * @param {Object} props - component props
 	 * @param {Object} context - component context
@@ -77,16 +75,16 @@ class SpeedDial extends React.Component {
 		/* istanbul ignore next */
 		if (this.isControlled && typeof props.onChange !== 'function') {
 			// eslint-disable-next-line
-			console.error('Warning: Failed speed-dial propType: You provided a `isOpen` prop to a speed-dial without an `onChange` handler');
+			console.error(
+				'Warning: Failed speed-dial propType: You provided a `isOpen` prop to a speed-dial without an `onChange` handler'
+			);
 		}
-
 	}
 
 	/**
 	 * @returns {void}
 	 */
 	componentDidMount() {
-
 		const { closeOnScrollDown, closeOnScrollUp } = this.props;
 
 		if (closeOnScrollDown === true || closeOnScrollUp === true) {
@@ -110,7 +108,6 @@ class SpeedDial extends React.Component {
 	 * @returns {void}
 	 */
 	componentWillUnmount() {
-
 		const { closeOnScrollDown, closeOnScrollUp } = this.props;
 
 		if (closeOnScrollDown === true || closeOnScrollUp === true) {
@@ -122,7 +119,6 @@ class SpeedDial extends React.Component {
 	 * @returns {void}
 	 */
 	handleScroll() {
-
 		const { closeOnScrollDown, closeOnScrollUp } = this.props;
 		const { isOpen, openedScrollPos } = this.state;
 
@@ -152,7 +148,6 @@ class SpeedDial extends React.Component {
 	 * @returns {void}
 	 */
 	handleClickOpen() {
-
 		this.updateState({
 			wasOpened: false,
 			isOpen: true,
@@ -174,7 +169,6 @@ class SpeedDial extends React.Component {
 	 * @returns {void}
 	 */
 	handleClickClose() {
-
 		this.props.onClickPrimaryButton();
 
 		if (this.props.closeOnSecondClick) {
@@ -198,7 +192,6 @@ class SpeedDial extends React.Component {
 	 * @returns {void}
 	 */
 	handleClickCloseToolbox() {
-
 		/* istanbul ignore next */
 		this.updateState({
 			wasOpened: true,
@@ -291,7 +284,6 @@ class SpeedDial extends React.Component {
 	 * @returns {string} the BubbleList direction
 	 */
 	getDirection() {
-
 		const { children, positionV } = this.props;
 
 		if (children && children.props && children.props.direction) {
@@ -305,7 +297,6 @@ class SpeedDial extends React.Component {
 	 * @returns {string} the BubbleList alignment
 	 */
 	getAlignment() {
-
 		const { children, positionH } = this.props;
 
 		if (children && children.props && children.props.alignment) {
@@ -341,7 +332,6 @@ class SpeedDial extends React.Component {
 	 * @returns {Object} merged styles for the `FloatingActionButton`
 	 */
 	getStylesBtn() {
-
 		const { positionV, positionH, styleButtonWrap } = this.props;
 		const transitionState = this.getCurrentTransitionState();
 		const styles = this.styles;
@@ -370,23 +360,16 @@ class SpeedDial extends React.Component {
 	 * @returns {Object} merged styles for the `FloatingActionButton`
 	 */
 	getStylesMain() {
-
 		const { positionV, style } = this.props;
 		const styles = this.styles;
 
-		return Object.assign(
-			{},
-			styles.root.main,
-			styles.root[positionV],
-			style
-		);
+		return Object.assign({}, styles.root.main, styles.root[positionV], style);
 	}
 
 	/**
 	 * @returns {Object} merged styles for the `FloatingActionButton`
 	 */
 	getStylesContentWrap() {
-
 		const { positionV, positionH } = this.props;
 		const { isOpen } = this.state;
 		const styles = this.styles;
@@ -415,7 +398,6 @@ class SpeedDial extends React.Component {
 	 * @returns {Object} merged styles for the primary text
 	 */
 	getStylesPrimaryText() {
-
 		const { positionH } = this.props;
 		const { isOpen } = this.state;
 		const styles = this.styles;
@@ -449,21 +431,14 @@ class SpeedDial extends React.Component {
 		const styles = this.styles;
 
 		if (!isOpen) {
-			return Object.assign(
-				{},
-				styles.toolbox.main
-			);
+			return Object.assign({}, styles.toolbox.main);
 		}
 
 		const stylesOpen = {
 			height: toolbox.height,
 		};
 
-		return Object.assign(
-			{},
-			styles.toolbox.main,
-			stylesOpen
-		);
+		return Object.assign({}, styles.toolbox.main, stylesOpen);
 	}
 
 	/**
@@ -490,12 +465,7 @@ class SpeedDial extends React.Component {
 			height: stylesButton.height || 56,
 		});
 
-		return Object.assign(
-			{},
-			stylesWrap,
-			stylesMain,
-			styles.morphActionButton[this.getCurrentTransitionState()]
-		);
+		return Object.assign({}, stylesWrap, stylesMain, styles.morphActionButton[this.getCurrentTransitionState()]);
 	}
 
 	/**
@@ -532,7 +502,6 @@ class SpeedDial extends React.Component {
 	 * @returns {Array} returns the icon component's
 	 */
 	renderIcon() {
-
 		const { icon, iconOpen } = this.props;
 		const { isOpen } = this.state;
 
@@ -552,7 +521,6 @@ class SpeedDial extends React.Component {
 	 * @returns {XML} returns the children toolbox eg. `BottomNavigation` component
 	 */
 	renderToolbox() {
-
 		const { toolbox, children } = this.props;
 
 		if (!this.isToolbox()) {
@@ -560,19 +528,12 @@ class SpeedDial extends React.Component {
 		}
 
 		return (
-			<div
-				className={toolbox.className}
-				style={this.getStylesToolbox()}
-			>
-				<div style={this.styles.morphWrap}>
-					{this.renderMorphActionButton()}
-				</div>
+			<div className={toolbox.className} style={this.getStylesToolbox()}>
+				<div style={this.styles.morphWrap}>{this.renderMorphActionButton()}</div>
 				<div style={this.getStylesToolboxInner()}>
-					{
-						React.cloneElement(children, {
-							onClickCloseToolbox: this.handleClickCloseToolbox,
-						})
-					}
+					{React.cloneElement(children, {
+						onClickCloseToolbox: this.handleClickCloseToolbox,
+					})}
 				</div>
 			</div>
 		);
@@ -582,7 +543,6 @@ class SpeedDial extends React.Component {
 	 * @returns {XML} returns the children (list)
 	 */
 	renderChildren() {
-
 		const { children, positionV } = this.props;
 		const { isOpen, isInTransition } = this.state;
 
@@ -608,7 +568,6 @@ class SpeedDial extends React.Component {
 	 * @returns {XML} returns the backdrop
 	 */
 	renderBackdrop() {
-
 		const { hasBackdrop, classNameBackdrop, tabIndex, styleBackdrop } = this.props;
 		const { isOpen } = this.state;
 		const styles = this.styles;
@@ -619,17 +578,14 @@ class SpeedDial extends React.Component {
 		}
 
 		return (
-			<span
-				className={classNameBackdrop}
-				style={Object.assign({}, stylesWrap, styleBackdrop)}
-			>
+			<span className={classNameBackdrop} style={Object.assign({}, stylesWrap, styleBackdrop)}>
 				<a
 					style={this.getStylesBackdrop()}
-					tabIndex={isOpen ? (tabIndex + 1) : -1}
+					tabIndex={isOpen ? tabIndex + 1 : -1}
 					onBlur={this.handleBlurBackdrop}
 					onFocus={this.handleFocusBackdrop}
 					onKeyUp={this.handleBackdropKeyUp}
-					onTouchTap={this.handleClickBackdrop}
+					onClick={this.handleClickBackdrop}
 				/>
 			</span>
 		);
@@ -639,7 +595,6 @@ class SpeedDial extends React.Component {
 	 * @returns {XML} returns the primary text
 	 */
 	renderPrimaryText() {
-
 		const { primaryText, onClickPrimaryButton, tabIndex } = this.props;
 		const { isOpen } = this.state;
 
@@ -668,7 +623,6 @@ class SpeedDial extends React.Component {
 	 * @returns {XML} returns the morphing ActionButton
 	 */
 	renderMorphActionButton() {
-
 		const transitionState = this.getCurrentTransitionState();
 		const { toolbox } = this.props;
 		const classNames = [];
@@ -685,13 +639,7 @@ class SpeedDial extends React.Component {
 			classNames.push(keyFrameClassName + this.instanceKey);
 		}
 
-		return (
-			<div
-				className={classNames.join(' ')}
-				ref="morphBtn"
-				style={this.getStylesMorphActionButton()}
-			/>
-		);
+		return <div className={classNames.join(' ')} ref="morphBtn" style={this.getStylesMorphActionButton()} />;
 	}
 
 	/**
@@ -730,15 +678,12 @@ class SpeedDial extends React.Component {
 			classNameButtonWrap,
 			tabIndex,
 		} = this.props;
-		const {
-			isOpen,
-			isInTransition,
-		} = this.state;
+		const { isOpen, isInTransition } = this.state;
 		const handleClick = isOpen ? this.handleClickClose : this.handleClickOpen;
 		const classNames = [className];
 
 		const btnProps = Object.assign({}, floatingActionButtonProps, {
-			onTouchTap: handleClick,
+			onClick: handleClick,
 		});
 
 		if (isInTransition && classNameInTransition) {
@@ -754,16 +699,10 @@ class SpeedDial extends React.Component {
 				{this.renderCssKeyframes()}
 				{this.renderToolbox()}
 				{this.renderBackdrop()}
-				<div style={this.getStylesContentWrap()}>
-					{this.renderChildren()}
-				</div>
+				<div style={this.getStylesContentWrap()}>{this.renderChildren()}</div>
 				<div className={classNameButtonWrap} style={this.getStylesBtn()}>
 					{this.renderPrimaryText()}
-					<FloatingActionButton
-						ref="btn"
-						tabIndex={tabIndex}
-						{...btnProps}
-					>
+					<FloatingActionButton ref="btn" tabIndex={tabIndex} {...btnProps}>
 						{this.renderIcon()}
 					</FloatingActionButton>
 				</div>

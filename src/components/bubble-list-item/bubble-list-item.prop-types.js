@@ -1,4 +1,3 @@
-
 import { PropTypes } from 'prop-types';
 
 export default {
@@ -14,10 +13,7 @@ export default {
 	rightAvatar: PropTypes.object,
 	style: PropTypes.object,
 	styleText: PropTypes.object,
-	tabIndex: PropTypes.oneOfType([
-		PropTypes.string,
-		PropTypes.number,
-	]),
+	tabIndex: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 	onBlur: PropTypes.func,
 	onClick: PropTypes.func,
 	onFocus: PropTypes.func,
@@ -28,7 +24,4 @@ export default {
 	onMouseEnter: PropTypes.func,
 	onMouseLeave: PropTypes.func,
 	onMouseUp: PropTypes.func,
-	onTouchEnd: PropTypes.func,
-	onTouchStart: PropTypes.func,
-	onTouchTap: PropTypes.func,
 };

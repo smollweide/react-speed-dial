@@ -11,46 +11,16 @@ const Home = () => {
 			<PageHeader />
 			<div className="container">
 				<h2>Examples</h2>
-				<Example
-					exampleCode="basic"
-					title="Basic"
-				/>
-				<Example
-					exampleCode="top-left"
-					title="Position top left"
-				/>
-				<Example
-					exampleCode="inline"
-					title="Position inline"
-				/>
-				<Example
-					exampleCode="no-backdrop"
-					title="Without backdrop"
-				/>
-				<Example
-					exampleCode="inbox"
-					title="Like inbox"
-				/>
-				<Example
-					exampleCode="direction"
-					title="Custom direction"
-				/>
-				<Example
-					exampleCode="list"
-					title="With `List` component"
-				/>
-				<Example
-					exampleCode="toolbox"
-					title="Toolbox"
-				/>
-				<Example
-					exampleCode="toolbox-fixed"
-					title="Toolbox fixed"
-				/>
-				<Example
-					exampleCode="rtl"
-					title="RTL"
-				/>
+				<Example exampleCode="basic" title="Basic" />
+				<Example exampleCode="top-left" title="Position top left" />
+				<Example exampleCode="inline" title="Position inline" />
+				<Example exampleCode="no-backdrop" title="Without backdrop" />
+				<Example exampleCode="inbox" title="Like inbox" />
+				<Example exampleCode="direction" title="Custom direction" />
+				<Example exampleCode="list" title="With `List` component" />
+				<Example exampleCode="toolbox" title="Toolbox" />
+				<Example exampleCode="toolbox-fixed" title="Toolbox fixed" />
+				<Example exampleCode="rtl" title="RTL" />
 
 				<h2>Properties</h2>
 				<TableProps componentName="SpeedDial" />

@@ -27,7 +27,6 @@ const list = {
  * Class SpeedDial
  */
 class ExampleBasic extends React.Component {
-
 	/**
 	 * @param {Object} props - component props
 	 * @returns {void}
@@ -66,7 +65,6 @@ class ExampleBasic extends React.Component {
 	 * @returns {XML} returns the component
 	 */
 	render() {
-
 		return (
 			<div>
 				<RaisedButton
@@ -76,12 +74,9 @@ class ExampleBasic extends React.Component {
 					}}
 					onClick={this.handleToogleSpeedDialOpen}
 				/>
-				<SpeedDial
-					isOpen={this.state.isSpeedDialOpen}
-					onChange={this.handleChangeSpeedDial}
-				>
+				<SpeedDial isOpen={this.state.isSpeedDialOpen} onChange={this.handleChangeSpeedDial}>
 					<BubbleList>
-						{list.items.map((item) => {
+						{list.items.map(item => {
 							return (
 								<BubbleListItem
 									key={item.primaryText}

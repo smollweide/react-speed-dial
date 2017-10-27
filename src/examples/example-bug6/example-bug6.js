@@ -25,7 +25,6 @@ const list = {
  * Class SpeedDial
  */
 class ExampleBasic extends React.Component {
-
 	/**
 	 * @param {Object} props - component props
 	 * @returns {void}
@@ -53,19 +52,13 @@ class ExampleBasic extends React.Component {
 	 * @returns {XML} returns the component
 	 */
 	render() {
-
 		return (
 			<SpeedDial>
 				<BubbleList>
 					<BubbleListItem {...list.items[0]} />
-					{
-						this.state.toggle ?
-							<BubbleListItem
-								{...list.items[1]}
-								onClick={this.handleClickAddPoint}
-							/>
-						: null
-					}
+					{this.state.toggle ? (
+						<BubbleListItem {...list.items[1]} onClick={this.handleClickAddPoint} />
+					) : null}
 					<BubbleListItem {...list.items[2]} />
 				</BubbleList>
 			</SpeedDial>

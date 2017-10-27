@@ -1,4 +1,3 @@
-
 import { PropTypes } from 'prop-types';
 
 export default {
@@ -33,10 +32,7 @@ export default {
 	style: PropTypes.object,
 	styleBackdrop: PropTypes.object,
 	styleButtonWrap: PropTypes.object,
-	tabIndex: PropTypes.oneOfType([
-		PropTypes.string,
-		PropTypes.number,
-	]),
+	tabIndex: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 	toolbox: PropTypes.shape({
 		height: PropTypes.number.isRequired,
 		className: PropTypes.string,

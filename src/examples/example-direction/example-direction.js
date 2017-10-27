@@ -28,16 +28,10 @@ const list = {
 const ExampleDirection = () => {
 	return (
 		<div>
-			<SpeedDial
-				positionH="right"
-				positionV="bottom"
-			>
-				<BubbleList
-					alignment="up"
-					direction="left"
-				>
-					{list.items.reverse().map((item) => {
-						return (<BubbleListItem key={item.id} {...item} />);
+			<SpeedDial positionH="right" positionV="bottom">
+				<BubbleList alignment="up" direction="left">
+					{list.items.reverse().map(item => {
+						return <BubbleListItem key={item.id} {...item} />;
 					})}
 				</BubbleList>
 			</SpeedDial>

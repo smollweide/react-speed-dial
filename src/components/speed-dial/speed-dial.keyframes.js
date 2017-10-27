@@ -9,7 +9,6 @@ function _getWidth() {
 }
 
 export const getCssKeyFrames = (className, key, { height, btnHeight, positionH }) => {
-
 	const width = _getWidth();
 	const translateY = `${Number(height / 2)}px`;
 	const translateX = `${width / 2 - btnHeight}px`;
@@ -56,7 +55,6 @@ export const getCssKeyFrames = (className, key, { height, btnHeight, positionH }
 };
 
 export const getCssKeyFramesClosing = (className, key, { height, btnHeight, positionH }) => {
-
 	const width = _getWidth();
 	const translateY = `${Number(height / 2)}px`;
 	const translateX = `${width / 2 - btnHeight}px`;

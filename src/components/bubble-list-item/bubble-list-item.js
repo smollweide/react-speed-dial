@@ -1,4 +1,3 @@
-
 import React from 'react';
 import PropTypes from 'prop-types';
 import propTypes from './bubble-list-item.prop-types';
@@ -9,7 +8,6 @@ import getStyles from './bubble-list-item.styles';
  * Class BubbleListItem
  */
 class BubbleListItem extends React.Component {
-
 	/**
 	 * @param {Object} props - component props
 	 * @param {Object} muiTheme - the muiTheme in context
@@ -57,14 +55,11 @@ class BubbleListItem extends React.Component {
 	 * @returns {void}
 	 */
 	handleKeyUp(event) {
-
 		if (!this.state.isKeyboardFocused || event.keyCode !== 13) {
 			return;
 		}
 
-		const { onTouchTap, onClick } = this.props;
-
-		(onTouchTap || onClick)(event);
+		this.props.onClick(event);
 	}
 
 	/**
@@ -110,7 +105,6 @@ class BubbleListItem extends React.Component {
 	 * @returns {Object} styles for text element
 	 */
 	getStylesText() {
-
 		const { alignment, styleText } = this.props;
 		const styles = this.styles;
 
@@ -128,7 +122,6 @@ class BubbleListItem extends React.Component {
 	 * @returns {XML} returns the cloned Avatar
 	 */
 	renderAvatar(name) {
-
 		const styles = this.styles;
 		const avatar = this.props[name];
 
@@ -145,15 +138,12 @@ class BubbleListItem extends React.Component {
 	 * @returns {XML} returns the content
 	 */
 	renderContent() {
-
 		const { primaryText } = this.props;
 
 		return (
 			<span>
 				{this.renderAvatar('leftAvatar')}
-				<span style={this.getStylesText()}>
-					{primaryText}
-				</span>
+				<span style={this.getStylesText()}>{primaryText}</span>
 				{this.renderAvatar('rightAvatar')}
 			</span>
 		);
@@ -163,8 +153,7 @@ class BubbleListItem extends React.Component {
 	 * @returns {XML} returns the link
 	 */
 	renderLink() {
-
-		const { href, onTouchTap, onClick, tabIndex, isOpen } = this.props;
+		const { href, onClick, tabIndex, isOpen } = this.props;
 		const styles = this.styles;
 
 		if (href) {
@@ -190,7 +179,7 @@ class BubbleListItem extends React.Component {
 				onBlur={this.handleBlur}
 				onFocus={this.handleFocus}
 				onKeyUp={this.handleKeyUp}
-				onTouchTap={onTouchTap || onClick}
+				onClick={onClick}
 			>
 				{this.renderContent()}
 			</a>
@@ -204,11 +193,7 @@ class BubbleListItem extends React.Component {
 		const { className } = this.props;
 
 		return (
-			<li
-				className={className}
-				ref="item"
-				style={this.getStylesMain()}
-			>
+			<li className={className} ref="item" style={this.getStylesMain()}>
 				{this.renderLink()}
 			</li>
 		);
