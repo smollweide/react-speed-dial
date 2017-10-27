@@ -209,9 +209,14 @@ class SpeedDial extends React.Component {
 	}
 
 	/**
+	 * @param {Event} event - the click event object
 	 * @returns {void}
 	 */
-	handleClickBackdrop() {
+	handleClickBackdrop(event) {
+		if (event && typeof event.stopPropagation === 'function') {
+			event.stopPropagation();
+		}
+
 		/* istanbul ignore next */
 		this.updateState({
 			isOpen: false,
@@ -260,7 +265,7 @@ class SpeedDial extends React.Component {
 			return;
 		}
 
-		this.handleClickBackdrop();
+		this.handleClickBackdrop(event);
 	}
 
 	/**
