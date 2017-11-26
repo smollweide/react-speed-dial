@@ -26,7 +26,6 @@
     "clean:build": "rimraf build",
     "clean:dist": "rimraf dist",
     "clean:coverage": "rimraf coverage",
-    "preinstall": "npm install -g pushstate-server",
     "clear-install": "npm run clean:node_modules && npm install",
     "start": "react-scripts start",
     "prebuild-demo": "npm run lint",
@@ -86,8 +85,8 @@
   },
   "peerDependencies": {
     "material-ui": "^0.19.0",
-    "react": "^15.0.0",
-    "react-dom": "^15.0.0",
+    "react": "^15.0.0 || ^16.0.0",
+    "react-dom": "^15.0.0 || ^16.0.0",
     "prop-types": "^15.5.10"
   },
   "devDependencies": {
@@ -120,6 +119,7 @@
     "npm-run-all": "4.1.1",
     "prettier": "1.7.4",
     "prop-types": "15.5.10",
+    "pushstate-server": "3.0.1",
     "react": "15.5.0",
     "react-addons-test-utils": "15.2.0",
     "react-dom": "15.5.0",
