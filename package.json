@@ -30,7 +30,7 @@
     "start": "react-scripts start",
     "prebuild-demo": "npm run lint",
     "build-demo": "react-scripts build",
-    "predeploy-demo": "npm run build",
+    "predeploy-demo": "npm run build-demo",
     "deploy-demo": "gh-pages -d build",
     "pretest": "npm run clean:coverage",
     "test": "cross-env NODE_ENV=test node_modules/.bin/jest --coverage",
