@@ -3,6 +3,8 @@
 
 > React Component that implements a speed dial using [Material-UI](http://www.material-ui.com).
 
+For **Material-UI v1** use [material-ui-speed-dial](https://github.com/smollweide/material-ui-speed-dial)
+
 like inbox | toolbox version
 ------------ | -------------
 <img src="https://cloud.githubusercontent.com/assets/2912007/21943125/28c3e96a-d9d0-11e6-96f1-dc3fbf4dae8d.gif" alt="inbox" width="180" /> | <img src="https://cloud.githubusercontent.com/assets/2912007/21943136/32341bf0-d9d0-11e6-8a8f-919b68d19ee5.gif" alt="toolbox" width="180" />
