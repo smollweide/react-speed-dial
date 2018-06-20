@@ -52,6 +52,12 @@ const props = {
 			required: false,
 			desc: 'If true, clicking or tapping the opened `FloatingActionButton` will close the speed dial.',
 		},
+		enableMouseActions: {
+			type: 'boolean',
+			defaultProp: 'false',
+			required: false,
+			desc: 'If true, mouseenter will open and mouseleave will close the speed dial.',
+		},
 		floatingActionButtonProps: {
 			type: 'object',
 			required: false,

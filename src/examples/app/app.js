@@ -8,6 +8,7 @@ import ExampleTopLeft from '../example-top-left/example-top-left';
 import ExampleInline from '../example-inline/example-inline';
 import ExampleNoBackdrop from '../example-no-backdrop/example-no-backdrop';
 import ExampleInbox from '../example-inbox/example-inbox';
+import ExampleMouseover from '../example-mouseover/example-mouseover';
 import ExampleDirection from '../example-direction/example-direction';
 import ExampleBubbleListStandalone1 from '../example-bubble-list-standalone-1/example-bubble-list-standalone-1';
 import ExampleBubbleListStandalone2 from '../example-bubble-list-standalone-2/example-bubble-list-standalone-2';
@@ -29,6 +30,7 @@ const App = () => {
 					<Route component={ExampleInline} path="/inline" />
 					<Route component={ExampleNoBackdrop} path="/no-backdrop" />
 					<Route component={ExampleInbox} path="/inbox" />
+					<Route component={ExampleMouseover} path="/mouseover" />
 					<Route component={ExampleDirection} path="/direction" />
 					<Route component={ExampleDirection} path="/direction" />
 					<Route component={ExampleBubbleListStandalone1} path="/bubble-list-standalone-1" />

@@ -16,6 +16,7 @@ const Home = () => {
 				<Example exampleCode="inline" title="Position inline" />
 				<Example exampleCode="no-backdrop" title="Without backdrop" />
 				<Example exampleCode="inbox" title="Like inbox" />
+				<Example exampleCode="mouseover" title="Mouseover" />
 				<Example exampleCode="direction" title="Custom direction" />
 				<Example exampleCode="list" title="With `List` component" />
 				<Example exampleCode="toolbox" title="Toolbox" />

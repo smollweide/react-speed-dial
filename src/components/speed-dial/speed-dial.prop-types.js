@@ -10,6 +10,7 @@ export default {
 	closeOnSecondClick: PropTypes.bool,
 	closeOnScrollDown: PropTypes.bool,
 	closeOnScrollUp: PropTypes.bool,
+	enableMouseActions: PropTypes.bool,
 	floatingActionButtonProps: PropTypes.shape({
 		backgroundColor: PropTypes.string,
 		className: PropTypes.string,

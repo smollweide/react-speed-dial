@@ -67,6 +67,18 @@ describe('<SpeedDial />', () => {
 			);
 		});
 
+		it('with enableMouseActions', () => {
+			const div = document.createElement('div');
+			ReactDOM.render(
+				<MuiThemeProvider>
+					<SpeedDial enableMouseActions>
+						<BubbleList />
+					</SpeedDial>
+				</MuiThemeProvider>,
+				div
+			);
+		});
+
 		it('with floatingActionButtonProps', () => {
 			const div = document.createElement('div');
 			const floatingActionButtonProps = {

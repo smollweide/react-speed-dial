@@ -1,3 +1,4 @@
+/*eslint complexity: ["error", 7]*/
 import React from 'react';
 import PropTypes from 'prop-types';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
@@ -122,7 +123,7 @@ class SpeedDial extends React.Component {
 		const { closeOnScrollDown, closeOnScrollUp } = this.props;
 		const { isOpen, openedScrollPos } = this.state;
 
-		if (isOpen) {
+		if (!isOpen) {
 			const distance = Number(scrollTop() || 0) - openedScrollPos;
 			if (closeOnScrollDown === true && distance >= 30) {
 				this.handleClickClose();
@@ -213,6 +214,7 @@ class SpeedDial extends React.Component {
 	 * @returns {void}
 	 */
 	handleClickBackdrop(event) {
+		/* istanbul ignore next */
 		if (event && typeof event.stopPropagation === 'function') {
 			event.stopPropagation();
 		}
@@ -682,6 +684,7 @@ class SpeedDial extends React.Component {
 			classNameOpen,
 			classNameButtonWrap,
 			tabIndex,
+			enableMouseActions,
 		} = this.props;
 		const { isOpen, isInTransition } = this.state;
 		const handleClick = isOpen ? this.handleClickClose : this.handleClickOpen;
@@ -690,6 +693,11 @@ class SpeedDial extends React.Component {
 		const btnProps = Object.assign({}, floatingActionButtonProps, {
 			onClick: handleClick,
 		});
+
+		if (enableMouseActions) {
+			btnProps.onMouseEnter = handleClick;
+			btnProps.onMouseLeave = handleClick;
+		}
 
 		if (isInTransition && classNameInTransition) {
 			classNames.push(classNameInTransition);

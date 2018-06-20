@@ -7,6 +7,7 @@ export default {
 	closeOnScrollDown: false,
 	closeOnScrollUp: false,
 	hasBackdrop: true,
+	enableMouseActions: false,
 	icon: <IconAdd />,
 	iconOpen: <IconClose />,
 	isInitiallyOpen: false,
