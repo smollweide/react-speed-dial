@@ -4,16 +4,17 @@ import { blue500 } from 'material-ui/styles/colors';
 import IconEdit from 'material-ui/svg-icons/image/edit';
 import { BubbleList, BubbleListItem } from '../../speed-dial';
 
-const avatarImgUrl = 'http://lorempixel.com/80/80/people';
+import fakerImage from '../faker-image';
+
 const list = {
 	items: [
 		{
 			primaryText: 'Kerem Suer',
-			rightAvatar: <Avatar src={`${avatarImgUrl}/6`} />,
+			rightAvatar: <Avatar src={fakerImage(6)} />,
 		},
 		{
 			primaryText: 'Raquel Parrado',
-			rightAvatar: <Avatar src={`${avatarImgUrl}/7`} />,
+			rightAvatar: <Avatar src={fakerImage(7)} />,
 		},
 		{
 			primaryText: 'Write',

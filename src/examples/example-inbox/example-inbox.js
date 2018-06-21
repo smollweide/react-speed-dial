@@ -8,24 +8,25 @@ import IconRemember from 'material-ui/svg-icons/action/touch-app';
 import { SpeedDial, BubbleList, BubbleListItem } from '../../speed-dial';
 import ExampleContent from '../example-content/example-content';
 
-const avatarImgUrl = 'http://lorempixel.com/80/80/people';
+import fakerImage from '../faker-image';
+
 const list = {
 	items: [
 		{
 			primaryText: 'Eric Hoffman',
-			rightAvatar: <Avatar src={`${avatarImgUrl}/1`} />,
+			rightAvatar: <Avatar src={fakerImage(1)} />,
 			onClick() {
 				console.log('click on "Eric Hoffman"');
 			},
 		},
 		{
 			primaryText: 'Grace Ng',
-			rightAvatar: <Avatar src={`${avatarImgUrl}/3`} />,
+			rightAvatar: <Avatar src={fakerImage(3)} />,
 			href: '/#/',
 		},
 		{
 			primaryText: 'Raquel Parrado',
-			rightAvatar: <Avatar src={`${avatarImgUrl}/7`} />,
+			rightAvatar: <Avatar src={fakerImage(7)} />,
 			onClick() {
 				console.log('click on "Raquel Parrado"');
 			},

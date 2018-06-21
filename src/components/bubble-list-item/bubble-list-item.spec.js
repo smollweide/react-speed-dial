@@ -37,7 +37,7 @@ describe('<BubbleListItem />', () => {
 		const wrapper = shallow(
 			<BubbleListItem
 				primaryText="Hello world!"
-				rightAvatar={<Avatar src={'http://lorempixel.com/80/80/people/1'} />}
+				rightAvatar={<Avatar src={'https://picsum.photos/80/80/1'} />}
 			/>,
 			{ context }
 		);
@@ -56,10 +56,7 @@ describe('<BubbleListItem />', () => {
 
 	it('with prop *leftAvatar* renders the avatar image', () => {
 		const wrapper = shallow(
-			<BubbleListItem
-				leftAvatar={<Avatar src={'http://lorempixel.com/80/80/people/1'} />}
-				primaryText="Hello world!"
-			/>,
+			<BubbleListItem leftAvatar={<Avatar src={'https://picsum.photos/80/80/1'} />} primaryText="Hello world!" />,
 			{ context }
 		);
 		expect(typeof wrapper.find('img')).toEqual('object');

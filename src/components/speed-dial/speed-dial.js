@@ -1,4 +1,4 @@
-/*eslint complexity: ["error", 7]*/
+/*eslint complexity: ["error", 10]*/
 import React from 'react';
 import PropTypes from 'prop-types';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
@@ -366,6 +366,43 @@ class SpeedDial extends React.Component {
 	/**
 	 * @returns {Object} merged styles for the `FloatingActionButton`
 	 */
+	getStylesMouseWrapper() {
+		const { positionV, positionH, styleButtonWrap } = this.props;
+		const { isOpen } = this.state;
+		const styles = this.styles;
+		const overwrite = {
+			transition: undefined,
+			width: isOpen ? 320 : 56,
+			height: isOpen ? 340 : 56,
+		};
+		const stylesMouseWrap = Object.assign(
+			{},
+			styles.btnWrap.main,
+			styles.btnWrap[positionV],
+			styles.btnWrap[positionH],
+			styleButtonWrap,
+			overwrite
+		);
+
+		if (typeof stylesMouseWrap.right === 'number') {
+			stylesMouseWrap.right = 0;
+		}
+		if (typeof stylesMouseWrap.left === 'number') {
+			stylesMouseWrap.left = 0;
+		}
+		if (typeof stylesMouseWrap.top === 'number') {
+			stylesMouseWrap.top = 0;
+		}
+		if (typeof stylesMouseWrap.bottom === 'number') {
+			stylesMouseWrap.bottom = 0;
+		}
+
+		return stylesMouseWrap;
+	}
+
+	/**
+	 * @returns {Object} merged styles for the `FloatingActionButton`
+	 */
 	getStylesMain() {
 		const { positionV, style } = this.props;
 		const styles = this.styles;
@@ -694,11 +731,6 @@ class SpeedDial extends React.Component {
 			onClick: handleClick,
 		});
 
-		if (enableMouseActions) {
-			btnProps.onMouseEnter = handleClick;
-			btnProps.onMouseLeave = handleClick;
-		}
-
 		if (isInTransition && classNameInTransition) {
 			classNames.push(classNameInTransition);
 		}
@@ -712,12 +744,19 @@ class SpeedDial extends React.Component {
 				{this.renderCssKeyframes()}
 				{this.renderToolbox()}
 				{this.renderBackdrop()}
-				<div style={this.getStylesContentWrap()}>{this.renderChildren()}</div>
-				<div className={classNameButtonWrap} style={this.getStylesBtn()}>
-					{this.renderPrimaryText()}
-					<FloatingActionButton ref="btn" tabIndex={tabIndex} {...btnProps}>
-						{this.renderIcon()}
-					</FloatingActionButton>
+				<div
+					className="enableMouseActions"
+					onMouseEnter={enableMouseActions ? handleClick : undefined}
+					onMouseLeave={enableMouseActions ? handleClick : undefined}
+					style={enableMouseActions ? Object.assign(this.getStylesMouseWrapper(), {}) : {}}
+				>
+					<div style={this.getStylesContentWrap()}>{this.renderChildren()}</div>
+					<div className={classNameButtonWrap} style={this.getStylesBtn()}>
+						{this.renderPrimaryText()}
+						<FloatingActionButton ref="btn" tabIndex={tabIndex} {...btnProps}>
+							{this.renderIcon()}
+						</FloatingActionButton>
+					</div>
 				</div>
 			</div>
 		);
