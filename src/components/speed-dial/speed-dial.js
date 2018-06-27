@@ -728,7 +728,7 @@ class SpeedDial extends React.Component {
 		const classNames = [className];
 
 		const btnProps = Object.assign({}, floatingActionButtonProps, {
-			onClick: handleClick,
+			onClick: enableMouseActions ? undefined : handleClick,
 		});
 
 		if (isInTransition && classNameInTransition) {
